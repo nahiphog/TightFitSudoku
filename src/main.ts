@@ -1,4 +1,5 @@
 import './style.css';
+import { generateSlashes } from './slashes';
 
 const regions = [
   [1, 1, 1, 2, 2, 2],
@@ -26,12 +27,13 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <div class="board" role="img" aria-label="Empty 6 by 6 Sudoku grid. Six rectangular regions, each 2 rows high and 3 columns wide.">
           ${regions.flatMap((row, r) => row.map((region, c) => `<div class="cell region-${region}${c === 2 ? ' region-right' : ''}${r === 1 || r === 3 ? ' region-bottom' : ''}" data-region="${region}" aria-hidden="true"><span>${region}</span></div>`)).join('')}
         </div>
-        <div class="board-caption"><span class="status-dot"></span> Empty grid <span class="caption-divider">/</span> Ready for your ideas</div>
+        <div class="board-caption" aria-live="polite"><span class="status-dot"></span> <span id="generation-status">18 slashes · 3 per row, column & region</span></div>
       </div>
       <aside>
         <span class="step">01 / THE FOUNDATION</span>
-        <h2>Six regions.<br>One clean canvas.</h2>
-        <p class="description">A 6 × 6 board divided into six equal regions. Each region spans two rows and three columns.</p>
+        <h2>Six regions.<br>Eighteen slashes.</h2>
+        <p class="description">Each row, column, and outlined 2 × 3 region contains exactly three slashes. Generate a fresh arrangement to explore a new starting point.</p>
+        <button class="generate" id="generate" type="button">Generate <span aria-hidden="true">↗</span></button>
         <div class="stats"><div><strong>36</strong><span>CELLS</span></div><div><strong>6</strong><span>REGIONS</span></div><div><strong>2 × 3</strong><span>PER REGION</span></div></div>
         <div class="layout-label">REGION MAP</div>
         <div class="mini-map" aria-label="Region map: 111222, 111222, 333444, 333444, 555666, 555666">${regions.map(row => `<div>${row.map(n => `<span class="map-${n}">${n}</span>`).join('')}</div>`).join('')}</div>
@@ -46,3 +48,18 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 document.querySelector<HTMLInputElement>('#labels')!.addEventListener('change', (event) => {
   document.querySelector('.board')!.classList.toggle('show-labels', (event.target as HTMLInputElement).checked);
 });
+
+let slashes: boolean[] | undefined;
+let generation = 0;
+function generate(): void {
+  slashes = generateSlashes(slashes);
+  generation++;
+  document.querySelectorAll<HTMLDivElement>('.cell').forEach((cell, i) => {
+    cell.classList.toggle('slashed', slashes![i]);
+  });
+  const locations = slashes.flatMap((value, i) => value ? [`row ${Math.floor(i / 6) + 1} column ${i % 6 + 1}`] : []);
+  document.querySelector('.board')!.setAttribute('aria-label', `6 by 6 Sudoku grid with 18 slashes, three in every row, column and region. Slashes at ${locations.join('; ')}.`);
+  document.querySelector('#generation-status')!.textContent = `Layout ${generation} · 18 slashes · 3 per row, column & region`;
+}
+document.querySelector('#generate')!.addEventListener('click', generate);
+generate();
