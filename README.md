@@ -1,18 +1,9 @@
 # Tight Fit Sudoku
 
-A TypeScript starting point for a Tight Fit Sudoku maker and solver. The first step renders an empty 6×6 board with six 2×3 regions, matching the requested region map. Use the region-label switch to inspect the layout.
+A TypeScript maker for 6×6 Tight Fit Sudoku. Each layout has three slashes per row, column, and 2×3 region. Completed grids contain 1–9 once per unit, with smaller digits above each slash.
 
-## Run locally
+Generate displays a completed grid and a dug puzzle. Digging tests all cells in random order, removes whole-cell clues only when exactly one solution remains, and retains the slash layout. The result is minimal by whole-cell removal, not necessarily the global minimum number of clues. Generation runs in a Web Worker.
 
-```sh
-npm install
-npm run dev
-```
+Run `npm install` then `npm run dev`. Build with `npm run build`.
 
-## Production build
-
-```sh
-npm run build
-```
-
-Puzzle rules, editing, and solving are planned follow-up steps; this version establishes the board layout.
+Run `npm test` (Node 22.6+ with TypeScript stripping) to verify solution counting, Sudoku constraints, uniqueness, and that removing any remaining given cell creates multiple solutions.

@@ -1,5 +1,5 @@
 /** Fill a fixed slash layout; both halves share their cell's three units. */
-export function solveGrid(slashes: readonly boolean[]): number[][] | null {
+function searchGrid(slashes: readonly boolean[], givens: readonly (readonly number[])[], limit: number): { count: number; solution: number[][] | null } {
   if (slashes.length !== 36) throw new Error('Expected 36 cells.');
   const units = Array.from({ length: 36 }, (_, i) => [Math.floor(i / 6), 6 + i % 6, 12 + Math.floor(i / 12) * 2 + Math.floor((i % 6) / 3)]);
   const used = Array<number>(18).fill(0);
@@ -9,8 +9,25 @@ export function solveGrid(slashes: readonly boolean[]): number[][] | null {
     const j = Math.floor(Math.random() * (i + 1));
     [order[i], order[j]] = [order[j], order[i]];
   }
+  let count = 0;
+  let solution: number[][] | null = null;
+  let empty = 36;
+  for (let i = 0; i < 36; i++) {
+    const digits = givens[i] ?? [];
+    if (!digits.length) continue;
+    if (digits.length !== (slashes[i] ? 2 : 1) || digits.some(d => !Number.isInteger(d) || d < 1 || d > 9) || (slashes[i] && digits[0] >= digits[1])) return { count: 0, solution: null };
+    const mask = digits.reduce((m, d) => m | (1 << d), 0);
+    if (units[i].some(unit => used[unit] & mask)) return { count: 0, solution: null };
+    values[i] = [...digits];
+    units[i].forEach(unit => { used[unit] |= mask; });
+    empty--;
+  }
   function search(left: number): boolean {
-    if (!left) return true;
+    if (!left) {
+      count++;
+      solution ??= values.map(digits => [...digits]);
+      return count >= limit;
+    }
     let best = -1;
     let choices: number[][] = [];
     for (let i = 0; i < 36; i++) {
@@ -37,5 +54,32 @@ export function solveGrid(slashes: readonly boolean[]): number[][] | null {
     }
     return false;
   }
-  return search(36) ? values : null;
+  search(empty);
+  return { count, solution };
 }
+
+export function solveGrid(slashes: readonly boolean[]): number[][] | null {
+  return searchGrid(slashes, [], 1).solution;
+}
+
+/** Counts at most two solutions: zero, unique, or multiple. */
+export function countSolutions(slashes: readonly boolean[], givens: readonly (readonly number[])[]): number {
+  return searchGrid(slashes, givens, 2).count;
+}
+
+/** A rejected removal stays rejected as more clues are removed, so one pass suffices. */
+export function digGrid(slashes: readonly boolean[], completed: readonly (readonly number[])[]): number[][] {
+  const puzzle = completed.map(digits => [...digits]);
+  const cells = Array.from({length: 36}, (_, i) => i);
+  for (let i = 35; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cells[i], cells[j]] = [cells[j], cells[i]];
+  }
+  for (const cell of cells) {
+    const saved = puzzle[cell];
+    puzzle[cell] = [];
+    if (countSolutions(slashes, puzzle) !== 1) puzzle[cell] = saved;
+  }
+  return puzzle;
+}
+

@@ -10,3 +10,6 @@
 
 .board{grid-template-rows:repeat(6,minmax(0,1fr))}.cell{min-height:0}
 
+
+main{max-width:1280px}.workspace{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}.board-area{padding:22px}.workspace aside{grid-column:1/-1;display:block;max-width:none}.workspace aside .description{max-width:650px}.workspace aside .stats,.workspace aside .layout-label,.workspace aside .mini-map,.workspace aside .aside-note{display:none}.generate:disabled{opacity:.65;cursor:wait}.board-caption{min-height:16px;line-height:1.5;text-align:center}.cell .digit{font-size:clamp(18px,2.7vw,30px)}@media(max-width:760px){.workspace{grid-template-columns:1fr}.workspace aside{grid-row:1}.workspace aside .description{font-size:12px}.workspace aside h2{font-size:26px}.cell .digit{font-size:clamp(18px,5vw,30px)}}
+
