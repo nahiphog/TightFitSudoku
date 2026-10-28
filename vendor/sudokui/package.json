@@ -1,0 +1,31 @@
+{
+  "name": "sudokui",
+  "private": true,
+  "version": "1.0.0",
+  "description": "sudokUI — play, practise and rate sudoku puzzles in a beautiful UI.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build && vite-node scripts/build-learn.ts",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vite-plugin-pwa": "^0.20.5",
+    "vitest": "^2.1.8",
+    "wrangler": "4.148.0"
+  }
+}

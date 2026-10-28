@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="<!--home:lang-->">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#1a1d29" />
+    <!-- the parts of this page that change with the language (/, /nb/,
+         /es/) come from src/content/home.ts; the share pages (/p/<puzzle>)
+         fill the same placeholders from src/content/share.ts -->
+    <title><!--home:title--></title>
+    <meta
+      name="description"
+      content="<!--home:description-->"
+    />
+    <!--home:links-->
+    <style>
+      /* the pre-hydration view: on a slow connection this is on screen for a
+         moment before the app mounts, so it wears the app's colours */
+      html { background: #14161f; }
+      .boot {
+        max-width: 620px;
+        margin: 72px auto;
+        padding: 0 20px;
+        font: 16px/1.6 'Avenir Next', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        color: #e8eaf2;
+      }
+      .boot a { color: #8ab6f7; }
+      .boot li { margin: 4px 0; }
+    </style>
+    <meta property="og:site_name" content="sudokUI" />
+    <meta property="og:title" content="<!--home:og-title-->" />
+    <meta
+      property="og:description"
+      content="<!--home:og-description-->"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<!--home:url-->" />
+    <!--home:og-locale-->
+    <meta property="og:image" content="<!--home:og-image-->" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="<!--home:og-image-alt-->"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="<!--home:og-image-->" />
+    <script type="application/ld+json">
+      <!--home:json-ld-->
+    </script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- pre-hydration content: what crawlers and slow connections see;
+           React replaces this the moment the app mounts -->
+      <div class="boot">
+        <!--home:boot-->
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

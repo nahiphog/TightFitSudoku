@@ -1,0 +1,154 @@
+// User preferences, persisted to localStorage. Kept separate from the game
+// store so changing a setting never touches game state or undo history.
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+export type MarkLayer = 'center' | 'corner';
+
+export type Theme = 'dark' | 'light' | 'rose' | 'forest';
+
+/** typefaces already on the device: nothing to download, works offline */
+export type Font = 'classic' | 'rounded' | 'serif' | 'mono' | 'hand';
+
+/** the app's language: the interface, the hints and every other sentence the
+ *  engine writes, and the Learn section (docs/translations.md) */
+export type Lang = 'en' | 'nb' | 'es';
+
+/** the device's language, when it is one we have */
+export function deviceLang(): Lang {
+  const tag = (typeof navigator !== 'undefined' ? navigator.language : 'en').toLowerCase();
+  if (tag.startsWith('nb') || tag.startsWith('nn') || tag.startsWith('no')) return 'nb';
+  if (tag.startsWith('es')) return 'es';
+  return 'en';
+}
+
+interface Settings {
+  /** the app's language */
+  lang: Lang;
+  /** board theme: dark, daylight or rosé */
+  theme: Theme;
+  /** typeface of the board (digits and pencil marks); all other text
+   *  keeps the face made for reading */
+  font: Font;
+  /** tint the row/column/box of a single selected cell */
+  highlightPeers: boolean;
+  /** tint all cells holding the same digit as the selection */
+  highlightSameDigit: boolean;
+  /** show an entered digit in red while it repeats within its row, column
+   *  or box: a rule check, not a solution lookup, so it never counts as help */
+  showConflicts: boolean;
+  showTimer: boolean;
+  /** when auto candidates are switched off, write the current candidate
+   *  state into pencil marks so play continues seamlessly */
+  autoOffMaterialize: boolean;
+  /** which mark layer receives those candidates. Centre is the convention
+   *  for exhaustive candidate lists; corner puts them in the digit-bound
+   *  3×3 layout that hint highlights align with */
+  materializeLayer: MarkLayer;
+  /** practice mode jumps straight to the position where the chosen
+   *  technique is the next step; off = play the puzzle from the start */
+  practiceFastForward: boolean;
+  /** the one-time "keep your candidates?" prompt on first auto-off has been
+   *  answered */
+  autoOffPromptDone: boolean;
+  /** hide the difficulty badge and rating while playing (revealed on solve) —
+   *  knowing a puzzle is rated 1200 tells you to expect advanced techniques */
+  hideRating: boolean;
+  /** show Nutella, the resident poodle, beneath the board */
+  showPoodle: boolean;
+  /** draw a thin frame around highlighted candidates (the held digit's
+   *  pencil occurrences) — bold + colour alone can be hard to spot */
+  frameHighlights: boolean;
+  /** ring every unsolved cell whose marks leave exactly two candidates:
+   *  where wings, chains and remote pairs begin, what a stuck player scans
+   *  for. A view of the player's own marks (or of the auto candidates),
+   *  never of the solution, so it never counts as help; drawn only while
+   *  the marks are complete (src/state/bivalue.ts) */
+  highlightBivalue: boolean;
+  /** two palette colours are two sets of cells, and a line under the board
+   *  counts them, says what each still needs and whether they must hold the
+   *  same digits (src/engine/sets.ts, src/ui/SetTracker.tsx). A view of the
+   *  player's own board, never of the solution, so it never counts as help */
+  setTracker: boolean;
+  /** the palette indices of the two sets (0..8; key n paints index n - 1) */
+  setColors: [number, number];
+  /** the first assist in a clean game asks first: it says what the button
+   *  does (touch screens have no hover) and guards against a stray tap */
+  confirmAssist: boolean;
+  /** hints, Steps, Scan, the why-not proofs and the credit of a move may use
+   *  the uniqueness family (unique rectangles, BUG+1 and their kin). Off,
+   *  they find another way, as many solvers prefer: uniqueness leans on the
+   *  puzzle having exactly one solution. The rating is HoDoKu's either way */
+  useUniqueness: boolean;
+  /** give each digit 1 to 9 a slight colour of its own on the board */
+  digitTints: boolean;
+  /** how much of the digit's own hue is mixed in, in percent */
+  tintStrength: number;
+  /** count this device's plays, offline ones included (src/state/telemetry.ts):
+   *  the queue it keeps and the day it began exist only while this is on */
+  countPlays: boolean;
+  /** the win screen has pointed at that switch, once */
+  countPlaysAsked: boolean;
+  /** this device sends no counted lines at all (src/state/telemetry.ts): for
+   *  the owner's and testers' devices, and for anyone who would rather not
+   *  be counted. Kept at the player's request, like every setting */
+  dontCount: boolean;
+
+  toggleTheme: () => void;
+  set: (p: Partial<Omit<Settings, 'toggleTheme' | 'set'>>) => void;
+}
+
+export const useSettings = create<Settings>()(
+  persist(
+    (set) => ({
+      lang: deviceLang(),
+      theme: 'dark',
+      font: 'classic',
+      highlightPeers: true,
+      highlightSameDigit: true,
+      showConflicts: true,
+      showTimer: true,
+      autoOffMaterialize: true,
+      materializeLayer: 'center',
+      practiceFastForward: true,
+      autoOffPromptDone: false,
+      hideRating: false,
+      showPoodle: false,
+      frameHighlights: true,
+      highlightBivalue: false,
+      setTracker: false,
+      // blue and orange: keys 6 and 2 in Colour mode
+      setColors: [5, 1],
+      confirmAssist: true,
+      useUniqueness: true,
+      digitTints: false,
+      tintStrength: 50,
+      countPlays: false,
+      countPlaysAsked: false,
+      dontCount: false,
+      toggleTheme: () =>
+        set((s) => ({
+          theme:
+            s.theme === 'dark'
+              ? 'light'
+              : s.theme === 'light'
+                ? 'rose'
+                : s.theme === 'rose'
+                  ? 'forest'
+                  : 'dark'
+        })),
+      set: (p) => set(p)
+    }),
+    { name: 'sudokui-settings-v1' }
+  )
+);
+
+// A setting changed in another tab, or in the installed app's window, is
+// taken here too, so a switch such as leaving the device out of the counts
+// holds in every open window at once, and this window's next write of its
+// settings does not put the old value back
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'sudokui-settings-v1') void useSettings.persist.rehydrate();
+  });
+}

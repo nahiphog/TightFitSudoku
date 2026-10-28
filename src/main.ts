@@ -24,13 +24,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <p>Every puzzle starts with a grid.</p>
     </section>
     <section class="workspace" aria-label="Sudoku board layout">
-      <div class="board-area">
-        <div class="board-heading"><span>COMPLETED GRID</span><span>6 × 6</span></div>
-        <div class="board" role="img" aria-label="Empty 6 by 6 Sudoku grid. Six rectangular regions, each 2 rows high and 3 columns wide.">
-          ${regions.flatMap((row, r) => row.map((region, c) => `<div class="cell region-${region}${c === 2 ? ' region-right' : ''}${r === 1 || r === 3 ? ' region-bottom' : ''}" data-region="${region}" aria-hidden="true"><span>${region}</span></div>`)).join('')}
-        </div>
-        <div class="board-caption" aria-live="polite"><span class="status-dot"></span> <span id="generation-status">18 slashes · 3 per row, column & region</span></div>
-      </div>
       <div class="board-area puzzle-area">
         <div class="board-heading"><span>FINAL PUZZLE</span><span>UNIQUE SOLUTION</span></div>
         <div class="board puzzle-board" role="img" aria-label="Empty 6 by 6 Sudoku grid. Six rectangular regions, each 2 rows high and 3 columns wide.">
@@ -39,6 +32,13 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <div class="board-caption" id="puzzle-status" aria-live="polite">Digging a unique puzzle…</div>
         <button id="check" class="check" type="button" disabled>Check</button>
         <p id="check-status" role="status" aria-live="polite">Enter 1–9 in each empty space, then check your solution.</p>
+      </div>
+      <div class="board-area">
+        <div class="board-heading"><span>COMPLETED GRID</span><span>6 × 6</span></div>
+        <div class="board" role="img" aria-label="Empty 6 by 6 Sudoku grid. Six rectangular regions, each 2 rows high and 3 columns wide.">
+          ${regions.flatMap((row, r) => row.map((region, c) => `<div class="cell region-${region}${c === 2 ? ' region-right' : ''}${r === 1 || r === 3 ? ' region-bottom' : ''}" data-region="${region}" aria-hidden="true"><span>${region}</span></div>`)).join('')}
+        </div>
+        <div class="board-caption" aria-live="polite"><span class="status-dot"></span> <span id="generation-status">18 slashes · 3 per row, column & region</span></div>
       </div>
       <aside>
         <span class="step">01 / THE FOUNDATION</span>
@@ -133,7 +133,7 @@ worker.onmessage = (event: MessageEvent<{ slashes: boolean[]; completed: number[
   givens = puzzle;
   slashes = event.data.slashes;
   generation++;
-  render(document.querySelector('.board')!, completed, slashes, 'Completed Tight Fit Sudoku');
+  render(document.querySelector('.board:not(.puzzle-board)')!, completed, slashes, 'Completed Tight Fit Sudoku');
   render(document.querySelector('.puzzle-board')!, puzzle, slashes, 'Final Tight Fit Sudoku puzzle with exactly one solution');
   const givenCount = puzzle.filter(digits => digits.length).length;
   status.textContent = `Grid ${generation} · 54 digits · 1–9 in every unit`;
@@ -170,6 +170,7 @@ checkButton.addEventListener('click', () => {
   checkStatus.textContent = result.solved ? 'Solved! Every row, column, and region contains 1–9 exactly once, and all slash pairs are in order.' : result.errors.length ? `There are conflicts in ${result.errors.length} highlighted cells. Check repeated digits and make sure the smaller digit is above each slash.${result.empty ? ` ${result.empty} spaces are still empty.` : ''}` : `Not finished yet: ${result.empty} spaces are still empty. No rule conflicts so far.`;
 });
 generate();
+
 
 
 

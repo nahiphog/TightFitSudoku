@@ -1,0 +1,266 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { VitePWA } from 'vite-plugin-pwa';
+import { version } from './package.json';
+import { execSync } from 'node:child_process';
+
+/**
+ * The build's own name, 1.0.0+abc1234: package.json's version and the
+ * commit it was built from, so the app's Info dialog, a bug report and
+ * every counted line say which deploy they came from. Cloudflare's Workers
+ * Builds sets WORKERS_CI_COMMIT_SHA, GitHub Actions GITHUB_SHA; a local
+ * build asks git, and a build with no git at all is the version alone.
+ */
+function buildCommit(): string {
+  const fromCi = process.env.WORKERS_CI_COMMIT_SHA || process.env.GITHUB_SHA;
+  if (fromCi) return fromCi.slice(0, 7);
+  try {
+    return execSync('git rev-parse --short=7 HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+  } catch {
+    return '';
+  }
+}
+const COMMIT = buildCommit();
+const BUILD_VERSION = /^[0-9a-f]{7}$/.test(COMMIT) ? `${version}+${COMMIT}` : version;
+import type { Plugin } from 'vite';
+import { STATIC_ROUTES } from './src/content/staticRoutes';
+import { renderHome, homeLangOfPath, HOME_LANGS, APP_NAVIGATION } from './src/content/home';
+import { shareParamsOf, renderSharePage } from './src/content/share';
+import { handleDailyApi, memoryStore } from './worker/daily';
+import { handleTelemetry, memoryEvents } from './worker/telemetry';
+import { handleFeedback, FEEDBACK_PATH } from './worker/feedback';
+import dailies from './src/content/dailies.json';
+import type { Daily } from './src/content/dailies';
+import type { IncomingMessage, ServerResponse } from 'node:http';
+
+/**
+ * Serves the static pages (/learn/, the landing pages) on the dev server
+ * too. In production they are files written by scripts/build-learn.ts;
+ * here they are built on request from the live content modules, so a
+ * change to the copy shows on reload.
+ */
+function staticPagesDev(): Plugin {
+  return {
+    name: 'sudokui-static-pages-dev',
+    apply: 'serve',
+    configureServer(server) {
+      server.middlewares.use(async (req, res, next) => {
+        const url = (req.url ?? '').split(/[?#]/)[0];
+        if (!STATIC_ROUTES.test(url)) return next();
+        try {
+          const mod = await server.ssrLoadModule('/src/content/learnPages.ts');
+          const want = url.endsWith('/') ? url : url + '/';
+          const page = mod.buildLearnPages().find((p: { url: string }) => p.url === want);
+          if (page) {
+            res.setHeader('Content-Type', 'text/html; charset=utf-8');
+            res.end(page.html);
+            return;
+          }
+          const asset = mod.buildLearnAssets().find((a: { path: string }) => '/' + a.path === url);
+          if (asset) {
+            res.setHeader('Content-Type', 'image/svg+xml');
+            res.end(asset.content);
+            return;
+          }
+        } catch (err) {
+          server.config.logger.error(String(err));
+        }
+        next();
+      });
+    }
+  };
+}
+
+/**
+ * The home page in every language: / in English, /nb/ and /es/ in
+ * Norwegian and Spanish (src/content/home.ts), and the share pages,
+ * /p/<puzzle> under each of them (src/content/share.ts). index.html is
+ * their template.
+ *
+ * - The dev server answers /nb/, /es/ and the share addresses with
+ *   index.html too, and fills it for the address it was asked for.
+ * - The build fills dist/index.html in English once Vite and the other
+ *   plugins are done with it, and writes nb/index.html and es/index.html
+ *   from the same page, with the same scripts and styles, so the service
+ *   worker precaches all three and /nb/ and /es/ work offline. It also
+ *   keeps that built page with its placeholders intact as share.tpl, which
+ *   the Worker (worker/index.ts) fills for each share address on request.
+ */
+/**
+ * The Worker's API on the dev and preview servers: the daily's
+ * (worker/daily.ts) over a store in memory, so the win screen's statistics
+ * work locally and in the browser smoke test without a database, and the
+ * telemetry route (worker/telemetry.ts) over a dataset in memory, so the
+ * app's beacons are answered and nothing is logged; and the report route
+ * (worker/feedback.ts) over an outbox in memory, so a report is checked as
+ * the Worker checks it and nothing is e-mailed. All of it is forgotten
+ * when the server stops.
+ */
+function workerApi(): (req: IncomingMessage, res: ServerResponse, next: () => void) => void {
+  const store = memoryStore();
+  const events = memoryEvents();
+  const outbox: unknown[] = [];
+  const feedback = { sender: { send: async (m: unknown) => void outbox.push(m) }, to: 'owner@example.invalid', makeMessage: (from: string, to: string, raw: string) => ({ from, to, raw }) };
+  return (req, res, next) => {
+    const url = req.url ?? '';
+    const path = url.split(/[?#]/)[0];
+    if (!url.startsWith('/api/daily/') && path !== '/api/t' && path !== FEEDBACK_PATH) return next();
+    const chunks: Buffer[] = [];
+    req.on('data', (c: Buffer) => chunks.push(c));
+    req.on('end', async () => {
+      const body = chunks.length ? Buffer.concat(chunks) : null;
+      const request = new Request(`http://localhost${url}`, {
+        method: req.method,
+        headers: Object.entries(req.headers).flatMap(([k, v]) => (typeof v === 'string' ? [[k, v] as [string, string]] : [])),
+        body: body && req.method !== 'GET' && req.method !== 'HEAD' ? body : undefined
+      });
+      const response =
+        (await handleDailyApi(request, store)) ??
+        (await handleTelemetry(request, events)) ??
+        (await handleFeedback(request, feedback)) ??
+        new Response('not found', { status: 404 });
+      res.statusCode = response.status;
+      response.headers.forEach((value, key) => res.setHeader(key, value));
+      res.end(Buffer.from(await response.arrayBuffer()));
+    });
+  };
+}
+
+function homePages(): Plugin[] {
+  const pathOf = (url: string) => url.split(/[?#]/)[0];
+  const shareOf = (url: string) => {
+    const [pathname, search = ''] = url.split('#')[0].split(/\?(.*)/s);
+    return shareParamsOf({ pathname, search: search ? `?${search}` : '' }, dailies as Daily[]);
+  };
+  return [
+    {
+      name: 'sudokui-home-dev',
+      apply: 'serve',
+      configureServer(server) {
+        server.middlewares.use(workerApi());
+        server.middlewares.use((req, _res, next) => {
+          const url = req.url ?? '';
+          if (homeLangOfPath(pathOf(url)) || shareOf(url)) req.url = '/index.html';
+          next();
+        });
+      },
+      // `vite preview` serves dist/ as files only, so it answers the share
+      // addresses here, from share.tpl, as the Worker does in production,
+      // and the daily's API over a store in memory: the browser smoke test
+      // (tests/e2e) lands on a share address and submits a daily
+      configurePreviewServer(server) {
+        server.middlewares.use(workerApi());
+        server.middlewares.use((req, res, next) => {
+          const share = shareOf(req.url ?? '');
+          if (!share) return next();
+          let tpl: string;
+          try {
+            tpl = readFileSync(resolve(server.config.root, server.config.build.outDir, 'share.tpl'), 'utf8');
+          } catch {
+            return next();
+          }
+          res.setHeader('Content-Type', 'text/html; charset=utf-8');
+          res.end(renderSharePage(tpl, share));
+        });
+      },
+      transformIndexHtml: {
+        order: 'pre',
+        handler: (html, ctx) => {
+          if (!html.includes('<!--home:')) return html;
+          const url = ctx.originalUrl ?? ctx.path;
+          const share = shareOf(url);
+          return share ? renderSharePage(html, share) : renderHome(html, homeLangOfPath(pathOf(url)) ?? 'en');
+        }
+      }
+    },
+    {
+      name: 'sudokui-home-build',
+      apply: 'build',
+      // after vite:build-html, which emits index.html with its scripts,
+      // styles and every plugin's transformIndexHtml applied
+      enforce: 'post',
+      configResolved(config) {
+        // nb/index.html sits one folder down: its script and style
+        // addresses only work there if they are absolute
+        if (config.base !== '/') throw new Error('the home pages need base "/" (vite.config.ts, homePages)');
+      },
+      generateBundle(_, bundle) {
+        const page = bundle['index.html'];
+        if (page?.type !== 'asset') return this.error('index.html is not in the bundle');
+        const built = typeof page.source === 'string' ? page.source : new TextDecoder().decode(page.source);
+        this.emitFile({ type: 'asset', fileName: 'share.tpl', source: built });
+        page.source = renderHome(built, 'en');
+        for (const lang of HOME_LANGS) {
+          if (lang !== 'en') this.emitFile({ type: 'asset', fileName: `${lang}/index.html`, source: renderHome(built, lang) });
+        }
+      }
+    }
+  ];
+}
+
+export default defineConfig({
+  define: {
+    __APP_VERSION__: JSON.stringify(BUILD_VERSION)
+  },
+  plugins: [
+    react(),
+    staticPagesDev(),
+    homePages(),
+    VitePWA({
+      // a new build waits until the player accepts it (src/main.tsx): an
+      // open tab keeps the files it started with, so a deploy never breaks
+      // a game in progress
+      registerType: 'prompt',
+      injectRegister: null,
+      includeAssets: ['icon.svg'],
+      workbox: {
+        // The app lives at "/", "/nb/" and "/es/" and at the share
+        // addresses, /p/<puzzle>, under them (src/content/home.ts,
+        // APP_NAVIGATION; src/content/share.ts), so only those may fall
+        // back to the app shell. The static pages are real documents: left
+        // to the default, an installed app would answer their URLs with the
+        // game instead of the article.
+        navigateFallbackAllowlist: [APP_NAVIGATION],
+        navigateFallbackDenylist: [STATIC_ROUTES],
+        // and they stay out of the precache: they are generated after this
+        // step anyway, but a player should never download 80 articles. So
+        // do the 404 pages, in every language.
+        globIgnores: ['learn/**', '**/404.html']
+      },
+      manifest: {
+        name: 'sudokUI',
+        short_name: 'sudokUI',
+        description:
+          'Play sudoku, rate the difficulty of any puzzle and practise solving techniques with hints that explain every step.',
+        lang: 'en',
+        categories: ['games', 'education'],
+        theme_color: '#1a1d29',
+        background_color: '#1a1d29',
+        display: 'standalone',
+        icons: [
+          { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'icon-512.png', sizes: '512x512', type: 'image/png' },
+          {
+            src: 'icon-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable'
+          }
+        ]
+      }
+    })
+  ],
+  test: {
+    environment: 'node',
+    // the browser smoke test is Playwright's (npm run test:e2e), a side
+    // session's worktree under .claude/worktrees/ carries a copy of the
+    // whole tree, tests included: those are its to run, not ours; and
+    // .vite/ is git-ignored scratch (a local Playwright config and its
+    // specs, scripts/hint-gallery.ts's page)
+    exclude: ['**/node_modules/**', 'tests/e2e/**', '.claude/**', '.vite/**'],
+    // the Workers runtime's own module, which only wrangler's bundle has
+    alias: { 'cloudflare:email': resolve(__dirname, 'tests/stubs/cloudflare-email.ts') }
+  }
+} as any);

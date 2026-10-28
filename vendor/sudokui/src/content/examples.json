@@ -1,0 +1,11734 @@
+{
+ "FULL_HOUSE": {
+  "puzzle": "....1...3..48..52.65...7......7.439.....8.....283.6......9...71.39..24..5...4....",
+  "stepIndex": 4,
+  "values": "000010003004800520650007000165724390000080000028306000000900071039002400500040000",
+  "cands": [
+   450,
+   448,
+   66,
+   58,
+   0,
+   272,
+   480,
+   168,
+   0,
+   324,
+   321,
+   0,
+   0,
+   292,
+   260,
+   0,
+   0,
+   352,
+   0,
+   0,
+   7,
+   10,
+   260,
+   0,
+   385,
+   137,
+   392,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   128,
+   332,
+   328,
+   68,
+   17,
+   0,
+   273,
+   99,
+   57,
+   122,
+   328,
+   0,
+   0,
+   0,
+   272,
+   0,
+   65,
+   25,
+   88,
+   138,
+   136,
+   34,
+   0,
+   52,
+   148,
+   162,
+   0,
+   0,
+   192,
+   0,
+   0,
+   49,
+   112,
+   0,
+   0,
+   176,
+   176,
+   0,
+   193,
+   99,
+   33,
+   0,
+   133,
+   418,
+   164,
+   418
+  ],
+  "step": {
+   "tech": "FULL_HOUSE",
+   "placements": [
+    {
+     "cell": 35,
+     "digit": 8
+    }
+   ],
+   "eliminations": [],
+   "units": [
+    {
+     "unit": 3,
+     "role": "primary"
+    }
+   ],
+   "labels": {
+    "primary": "row 4, with one cell left"
+   },
+   "description": "Full House: r4c9 is the last empty cell in row 4, so it must be 8."
+  }
+ },
+ "NAKED_SINGLE": {
+  "puzzle": "....1...3..48..52.65...7......7.439.....8.....283.6......9...71.39..24..5...4....",
+  "stepIndex": 0,
+  "values": "000010003004800520650007000000704390000080000028306000000900071039002400500040000",
+  "cands": [
+   450,
+   448,
+   66,
+   58,
+   0,
+   272,
+   480,
+   168,
+   0,
+   325,
+   321,
+   0,
+   0,
+   292,
+   260,
+   0,
+   0,
+   352,
+   0,
+   0,
+   7,
+   10,
+   262,
+   0,
+   385,
+   137,
+   392,
+   1,
+   33,
+   49,
+   0,
+   18,
+   0,
+   0,
+   0,
+   178,
+   333,
+   361,
+   117,
+   19,
+   0,
+   273,
+   99,
+   57,
+   122,
+   329,
+   0,
+   0,
+   0,
+   272,
+   0,
+   65,
+   25,
+   88,
+   138,
+   168,
+   34,
+   0,
+   52,
+   148,
+   162,
+   0,
+   0,
+   193,
+   0,
+   0,
+   49,
+   112,
+   0,
+   0,
+   176,
+   176,
+   0,
+   225,
+   99,
+   33,
+   0,
+   133,
+   418,
+   164,
+   418
+  ],
+  "step": {
+   "tech": "NAKED_SINGLE",
+   "placements": [
+    {
+     "cell": 27,
+     "digit": 1
+    }
+   ],
+   "eliminations": [],
+   "primary": [
+    {
+     "cell": 27,
+     "digit": 1
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 46,
+     "digit": 2
+    },
+    {
+     "cell": 33,
+     "digit": 3
+    },
+    {
+     "cell": 32,
+     "digit": 4
+    },
+    {
+     "cell": 72,
+     "digit": 5
+    },
+    {
+     "cell": 18,
+     "digit": 6
+    },
+    {
+     "cell": 30,
+     "digit": 7
+    },
+    {
+     "cell": 47,
+     "digit": 8
+    },
+    {
+     "cell": 34,
+     "digit": 9
+    }
+   ],
+   "labels": {
+    "primary": "the cell with one candidate left",
+    "secondary": "the other eight digits, each already in its row, column or box"
+   },
+   "description": "Naked Single: r4c1 has only one candidate left, 1."
+  }
+ },
+ "HIDDEN_SINGLE": {
+  "puzzle": "....1...3..48..52.65...7......7.439.....8.....283.6......9...71.39..24..5...4....",
+  "stepIndex": 5,
+  "values": "000010003004800520650007000165724398000080000028306000000900071039002400500040000",
+  "cands": [
+   450,
+   448,
+   66,
+   58,
+   0,
+   272,
+   480,
+   168,
+   0,
+   324,
+   321,
+   0,
+   0,
+   292,
+   260,
+   0,
+   0,
+   352,
+   0,
+   0,
+   7,
+   10,
+   260,
+   0,
+   385,
+   137,
+   264,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   332,
+   328,
+   68,
+   17,
+   0,
+   273,
+   99,
+   57,
+   122,
+   328,
+   0,
+   0,
+   0,
+   272,
+   0,
+   65,
+   25,
+   88,
+   138,
+   136,
+   34,
+   0,
+   52,
+   148,
+   162,
+   0,
+   0,
+   192,
+   0,
+   0,
+   49,
+   112,
+   0,
+   0,
+   176,
+   48,
+   0,
+   193,
+   99,
+   33,
+   0,
+   133,
+   418,
+   164,
+   290
+  ],
+  "step": {
+   "tech": "HIDDEN_SINGLE",
+   "placements": [
+    {
+     "cell": 10,
+     "digit": 1
+    }
+   ],
+   "eliminations": [],
+   "primary": [
+    {
+     "cell": 10,
+     "digit": 1
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 27,
+     "digit": 1
+    },
+    {
+     "cell": 4,
+     "digit": 1
+    },
+    {
+     "cell": 62,
+     "digit": 1
+    }
+   ],
+   "units": [
+    {
+     "unit": 1,
+     "role": "primary"
+    },
+    {
+     "unit": 9,
+     "role": "secondary"
+    },
+    {
+     "unit": 13,
+     "role": "secondary"
+    },
+    {
+     "unit": 19,
+     "role": "secondary"
+    },
+    {
+     "unit": 17,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "row 2: 1 has one place left in it",
+    "secondary": "the 1s that rule out its other cells, shaded along their lines"
+   },
+   "description": "Hidden Single: 1 fits only in r2c2 within row 2."
+  }
+ },
+ "LOCKED_PAIR": {
+  "puzzle": "..4.9.2.5.....219......56..8.5.6..2...........3..4.9.8..37......923.....5.1.2.4..",
+  "stepIndex": 34,
+  "values": "064190205050602194000405603845960021000500046036240958483719562692354817571826439",
+  "cands": [
+   68,
+   0,
+   0,
+   0,
+   0,
+   196,
+   0,
+   192,
+   0,
+   68,
+   0,
+   192,
+   0,
+   196,
+   0,
+   0,
+   0,
+   0,
+   323,
+   3,
+   448,
+   0,
+   192,
+   0,
+   0,
+   192,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   68,
+   68,
+   0,
+   0,
+   323,
+   3,
+   320,
+   0,
+   196,
+   197,
+   68,
+   0,
+   0,
+   65,
+   0,
+   0,
+   0,
+   0,
+   65,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "LOCKED_PAIR",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 18,
+     "digit": 7
+    },
+    {
+     "cell": 36,
+     "digit": 7
+    },
+    {
+     "cell": 45,
+     "digit": 7
+    },
+    {
+     "cell": 11,
+     "digit": 7
+    },
+    {
+     "cell": 20,
+     "digit": 7
+    }
+   ],
+   "primary": [
+    {
+     "cell": 0,
+     "digit": 3
+    },
+    {
+     "cell": 0,
+     "digit": 7
+    },
+    {
+     "cell": 9,
+     "digit": 3
+    },
+    {
+     "cell": 9,
+     "digit": 7
+    }
+   ],
+   "units": [
+    {
+     "unit": 9,
+     "role": "primary"
+    },
+    {
+     "unit": 18,
+     "role": "primary"
+    }
+   ],
+   "labels": {
+    "primary": "2 cells that hold only 3/7 between them, in column 1 and box 1"
+   },
+   "description": "Locked Pair: cells r1c1, r2c1 contain only 3/7, removing those digits from the cells they all see."
+  }
+ },
+ "LOCKED_TRIPLE": {
+  "puzzle": "1..6732..6....2.......1...79..2.1..8.54...61.7..5.8..95...3.......9....1..1725..3",
+  "stepIndex": 28,
+  "values": "140673205600852104005419067936241008854397612712568009500134006000986001461725003",
+  "cands": [
+   0,
+   0,
+   384,
+   0,
+   0,
+   0,
+   0,
+   384,
+   0,
+   0,
+   320,
+   324,
+   0,
+   0,
+   0,
+   0,
+   260,
+   0,
+   6,
+   130,
+   0,
+   0,
+   0,
+   0,
+   132,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   80,
+   80,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   12,
+   12,
+   0,
+   0,
+   450,
+   448,
+   0,
+   0,
+   0,
+   448,
+   450,
+   0,
+   6,
+   66,
+   68,
+   0,
+   0,
+   0,
+   88,
+   90,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   384,
+   384,
+   0
+  ],
+  "step": {
+   "tech": "LOCKED_TRIPLE",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 69,
+     "digit": 7
+    },
+    {
+     "cell": 70,
+     "digit": 2
+    },
+    {
+     "cell": 70,
+     "digit": 7
+    },
+    {
+     "cell": 55,
+     "digit": 2
+    },
+    {
+     "cell": 55,
+     "digit": 7
+    },
+    {
+     "cell": 56,
+     "digit": 7
+    }
+   ],
+   "primary": [
+    {
+     "cell": 63,
+     "digit": 2
+    },
+    {
+     "cell": 63,
+     "digit": 3
+    },
+    {
+     "cell": 64,
+     "digit": 2
+    },
+    {
+     "cell": 64,
+     "digit": 7
+    },
+    {
+     "cell": 65,
+     "digit": 3
+    },
+    {
+     "cell": 65,
+     "digit": 7
+    }
+   ],
+   "units": [
+    {
+     "unit": 7,
+     "role": "primary"
+    },
+    {
+     "unit": 24,
+     "role": "primary"
+    }
+   ],
+   "labels": {
+    "primary": "3 cells that hold only 2/3/7 between them, in row 8 and box 7"
+   },
+   "description": "Locked Triple: cells r8c1, r8c2, r8c3 contain only 2/3/7, removing those digits from the cells they all see."
+  }
+ },
+ "LOCKED_CANDIDATES_1": {
+  "puzzle": ".......2.2.64.9.7..958..1..8..6......4.....6......7..9..7..465..6.5.23.1.1.......",
+  "stepIndex": 42,
+  "values": "184753926236419875795826134870605013040081567651007089027104658468572391510068742",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   258,
+   0,
+   264,
+   0,
+   10,
+   0,
+   0,
+   260,
+   0,
+   262,
+   262,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   6,
+   12,
+   0,
+   10,
+   0,
+   0,
+   260,
+   0,
+   0,
+   0,
+   260,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   260,
+   260,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "LOCKED_CANDIDATES_1",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 39,
+     "digit": 3
+    }
+   ],
+   "primary": [
+    {
+     "cell": 36,
+     "digit": 3
+    },
+    {
+     "cell": 38,
+     "digit": 3
+    }
+   ],
+   "units": [
+    {
+     "unit": 21,
+     "role": "primary"
+    },
+    {
+     "unit": 4,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "box 4: every 3 in it sits on one row",
+    "secondary": "the row, which loses 3 outside the box"
+   },
+   "description": "Locked Candidates (Pointing): in box 4, digit 3 is confined to r5c1, r5c3, so it can be removed from the rest of the row."
+  }
+ },
+ "LOCKED_CANDIDATES_2": {
+  "puzzle": "8..7......9.4.3..8..1..9.7.3...6.84...9...6...58.9...1.1.9..4..4..3.8.9......6..5",
+  "stepIndex": 38,
+  "values": "804700903790403008031689074372561849149837652658294731013970486400308197987146325",
+  "cands": [
+   0,
+   34,
+   0,
+   0,
+   19,
+   18,
+   0,
+   33,
+   0,
+   0,
+   0,
+   48,
+   0,
+   19,
+   0,
+   18,
+   33,
+   0,
+   18,
+   0,
+   0,
+   0,
+   0,
+   0,
+   18,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   18,
+   0,
+   0,
+   0,
+   0,
+   18,
+   0,
+   0,
+   0,
+   0,
+   34,
+   48,
+   0,
+   18,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "LOCKED_CANDIDATES_2",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 13,
+     "digit": 5
+    }
+   ],
+   "primary": [
+    {
+     "cell": 4,
+     "digit": 5
+    },
+    {
+     "cell": 5,
+     "digit": 5
+    }
+   ],
+   "units": [
+    {
+     "unit": 0,
+     "role": "primary"
+    },
+    {
+     "unit": 19,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "row 1: every 5 in it sits in one box",
+    "secondary": "box 2, which loses 5 outside the row"
+   },
+   "description": "Locked Candidates (Claiming): in row 1, digit 5 is confined to box 2, so it can be removed from the rest of the box."
+  }
+ },
+ "NAKED_PAIR": {
+  "puzzle": "...8....264.....9.378....6.1..5.7..8..5.8.6........4.1.37.4.........97......6....",
+  "stepIndex": 42,
+  "values": "519876342642000897378924165164537928295481673783692451937040006806009704401760009",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   17,
+   20,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3,
+   0,
+   144,
+   18,
+   129,
+   0,
+   0,
+   18,
+   0,
+   7,
+   17,
+   0,
+   0,
+   5,
+   0,
+   0,
+   18,
+   0,
+   0,
+   0,
+   148,
+   18,
+   132,
+   0
+  ],
+  "step": {
+   "tech": "NAKED_PAIR",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 77,
+     "digit": 5
+    }
+   ],
+   "primary": [
+    {
+     "cell": 73,
+     "digit": 2
+    },
+    {
+     "cell": 73,
+     "digit": 5
+    },
+    {
+     "cell": 78,
+     "digit": 2
+    },
+    {
+     "cell": 78,
+     "digit": 5
+    }
+   ],
+   "units": [
+    {
+     "unit": 8,
+     "role": "primary"
+    }
+   ],
+   "labels": {
+    "primary": "2 cells that hold only 2/5 between them, in row 9"
+   },
+   "description": "Naked Pair: cells r9c2, r9c7 contain only 2/5, removing those digits from the cells they all see."
+  }
+ },
+ "NAKED_TRIPLE": {
+  "puzzle": "....4.6...1..739........15.2....48..5.7...2.1..69....5.24........143..8...3.5....",
+  "stepIndex": 40,
+  "values": "392145678615873924478000153239514867547300291186927345024001530951430780063050410",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   288,
+   290,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   160,
+   160,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   192,
+   0,
+   0,
+   96,
+   416,
+   0,
+   0,
+   0,
+   288,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   0,
+   0,
+   34,
+   192,
+   0,
+   0,
+   66,
+   0,
+   386,
+   0,
+   0,
+   258
+  ],
+  "step": {
+   "tech": "NAKED_TRIPLE",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 58,
+     "digit": 6
+    },
+    {
+     "cell": 77,
+     "digit": 2
+    }
+   ],
+   "primary": [
+    {
+     "cell": 57,
+     "digit": 6
+    },
+    {
+     "cell": 57,
+     "digit": 7
+    },
+    {
+     "cell": 68,
+     "digit": 2
+    },
+    {
+     "cell": 68,
+     "digit": 6
+    },
+    {
+     "cell": 75,
+     "digit": 2
+    },
+    {
+     "cell": 75,
+     "digit": 7
+    }
+   ],
+   "units": [
+    {
+     "unit": 25,
+     "role": "primary"
+    }
+   ],
+   "labels": {
+    "primary": "3 cells that hold only 2/6/7 between them, in box 8"
+   },
+   "description": "Naked Triple: cells r7c4, r8c6, r9c4 contain only 2/6/7, removing those digits from the cells they all see."
+  }
+ },
+ "HIDDEN_PAIR": {
+  "puzzle": "28.....31..51.792.9..2........4...5..4..6..7..2...8........6..3.318.42..89.....46",
+  "stepIndex": 33,
+  "values": "287649531465137928913285467070400050040060070020708014754926183631874295892000746",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   0,
+   416,
+   0,
+   257,
+   7,
+   164,
+   0,
+   258,
+   21,
+   0,
+   384,
+   20,
+   0,
+   7,
+   132,
+   0,
+   258,
+   20,
+   0,
+   288,
+   0,
+   272,
+   0,
+   36,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   20,
+   17,
+   5,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "HIDDEN_PAIR",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 29,
+     "digit": 9
+    },
+    {
+     "cell": 33,
+     "digit": 3
+    }
+   ],
+   "primary": [
+    {
+     "cell": 29,
+     "digit": 6
+    },
+    {
+     "cell": 29,
+     "digit": 8
+    },
+    {
+     "cell": 33,
+     "digit": 6
+    },
+    {
+     "cell": 33,
+     "digit": 8
+    }
+   ],
+   "units": [
+    {
+     "unit": 3,
+     "role": "primary"
+    }
+   ],
+   "labels": {
+    "primary": "the only 2 cells of row 4 that can take 6/8"
+   },
+   "description": "Hidden Pair: in row 4, digits 6/8 fit only in r4c3, r4c7, so all other candidates there can be removed."
+  }
+ },
+ "HIDDEN_TRIPLE": {
+  "puzzle": ".7.4.25..6...9..4...3..6......6.5.....8....214..9....836........1........59....3.",
+  "stepIndex": 36,
+  "values": "971432586685197040243856917127685090598000621436921758360010070010000060059060130",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   6,
+   0,
+   6,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   12,
+   0,
+   12,
+   0,
+   0,
+   0,
+   68,
+   72,
+   12,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   10,
+   18,
+   0,
+   392,
+   138,
+   0,
+   272,
+   192,
+   0,
+   10,
+   86,
+   72,
+   396,
+   138,
+   0,
+   272,
+   192,
+   0,
+   0,
+   66,
+   0,
+   136,
+   0,
+   0,
+   10
+  ],
+  "step": {
+   "tech": "HIDDEN_TRIPLE",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 66,
+     "digit": 2
+    },
+    {
+     "cell": 66,
+     "digit": 7
+    },
+    {
+     "cell": 68,
+     "digit": 4
+    },
+    {
+     "cell": 68,
+     "digit": 8
+    }
+   ],
+   "primary": [
+    {
+     "cell": 66,
+     "digit": 3
+    },
+    {
+     "cell": 66,
+     "digit": 5
+    },
+    {
+     "cell": 68,
+     "digit": 3
+    },
+    {
+     "cell": 68,
+     "digit": 9
+    },
+    {
+     "cell": 71,
+     "digit": 5
+    },
+    {
+     "cell": 71,
+     "digit": 9
+    }
+   ],
+   "units": [
+    {
+     "unit": 7,
+     "role": "primary"
+    }
+   ],
+   "labels": {
+    "primary": "the only 3 cells of row 8 that can take 3/5/9"
+   },
+   "description": "Hidden Triple: in row 8, digits 3/5/9 fit only in r8c4, r8c6, r8c9, so all other candidates there can be removed."
+  }
+ },
+ "NAKED_QUADRUPLE": {
+  "puzzle": ".4.7..953.........9.386.1.46..34...8.........7...21..61.8.943.2.........497..3.6.",
+  "stepIndex": 24,
+  "values": "846712953000439687973865124600347208000000700780021036108094372000170000497203061",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   18,
+   19,
+   19,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   17,
+   273,
+   0,
+   0,
+   0,
+   0,
+   257,
+   0,
+   6,
+   7,
+   267,
+   304,
+   144,
+   160,
+   0,
+   265,
+   272,
+   0,
+   0,
+   264,
+   272,
+   0,
+   0,
+   24,
+   0,
+   0,
+   0,
+   48,
+   0,
+   48,
+   0,
+   0,
+   0,
+   0,
+   0,
+   22,
+   54,
+   18,
+   0,
+   0,
+   160,
+   152,
+   264,
+   272,
+   0,
+   0,
+   0,
+   0,
+   144,
+   0,
+   144,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "NAKED_QUADRUPLE",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 38,
+     "digit": 9
+    },
+    {
+     "cell": 43,
+     "digit": 9
+    }
+   ],
+   "primary": [
+    {
+     "cell": 39,
+     "digit": 5
+    },
+    {
+     "cell": 39,
+     "digit": 6
+    },
+    {
+     "cell": 39,
+     "digit": 9
+    },
+    {
+     "cell": 40,
+     "digit": 5
+    },
+    {
+     "cell": 40,
+     "digit": 8
+    },
+    {
+     "cell": 41,
+     "digit": 6
+    },
+    {
+     "cell": 41,
+     "digit": 8
+    },
+    {
+     "cell": 44,
+     "digit": 5
+    },
+    {
+     "cell": 44,
+     "digit": 9
+    }
+   ],
+   "units": [
+    {
+     "unit": 4,
+     "role": "primary"
+    }
+   ],
+   "labels": {
+    "primary": "4 cells that hold only 5/6/8/9 between them, in row 5"
+   },
+   "description": "Naked Quadruple: cells r5c4, r5c5, r5c6, r5c9 contain only 5/6/8/9, removing those digits from the cells they all see."
+  }
+ },
+ "HIDDEN_QUADRUPLE": {
+  "puzzle": ".8....64.....54....54.3..817........1.....9.3..5.....223.5....8.6..42.....7......",
+  "stepIndex": 36,
+  "values": "382000645671854239954236781703000804106000903805000102239567418568142397417000526",
+  "cands": [
+   0,
+   0,
+   0,
+   320,
+   321,
+   257,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   258,
+   0,
+   288,
+   259,
+   273,
+   0,
+   48,
+   0,
+   0,
+   10,
+   0,
+   72,
+   194,
+   144,
+   0,
+   80,
+   0,
+   0,
+   264,
+   0,
+   364,
+   320,
+   260,
+   0,
+   96,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   260,
+   384,
+   388,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "HIDDEN_QUADRUPLE",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 31,
+     "digit": 9
+    },
+    {
+     "cell": 32,
+     "digit": 9
+    },
+    {
+     "cell": 40,
+     "digit": 7
+    }
+   ],
+   "primary": [
+    {
+     "cell": 31,
+     "digit": 1
+    },
+    {
+     "cell": 31,
+     "digit": 2
+    },
+    {
+     "cell": 32,
+     "digit": 1
+    },
+    {
+     "cell": 32,
+     "digit": 5
+    },
+    {
+     "cell": 40,
+     "digit": 2
+    },
+    {
+     "cell": 40,
+     "digit": 8
+    },
+    {
+     "cell": 41,
+     "digit": 5
+    },
+    {
+     "cell": 41,
+     "digit": 8
+    }
+   ],
+   "units": [
+    {
+     "unit": 22,
+     "role": "primary"
+    }
+   ],
+   "labels": {
+    "primary": "the only 4 cells of box 5 that can take 1/2/5/8"
+   },
+   "description": "Hidden Quadruple: in box 5, digits 1/2/5/8 fit only in r4c5, r4c6, r5c5, r5c6, so all other candidates there can be removed."
+  }
+ },
+ "X_WING": {
+  "puzzle": "...795...........59..61...879..3.8..1.3...5.7..6.5..298...71..63...........246...",
+  "stepIndex": 40,
+  "values": "208795604600820095950610208795432861123968547486157329842371956360589402509246083",
+  "cands": [
+   0,
+   5,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   0,
+   0,
+   69,
+   73,
+   0,
+   0,
+   12,
+   65,
+   0,
+   0,
+   0,
+   0,
+   72,
+   0,
+   0,
+   12,
+   0,
+   68,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   65,
+   0,
+   0,
+   0,
+   0,
+   65,
+   0,
+   0,
+   65,
+   0,
+   0,
+   0,
+   0,
+   65,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "X_WING",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 11,
+     "digit": 7
+    }
+   ],
+   "primary": [
+    {
+     "cell": 20,
+     "digit": 7
+    },
+    {
+     "cell": 25,
+     "digit": 7
+    },
+    {
+     "cell": 65,
+     "digit": 7
+    },
+    {
+     "cell": 70,
+     "digit": 7
+    }
+   ],
+   "units": [
+    {
+     "unit": 2,
+     "role": "primary"
+    },
+    {
+     "unit": 7,
+     "role": "primary"
+    },
+    {
+     "unit": 11,
+     "role": "secondary"
+    },
+    {
+     "unit": 16,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "base rows: the 7s of the fish, 2 rows with 7 only in the cover columns",
+    "secondary": "cover columns: 2 of them take the base's 7s, so 7 goes nowhere else in them"
+   },
+   "description": "X-Wing on 7: in rows 3, 8, 7 can only go in columns 3, 8 (r3c3, r3c8, r8c3, r8c8). Those 2 rows will use up 7 in those 2 columns, so 7 can go nowhere else in them."
+  }
+ },
+ "SWORDFISH": {
+  "puzzle": ".8.579....6........7.1..8...56..31.2..8...6..3.12..78...5..1.3........7....892.6.",
+  "stepIndex": 35,
+  "values": "180579306560328017073164805756083102008017653301256780605741038810635070437892561",
+  "cands": [
+   0,
+   0,
+   10,
+   0,
+   0,
+   0,
+   0,
+   10,
+   0,
+   0,
+   0,
+   264,
+   0,
+   0,
+   0,
+   264,
+   0,
+   0,
+   258,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   258,
+   0,
+   0,
+   0,
+   0,
+   264,
+   0,
+   0,
+   0,
+   264,
+   0,
+   258,
+   266,
+   0,
+   264,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   264,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   264,
+   0,
+   258,
+   0,
+   0,
+   0,
+   0,
+   258,
+   0,
+   0,
+   0,
+   0,
+   258,
+   0,
+   0,
+   0,
+   266,
+   0,
+   264,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "SWORDFISH",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 37,
+     "digit": 9
+    }
+   ],
+   "primary": [
+    {
+     "cell": 18,
+     "digit": 9
+    },
+    {
+     "cell": 36,
+     "digit": 9
+    },
+    {
+     "cell": 30,
+     "digit": 9
+    },
+    {
+     "cell": 39,
+     "digit": 9
+    },
+    {
+     "cell": 25,
+     "digit": 9
+    },
+    {
+     "cell": 34,
+     "digit": 9
+    }
+   ],
+   "units": [
+    {
+     "unit": 9,
+     "role": "primary"
+    },
+    {
+     "unit": 12,
+     "role": "primary"
+    },
+    {
+     "unit": 16,
+     "role": "primary"
+    },
+    {
+     "unit": 2,
+     "role": "secondary"
+    },
+    {
+     "unit": 3,
+     "role": "secondary"
+    },
+    {
+     "unit": 4,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "base columns: the 9s of the fish, 3 columns with 9 only in the cover rows",
+    "secondary": "cover rows: 3 of them take the base's 9s, so 9 goes nowhere else in them"
+   },
+   "description": "Swordfish on 9: in columns 1, 4, 8, 9 can only go in rows 3, 4, 5 (r3c1, r5c1, r4c4, r5c4, r3c8, r4c8). Those 3 columns will use up 9 in those 3 rows, so 9 can go nowhere else in them."
+  }
+ },
+ "JELLYFISH": {
+  "puzzle": ".....2....9.7..84.....4.3...8...94...4..3....27.1.......69.5.........18.4..21...9",
+  "stepIndex": 34,
+  "values": "804392017390701840107048390081029473040837021273104908716985234000470180408210709",
+  "cands": [
+   0,
+   48,
+   0,
+   0,
+   0,
+   0,
+   48,
+   0,
+   0,
+   0,
+   0,
+   18,
+   0,
+   48,
+   0,
+   0,
+   0,
+   50,
+   0,
+   50,
+   0,
+   48,
+   0,
+   0,
+   0,
+   0,
+   50,
+   48,
+   0,
+   0,
+   48,
+   0,
+   0,
+   0,
+   0,
+   0,
+   304,
+   0,
+   272,
+   0,
+   0,
+   0,
+   48,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   48,
+   0,
+   0,
+   48,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   272,
+   22,
+   274,
+   0,
+   0,
+   36,
+   0,
+   0,
+   48,
+   0,
+   20,
+   0,
+   0,
+   0,
+   36,
+   0,
+   48,
+   0
+  ],
+  "step": {
+   "tech": "JELLYFISH",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 26,
+     "digit": 6
+    }
+   ],
+   "primary": [
+    {
+     "cell": 13,
+     "digit": 6
+    },
+    {
+     "cell": 17,
+     "digit": 6
+    },
+    {
+     "cell": 49,
+     "digit": 6
+    },
+    {
+     "cell": 52,
+     "digit": 6
+    },
+    {
+     "cell": 68,
+     "digit": 6
+    },
+    {
+     "cell": 71,
+     "digit": 6
+    },
+    {
+     "cell": 77,
+     "digit": 6
+    },
+    {
+     "cell": 79,
+     "digit": 6
+    }
+   ],
+   "units": [
+    {
+     "unit": 1,
+     "role": "primary"
+    },
+    {
+     "unit": 5,
+     "role": "primary"
+    },
+    {
+     "unit": 7,
+     "role": "primary"
+    },
+    {
+     "unit": 8,
+     "role": "primary"
+    },
+    {
+     "unit": 13,
+     "role": "secondary"
+    },
+    {
+     "unit": 14,
+     "role": "secondary"
+    },
+    {
+     "unit": 16,
+     "role": "secondary"
+    },
+    {
+     "unit": 17,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "base rows: the 6s of the fish, 4 rows with 6 only in the cover columns",
+    "secondary": "cover columns: 4 of them take the base's 6s, so 6 goes nowhere else in them"
+   },
+   "description": "Jellyfish on 6: in rows 2, 6, 8, 9, 6 can only go in columns 5, 6, 8, 9 (r2c5, r2c9, r6c5, r6c8, r8c6, r8c9, r9c6, r9c8). Those 4 rows will use up 6 in those 4 columns, so 6 can go nowhere else in them."
+  }
+ },
+ "REMOTE_PAIR": {
+  "puzzle": ".2..17..567............2.8.2.496...78.......27...214.8.1.2............633..49..7.",
+  "stepIndex": 42,
+  "values": "428617935670809124100042786254968317801704602760021408516273849947185263382496571",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   20,
+   0,
+   20,
+   0,
+   0,
+   0,
+   0,
+   0,
+   260,
+   276,
+   20,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   260,
+   0,
+   0,
+   20,
+   0,
+   0,
+   272,
+   0,
+   0,
+   0,
+   260,
+   20,
+   0,
+   0,
+   0,
+   272,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "REMOTE_PAIR",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 47,
+     "digit": 3
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 11,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 11,
+       "digit": 5
+      }
+     ],
+     "strong": true,
+     "undirected": true,
+     "text": "The cells r2c3, r2c5, r3c4, r5c5 and r6c4 hold only 3 and 5. Each line joins two of them that see each other: they cannot hold the same digit, so their 3s take opposite shades, and so do their 5s."
+    },
+    {
+     "from": [
+      {
+       "cell": 11,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 13,
+       "digit": 3
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 13,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 13,
+       "digit": 5
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 13,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 40,
+       "digit": 3
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 40,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 40,
+       "digit": 5
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 40,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 48,
+       "digit": 3
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 48,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 21,
+       "digit": 3
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 48,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 48,
+       "digit": 5
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 21,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 21,
+       "digit": 5
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 11,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 47,
+       "digit": 3
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "text": "If dark purple is true, the 3 in r2c3 is true, and the 3 in r6c3 goes."
+    },
+    {
+     "from": [
+      {
+       "cell": 48,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 47,
+       "digit": 3
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "text": "If light purple is true, the 3 in r6c4 is true, and the 3 in r6c3 goes. Either way it is false."
+    }
+   ],
+   "truth": "parity",
+   "colouring": {
+    "rule": "remotePair",
+    "clusters": [
+     {
+      "dark": [
+       {
+        "cell": 11,
+        "digit": 3
+       },
+       {
+        "cell": 13,
+        "digit": 5
+       },
+       {
+        "cell": 21,
+        "digit": 3
+       },
+       {
+        "cell": 40,
+        "digit": 3
+       },
+       {
+        "cell": 48,
+        "digit": 5
+       }
+      ],
+      "light": [
+       {
+        "cell": 11,
+        "digit": 5
+       },
+       {
+        "cell": 13,
+        "digit": 3
+       },
+       {
+        "cell": 21,
+        "digit": 5
+       },
+       {
+        "cell": 40,
+        "digit": 5
+       },
+       {
+        "cell": 48,
+        "digit": 3
+       }
+      ]
+     }
+    ]
+   },
+   "description": "Remote Pair: the cells r2c3, r2c5, r3c4, r5c5 and r6c4 hold only 3 and 5. Two of them that see each other cannot hold the same digit, so their 3s take opposite shades of purple, and so do their 5s: either every dark purple candidate is true, or every light purple one is. The 3 in r6c3 sees a dark purple 3 in r2c3 and a light purple 3 in r6c4, so it is false either way."
+  }
+ },
+ "CHUTE_REMOTE_PAIR": {
+  "puzzle": ".9845...2.45..2.7...67.....9...7.2......4......2.8...3.....83...5.6..72.6...2758.",
+  "stepIndex": 43,
+  "values": "798451632345862179216793000904370210103240007572180003427518396859634721631927584",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   136,
+   24,
+   144,
+   0,
+   160,
+   0,
+   0,
+   0,
+   48,
+   0,
+   0,
+   144,
+   0,
+   160,
+   0,
+   0,
+   0,
+   304,
+   384,
+   48,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   288,
+   264,
+   40,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "CHUTE_REMOTE_PAIR",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 35,
+     "digit": 5
+    },
+    {
+     "cell": 41,
+     "digit": 5
+    }
+   ],
+   "primary": [
+    {
+     "cell": 32,
+     "digit": 5
+    },
+    {
+     "cell": 32,
+     "digit": 6
+    },
+    {
+     "cell": 43,
+     "digit": 5
+    },
+    {
+     "cell": 43,
+     "digit": 6
+    }
+   ],
+   "labels": {
+    "primary": "the pair: 56 in both cells, one chute apart",
+    "secondary": "the third box's mini-line, where 6 is missing"
+   },
+   "secondary": [],
+   "description": "Chute Remote Pair: r4c6 and r5c8 both hold 56 in one chute; 6 appears nowhere in r6c1, r6c2, r6c3, so the chute's third box must place its 6 in a row shared with a pair cell, forcing that cell to 5. One pair cell is therefore 5, so 5 can be removed from cells seeing both pair cells."
+  }
+ },
+ "BUG_PLUS_1": {
+  "puzzle": "2.........4......1.61.98..54....725...6...1...235....48..74.93.6......7.........8",
+  "stepIndex": 42,
+  "values": "238050697945070821761298345489007253576000189123589764812745936694800572357900418",
+  "cands": [
+   0,
+   0,
+   0,
+   9,
+   0,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   36,
+   0,
+   36,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   33,
+   33,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   12,
+   6,
+   14,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   5,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   34,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "BUG_PLUS_1",
+   "placements": [
+    {
+     "cell": 41,
+     "digit": 3
+    }
+   ],
+   "eliminations": [],
+   "primary": [
+    {
+     "cell": 41,
+     "digit": 3
+    }
+   ],
+   "units": [
+    {
+     "unit": 4,
+     "role": "secondary"
+    },
+    {
+     "unit": 14,
+     "role": "secondary"
+    },
+    {
+     "unit": 22,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "the one cell with three candidates; 3 is the extra",
+    "secondary": "its row, column and box, each holding 3 three times"
+   },
+   "description": "BUG+1: removing 3 from r5c6 would leave a bivalue grid with two solutions, so r5c6 must be 3."
+  }
+ },
+ "SKYSCRAPER": {
+  "puzzle": "....4.......75...84..1.352..7....4.3.54...97.3.6....1..835.1..49...24.......7....",
+  "stepIndex": 40,
+  "values": "508642030030759048407183520879215463154836972326497815783561294905324080040978350",
+  "cands": [
+   0,
+   257,
+   0,
+   0,
+   0,
+   0,
+   65,
+   0,
+   321,
+   34,
+   0,
+   3,
+   0,
+   0,
+   0,
+   33,
+   0,
+   0,
+   0,
+   288,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   288,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   33,
+   0,
+   0,
+   0,
+   0,
+   97,
+   0,
+   97,
+   34,
+   0,
+   3,
+   0,
+   0,
+   0,
+   0,
+   0,
+   33
+  ],
+  "step": {
+   "tech": "SKYSCRAPER",
+   "truth": "derived",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 8,
+     "digit": 1
+    },
+    {
+     "cell": 69,
+     "digit": 1
+    }
+   ],
+   "primary": [
+    {
+     "cell": 11,
+     "digit": 1
+    },
+    {
+     "cell": 15,
+     "digit": 1
+    },
+    {
+     "cell": 74,
+     "digit": 1
+    },
+    {
+     "cell": 80,
+     "digit": 1
+    }
+   ],
+   "labels": {
+    "primary": "the two strong links on 1"
+   },
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 15,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 11,
+       "digit": 1
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 11,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 74,
+       "digit": 1
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 74,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 80,
+       "digit": 1
+      }
+     ],
+     "strong": true
+    }
+   ],
+   "description": "Skyscraper on 1: r2c3 and r2c7 are the only places for 1 in row 2, as are r9c3 and r9c9 in row 9, and r2c3 sees r9c3. If r2c7 is not 1, r2c3 is, so r9c3 is not, so r9c9 is: one of r2c7 and r9c9 is 1, and 1 is removed from every cell that sees both."
+  }
+ },
+ "TWO_STRING_KITE": {
+  "puzzle": ".16.3...5....12..9..4...3..3....425...53.98...625....3..7...1..9..14....8...6.93.",
+  "stepIndex": 35,
+  "values": "016930405538412679094056310389674251175329800462581793657093100923140500841065930",
+  "cands": [
+   66,
+   0,
+   0,
+   0,
+   0,
+   192,
+   0,
+   130,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   66,
+   0,
+   0,
+   192,
+   0,
+   0,
+   0,
+   0,
+   130,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   40,
+   40,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   130,
+   0,
+   0,
+   0,
+   138,
+   138,
+   0,
+   0,
+   0,
+   0,
+   0,
+   192,
+   0,
+   160,
+   224,
+   0,
+   0,
+   0,
+   66,
+   0,
+   0,
+   0,
+   0,
+   66
+  ],
+  "step": {
+   "tech": "TWO_STRING_KITE",
+   "truth": "derived",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 61,
+     "digit": 8
+    }
+   ],
+   "primary": [
+    {
+     "cell": 5,
+     "digit": 8
+    },
+    {
+     "cell": 7,
+     "digit": 8
+    },
+    {
+     "cell": 21,
+     "digit": 8
+    },
+    {
+     "cell": 57,
+     "digit": 8
+    }
+   ],
+   "labels": {
+    "primary": "the two strong links on 8"
+   },
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 7,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 5,
+       "digit": 8
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 5,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 21,
+       "digit": 8
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 21,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 57,
+       "digit": 8
+      }
+     ],
+     "strong": true
+    }
+   ],
+   "description": "2-String Kite on 8: r1c6 and r1c8 are the only places for 8 in row 1, as are r3c4 and r7c4 in column 4, and r1c6 sees r3c4. If r1c8 is not 8, r1c6 is, so r3c4 is not, so r7c4 is: one of r1c8 and r7c4 is 8, and 8 is removed from every cell that sees both."
+  }
+ },
+ "TURBOT_FISH": {
+  "puzzle": "2.7....1...........6.54...3..8.14.7..1435.......6.....9.....1.514..3.6.........9.",
+  "stepIndex": 37,
+  "values": "257893416493000050861547923638014570714350060529678341970480135140030680380000094",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3,
+   34,
+   35,
+   192,
+   0,
+   192,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   258,
+   0,
+   0,
+   0,
+   0,
+   258,
+   0,
+   0,
+   0,
+   0,
+   0,
+   258,
+   130,
+   0,
+   386,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   0,
+   0,
+   34,
+   0,
+   0,
+   0,
+   0,
+   0,
+   18,
+   320,
+   0,
+   272,
+   0,
+   0,
+   66,
+   0,
+   0,
+   50,
+   65,
+   34,
+   17,
+   66,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "TURBOT_FISH",
+   "truth": "derived",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 41,
+     "digit": 2
+    }
+   ],
+   "primary": [
+    {
+     "cell": 42,
+     "digit": 2
+    },
+    {
+     "cell": 78,
+     "digit": 2
+    },
+    {
+     "cell": 59,
+     "digit": 2
+    },
+    {
+     "cell": 76,
+     "digit": 2
+    }
+   ],
+   "labels": {
+    "primary": "the two strong links on 2"
+   },
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 42,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 78,
+       "digit": 2
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 78,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 76,
+       "digit": 2
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 76,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 59,
+       "digit": 2
+      }
+     ],
+     "strong": true
+    }
+   ],
+   "description": "Turbot Fish on 2: r5c7 and r9c7 are the only places for 2 in column 7, as are r7c6 and r9c5 in box 8, and r9c7 sees r9c5. If r5c7 is not 2, r9c7 is, so r9c5 is not, so r7c6 is: one of r5c7 and r7c6 is 2, and 2 is removed from every cell that sees both."
+  }
+ },
+ "EMPTY_RECTANGLE": {
+  "puzzle": "7.....6.2...1...4.14..8.........14....3.4.9....17.........9..25.6...2...2.7.....3",
+  "stepIndex": 41,
+  "values": "700904612906127048142080079029061407673248951401709206014090725060072194297415863",
+  "cands": [
+   0,
+   148,
+   144,
+   0,
+   20,
+   0,
+   0,
+   0,
+   0,
+   0,
+   20,
+   0,
+   0,
+   0,
+   0,
+   20,
+   0,
+   0,
+   0,
+   0,
+   0,
+   52,
+   0,
+   36,
+   20,
+   0,
+   0,
+   144,
+   0,
+   0,
+   20,
+   0,
+   0,
+   0,
+   132,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   144,
+   0,
+   0,
+   20,
+   0,
+   0,
+   132,
+   0,
+   132,
+   0,
+   0,
+   164,
+   0,
+   36,
+   0,
+   0,
+   0,
+   148,
+   0,
+   144,
+   132,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "EMPTY_RECTANGLE",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 46,
+     "digit": 5
+    }
+   ],
+   "primary": [
+    {
+     "cell": 1,
+     "digit": 5
+    },
+    {
+     "cell": 2,
+     "digit": 5
+    },
+    {
+     "cell": 10,
+     "digit": 5
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 4,
+     "digit": 5
+    },
+    {
+     "cell": 49,
+     "digit": 5
+    }
+   ],
+   "units": [
+    {
+     "unit": 18,
+     "role": "primary"
+    }
+   ],
+   "labels": {
+    "primary": "box 1: every 5 in it lies on one row and one column",
+    "secondary": "the conjugate pair on 5"
+   },
+   "description": "Empty Rectangle on 5: in box 1 every 5 lies on one row and one column, and r1c5, r6c5 are the only two places for 5 in their line. If r6c5 is 5, r6c2 in its row is not. If not, r1c5 is 5, so the box's 5 cannot share its row and must lie on the column through r6c2, which again is not 5. So 5 is removed from r6c2."
+  }
+ },
+ "W_WING": {
+  "puzzle": ".46..8.....26.45..9........3......6...8.5.217.2.4..........21...6.1...25..7.....9",
+  "stepIndex": 43,
+  "values": "146508002782604501953721000375219864498356217621487953534902100869103025217805009",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   260,
+   0,
+   68,
+   324,
+   0,
+   0,
+   0,
+   0,
+   0,
+   260,
+   0,
+   0,
+   260,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   40,
+   136,
+   160,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   96,
+   0,
+   0,
+   192,
+   160,
+   0,
+   0,
+   0,
+   0,
+   72,
+   0,
+   72,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   40,
+   0,
+   44,
+   12,
+   0
+  ],
+  "step": {
+   "tech": "W_WING",
+   "truth": "derived",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 78,
+     "digit": 6
+    }
+   ],
+   "primary": [
+    {
+     "cell": 24,
+     "digit": 6
+    },
+    {
+     "cell": 76,
+     "digit": 6
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 67,
+     "digit": 4
+    },
+    {
+     "cell": 69,
+     "digit": 4
+    }
+   ],
+   "labels": {
+    "primary": "cells holding 4 and 6",
+    "secondary": "strong link on 4"
+   },
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 24,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 24,
+       "digit": 4
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 24,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 69,
+       "digit": 4
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 69,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 67,
+       "digit": 4
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 67,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 76,
+       "digit": 4
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 76,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 76,
+       "digit": 6
+      }
+     ],
+     "strong": true
+    }
+   ],
+   "description": "W-Wing: r3c7 and r9c5 both hold 46; the strong link on 4 (r8c5–r8c7) forces one of them to be 6, removing 6 from cells seeing both."
+  }
+ },
+ "XY_WING": {
+  "puzzle": ".61.....22...1.....8....5.7..2.316....56.8.9.8.....37..5.3....4..38.........54...",
+  "stepIndex": 40,
+  "values": "561789432237415000984263517792531648345678291816942375150300004403800150600154003",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   384,
+   160,
+   288,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   384,
+   0,
+   258,
+   96,
+   320,
+   162,
+   0,
+   0,
+   66,
+   0,
+   0,
+   258,
+   96,
+   0,
+   0,
+   288,
+   0,
+   66,
+   384,
+   0,
+   0,
+   0,
+   448,
+   130,
+   0
+  ],
+  "step": {
+   "tech": "XY_WING",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 61,
+     "digit": 6
+    },
+    {
+     "cell": 68,
+     "digit": 6
+    }
+   ],
+   "primary": [
+    {
+     "cell": 60,
+     "digit": 7
+    },
+    {
+     "cell": 60,
+     "digit": 9
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 59,
+     "digit": 6
+    },
+    {
+     "cell": 71,
+     "digit": 6
+    }
+   ],
+   "labels": {
+    "primary": "pivot",
+    "secondary": "pincers"
+   },
+   "description": "XY-Wing: pivot r7c7 (79) with pincers r7c6 (76) and r8c9 (96); one pincer must be 6, so 6 is removed from cells seeing both."
+  }
+ },
+ "XYZ_WING": {
+  "puzzle": "1.4.37..8.32..6..7...8...1...8....7..4..1..3..7....6...8...1...2..6..14.4..57.3.9",
+  "stepIndex": 34,
+  "values": "154037068832106007769800013028060071645719832071008604583001726297683145416572389",
+  "cands": [
+   0,
+   0,
+   0,
+   258,
+   0,
+   0,
+   258,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   280,
+   0,
+   280,
+   272,
+   0,
+   0,
+   0,
+   0,
+   0,
+   26,
+   24,
+   26,
+   0,
+   0,
+   260,
+   0,
+   0,
+   12,
+   0,
+   24,
+   272,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   260,
+   0,
+   0,
+   6,
+   18,
+   0,
+   0,
+   272,
+   0,
+   0,
+   0,
+   0,
+   264,
+   264,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "XYZ_WING",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 22,
+     "digit": 4
+    }
+   ],
+   "primary": [
+    {
+     "cell": 13,
+     "digit": 4
+    },
+    {
+     "cell": 13,
+     "digit": 5
+    },
+    {
+     "cell": 13,
+     "digit": 9
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 23,
+     "digit": 4
+    },
+    {
+     "cell": 58,
+     "digit": 4
+    }
+   ],
+   "labels": {
+    "primary": "pivot",
+    "secondary": "pincers"
+   },
+   "description": "XYZ-Wing: pivot r2c5 (459) with pincers r3c6 (45) and r7c5 (49). Whichever digit the pivot takes, one of the three cells is 4, so 4 is removed from every cell that sees all three."
+  }
+ },
+ "WXYZ_WING": {
+  "puzzle": ".7.5......5.23..6..9......87.......6.....2...8..3....4.8.4.9.....2...1....5...6.9",
+  "stepIndex": 42,
+  "values": "671598432458237961293000008730080206510002803820300004187469325962853147345721689",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   33,
+   9,
+   40,
+   80,
+   80,
+   0,
+   0,
+   0,
+   264,
+   257,
+   0,
+   24,
+   0,
+   273,
+   0,
+   0,
+   0,
+   296,
+   288,
+   72,
+   0,
+   0,
+   320,
+   0,
+   0,
+   0,
+   288,
+   0,
+   65,
+   48,
+   80,
+   337,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "WXYZ_WING",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 32,
+     "digit": 4
+    },
+    {
+     "cell": 38,
+     "digit": 4
+    }
+   ],
+   "primary": [
+    {
+     "cell": 30,
+     "digit": 1
+    },
+    {
+     "cell": 30,
+     "digit": 9
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 40,
+     "digit": 4
+    },
+    {
+     "cell": 40,
+     "digit": 7
+    },
+    {
+     "cell": 49,
+     "digit": 1
+    },
+    {
+     "cell": 49,
+     "digit": 7
+    }
+   ],
+   "fins": [
+    {
+     "cell": 29,
+     "digit": 4
+    },
+    {
+     "cell": 29,
+     "digit": 9
+    }
+   ],
+   "labels": {
+    "primary": "cell whose 9 the bivalue cell sees",
+    "secondary": "other cells of the three",
+    "fins": "bivalue cell"
+   },
+   "description": "WXYZ-Wing: bivalue cell r4c3 (49) and the three cells r4c4, r5c5 and r6c5 in box 5, which hold 1479 between them. The 9 in r4c3 sees every 9 in the three cells. Either r4c3 is 4, or it is 9 and the three cells in box 5 must be 1, 4 and 7. At least one of the four cells is therefore 4, so 4 is removed from every other cell that sees all the 4s among them."
+  }
+ },
+ "UNIQUENESS_1": {
+  "puzzle": "9.2...1......1.723.5..6.......1.6..7..6.2.3..3..8.5.......7..1.285.9......1...2.8",
+  "stepIndex": 38,
+  "values": "972483100468519723153762000029136007046927301317845002634278010285391070791654238",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   48,
+   48,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   392,
+   392,
+   264,
+   144,
+   0,
+   0,
+   0,
+   0,
+   0,
+   152,
+   152,
+   0,
+   144,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   144,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   288,
+   288,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   272,
+   0,
+   272,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   40,
+   0,
+   40,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "UNIQUENESS_1",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 34,
+     "digit": 5
+    },
+    {
+     "cell": 34,
+     "digit": 8
+    }
+   ],
+   "primary": [
+    {
+     "cell": 27,
+     "digit": 5
+    },
+    {
+     "cell": 27,
+     "digit": 8
+    },
+    {
+     "cell": 36,
+     "digit": 5
+    },
+    {
+     "cell": 36,
+     "digit": 8
+    },
+    {
+     "cell": 43,
+     "digit": 5
+    },
+    {
+     "cell": 43,
+     "digit": 8
+    }
+   ],
+   "labels": {
+    "primary": "the three corners holding only 5/8: the fourth must not join them"
+   },
+   "description": "Unique Rectangle Type 1: r4c1, r4c8, r5c1, r5c8 would form a deadly pattern on 5/8; r4c8 cannot be 5 or 8."
+  }
+ },
+ "UNIQUENESS_2": {
+  "puzzle": "46..571..28..6..7.7..8.....15....4......1......2....13.....6..1.1..7..82..798..64",
+  "stepIndex": 32,
+  "values": "469357128285164379731800645150030490003010250002005813090006731010073982327981564",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   258,
+   258,
+   0,
+   0,
+   0,
+   0,
+   0,
+   160,
+   98,
+   0,
+   130,
+   0,
+   0,
+   96,
+   384,
+   72,
+   0,
+   104,
+   0,
+   384,
+   0,
+   0,
+   96,
+   288,
+   72,
+   0,
+   104,
+   264,
+   0,
+   0,
+   0,
+   0,
+   144,
+   0,
+   136,
+   26,
+   10,
+   0,
+   0,
+   0,
+   0,
+   48,
+   0,
+   40,
+   24,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "UNIQUENESS_2",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 30,
+     "digit": 6
+    }
+   ],
+   "primary": [
+    {
+     "cell": 37,
+     "digit": 4
+    },
+    {
+     "cell": 37,
+     "digit": 7
+    },
+    {
+     "cell": 39,
+     "digit": 4
+    },
+    {
+     "cell": 39,
+     "digit": 7
+    },
+    {
+     "cell": 46,
+     "digit": 4
+    },
+    {
+     "cell": 46,
+     "digit": 7
+    },
+    {
+     "cell": 48,
+     "digit": 4
+    },
+    {
+     "cell": 48,
+     "digit": 7
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 39,
+     "digit": 6
+    },
+    {
+     "cell": 48,
+     "digit": 6
+    }
+   ],
+   "labels": {
+    "primary": "the rectangle: 4/7 in all four corners",
+    "secondary": "6, the roof's extra candidate: one of the two roof cells must be it"
+   },
+   "description": "Unique Rectangle Type 2: to avoid the deadly pattern on 4/7, one of r5c4/r6c4 must be 6, so 6 is removed from cells seeing both."
+  }
+ },
+ "UNIQUENESS_3": {
+  "puzzle": "...9..1.7..6...84992.......75.6.....4..2.8..5.....7.68.......34684...9..3.7..9...",
+  "stepIndex": 36,
+  "values": "843900127576002849921004050758640290469208005132597468295000034684000900317409580",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   48,
+   48,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   5,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   192,
+   192,
+   0,
+   36,
+   0,
+   36,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   0,
+   0,
+   5,
+   0,
+   0,
+   0,
+   0,
+   5,
+   0,
+   68,
+   65,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   193,
+   224,
+   33,
+   96,
+   0,
+   0,
+   0,
+   0,
+   0,
+   68,
+   82,
+   20,
+   0,
+   65,
+   3,
+   0,
+   0,
+   0,
+   0,
+   34,
+   0,
+   0,
+   0,
+   34
+  ],
+  "step": {
+   "tech": "UNIQUENESS_3",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 60,
+     "digit": 6
+    }
+   ],
+   "primary": [
+    {
+     "cell": 21,
+     "digit": 7
+    },
+    {
+     "cell": 21,
+     "digit": 8
+    },
+    {
+     "cell": 22,
+     "digit": 7
+    },
+    {
+     "cell": 22,
+     "digit": 8
+    },
+    {
+     "cell": 57,
+     "digit": 7
+    },
+    {
+     "cell": 57,
+     "digit": 8
+    },
+    {
+     "cell": 58,
+     "digit": 7
+    },
+    {
+     "cell": 58,
+     "digit": 8
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 59,
+     "digit": 1
+    },
+    {
+     "cell": 59,
+     "digit": 6
+    }
+   ],
+   "labels": {
+    "primary": "the rectangle: 7/8 in all four corners",
+    "secondary": "the cells that form a locked set with the roof extras"
+   },
+   "description": "Unique Rectangle Type 3: the roof extras of r3c4, r3c5, r7c4, r7c5 act as one pseudo-cell and form a locked set with r7c6, clearing those digits from the rest of the unit."
+  }
+ },
+ "UNIQUENESS_4": {
+  "puzzle": ".5.38..1...1......2.......35.4....9........6.7....25.....7..8..31.2........8.69..",
+  "stepIndex": 43,
+  "values": "657380210831027050249060783584673192192008367763002548926700830318200070475836921",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   264,
+   0,
+   0,
+   264,
+   0,
+   0,
+   0,
+   264,
+   0,
+   0,
+   40,
+   0,
+   296,
+   0,
+   0,
+   0,
+   17,
+   0,
+   17,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   24,
+   24,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   257,
+   257,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   25,
+   0,
+   0,
+   24,
+   0,
+   0,
+   0,
+   0,
+   280,
+   272,
+   40,
+   0,
+   56,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "UNIQUENESS_4",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 17,
+     "digit": 4
+    },
+    {
+     "cell": 71,
+     "digit": 4
+    }
+   ],
+   "primary": [
+    {
+     "cell": 15,
+     "digit": 4
+    },
+    {
+     "cell": 15,
+     "digit": 6
+    },
+    {
+     "cell": 17,
+     "digit": 4
+    },
+    {
+     "cell": 17,
+     "digit": 6
+    },
+    {
+     "cell": 69,
+     "digit": 4
+    },
+    {
+     "cell": 69,
+     "digit": 6
+    },
+    {
+     "cell": 71,
+     "digit": 4
+    },
+    {
+     "cell": 71,
+     "digit": 6
+    }
+   ],
+   "labels": {
+    "primary": "the rectangle: 4/6 in all four corners, with 6 locked into the roof"
+   },
+   "description": "Unique Rectangle Type 4: 6 is locked into r2c9/r8c9; keeping 4 there would force the deadly pattern, so 4 is removed from both."
+  }
+ },
+ "UNIQUENESS_5": {
+  "puzzle": "..69....7....6.4.9....4762.3..5.6.9...2...3...7.2.4..1.5142....6.3.7....8....31..",
+  "stepIndex": 27,
+  "values": "436902007287360409000847623300506792062700300070234061751428936603170200820603170",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   17,
+   0,
+   144,
+   145,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   17,
+   0,
+   17,
+   0,
+   273,
+   257,
+   272,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   136,
+   0,
+   129,
+   0,
+   0,
+   0,
+   0,
+   17,
+   0,
+   0,
+   0,
+   385,
+   257,
+   0,
+   136,
+   152,
+   272,
+   0,
+   400,
+   0,
+   0,
+   0,
+   144,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   264,
+   0,
+   0,
+   0,
+   272,
+   0,
+   152,
+   152,
+   0,
+   0,
+   264,
+   0,
+   272,
+   0,
+   0,
+   0,
+   24
+  ],
+  "step": {
+   "tech": "UNIQUENESS_5",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 80,
+     "digit": 5
+    }
+   ],
+   "primary": [
+    {
+     "cell": 43,
+     "digit": 4
+    },
+    {
+     "cell": 43,
+     "digit": 8
+    },
+    {
+     "cell": 44,
+     "digit": 4
+    },
+    {
+     "cell": 44,
+     "digit": 8
+    },
+    {
+     "cell": 70,
+     "digit": 4
+    },
+    {
+     "cell": 70,
+     "digit": 8
+    },
+    {
+     "cell": 71,
+     "digit": 4
+    },
+    {
+     "cell": 71,
+     "digit": 8
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 44,
+     "digit": 5
+    },
+    {
+     "cell": 70,
+     "digit": 5
+    },
+    {
+     "cell": 71,
+     "digit": 5
+    }
+   ],
+   "labels": {
+    "primary": "the rectangle: 4/8 in all four corners",
+    "secondary": "5 in the roof cells: one of them must be it"
+   },
+   "description": "Unique Rectangle Type 5: one of r5c9, r8c8, r8c9 must be 5 to avoid the deadly pattern, so 5 is removed from cells seeing all of them."
+  }
+ },
+ "UNIQUENESS_6": {
+  "puzzle": ".6...9...3.16...8.9.52.36....9...837.........713...2....25.74.3.3...27.8...3...6.",
+  "stepIndex": 42,
+  "values": "467809320321670080985203670659020837248730100713900240892567413036002708074300062",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   17,
+   0,
+   0,
+   0,
+   17,
+   0,
+   0,
+   0,
+   0,
+   0,
+   24,
+   272,
+   0,
+   280,
+   0,
+   0,
+   0,
+   0,
+   9,
+   0,
+   0,
+   0,
+   9,
+   0,
+   0,
+   0,
+   9,
+   0,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   48,
+   0,
+   272,
+   304,
+   0,
+   0,
+   0,
+   0,
+   144,
+   176,
+   0,
+   0,
+   48,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   17,
+   0,
+   0,
+   9,
+   264,
+   0,
+   0,
+   272,
+   0,
+   17,
+   0,
+   0,
+   0,
+   384,
+   129,
+   272,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "UNIQUENESS_6",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 44,
+     "digit": 6
+    },
+    {
+     "cell": 50,
+     "digit": 6
+    }
+   ],
+   "primary": [
+    {
+     "cell": 41,
+     "digit": 5
+    },
+    {
+     "cell": 41,
+     "digit": 6
+    },
+    {
+     "cell": 44,
+     "digit": 5
+    },
+    {
+     "cell": 44,
+     "digit": 6
+    },
+    {
+     "cell": 50,
+     "digit": 5
+    },
+    {
+     "cell": 50,
+     "digit": 6
+    },
+    {
+     "cell": 53,
+     "digit": 5
+    },
+    {
+     "cell": 53,
+     "digit": 6
+    }
+   ],
+   "labels": {
+    "primary": "the rectangle: 5/6 in all four corners, with 6 confined to it in both rows"
+   },
+   "description": "Unique Rectangle Type 6: 6 is confined to the rectangle in both rows; placing it in a roof corner would force the deadly pattern, so 6 is removed from r5c9, r6c6."
+  }
+ },
+ "HIDDEN_RECTANGLE": {
+  "puzzle": "7.4..8.1.8.....3.7.596.......1..74..54.....76..74..8.......468.4.8.....3.7.8..1.4",
+  "stepIndex": 31,
+  "values": "764008519812040367359671248081007405543182976007400801135794682408016703076800104",
+  "cands": [
+   0,
+   0,
+   0,
+   6,
+   6,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   272,
+   0,
+   272,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   290,
+   0,
+   0,
+   260,
+   36,
+   0,
+   0,
+   6,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   290,
+   258,
+   0,
+   0,
+   52,
+   276,
+   0,
+   6,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   258,
+   0,
+   18,
+   0,
+   0,
+   0,
+   272,
+   0,
+   258,
+   0,
+   0,
+   0,
+   22,
+   20,
+   0,
+   272,
+   0
+  ],
+  "step": {
+   "tech": "HIDDEN_RECTANGLE",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 49,
+     "digit": 3
+    }
+   ],
+   "primary": [
+    {
+     "cell": 49,
+     "digit": 3
+    },
+    {
+     "cell": 49,
+     "digit": 5
+    },
+    {
+     "cell": 50,
+     "digit": 3
+    },
+    {
+     "cell": 50,
+     "digit": 5
+    },
+    {
+     "cell": 76,
+     "digit": 3
+    },
+    {
+     "cell": 76,
+     "digit": 5
+    },
+    {
+     "cell": 77,
+     "digit": 3
+    },
+    {
+     "cell": 77,
+     "digit": 5
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 77,
+     "digit": 5
+    }
+   ],
+   "labels": {
+    "primary": "the rectangle: 3/5 in all four corners",
+    "secondary": "5 in the bivalue corner: confined to the rectangle in r6c5's row and column"
+   },
+   "description": "Hidden Rectangle: r9c6 holds only 35, and 5 is confined to the rectangle in r6c5's row and column; r6c5 cannot be 3 or the deadly pattern appears."
+  }
+ },
+ "AVOIDABLE_RECTANGLE_1": {
+  "puzzle": "..35........8.9.........87.....35.....5..2..646......16..1.7.....1..3.8..5.....49",
+  "stepIndex": 44,
+  "values": "083500900500809300900300875009635428835412796462798531698147253241953687357286149",
+  "cands": [
+   65,
+   0,
+   0,
+   0,
+   98,
+   9,
+   0,
+   33,
+   10,
+   0,
+   67,
+   40,
+   0,
+   98,
+   0,
+   0,
+   33,
+   10,
+   0,
+   3,
+   40,
+   0,
+   34,
+   9,
+   0,
+   0,
+   0,
+   65,
+   65,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "AVOIDABLE_RECTANGLE_1",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 17,
+     "digit": 2
+    }
+   ],
+   "primary": [
+    {
+     "cell": 15,
+     "digit": 3
+    },
+    {
+     "cell": 60,
+     "digit": 2
+    },
+    {
+     "cell": 62,
+     "digit": 3
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 17,
+     "digit": 2
+    }
+   ],
+   "labels": {
+    "primary": "the three solved corners, none of them a given",
+    "secondary": "the cell that would complete the rectangle with 2"
+   },
+   "description": "Avoidable Rectangle Type 1: setting r2c9 to 2 would complete an interchangeable rectangle of solved (non-given) cells, contradicting the puzzle's unique solution."
+  }
+ },
+ "AVOIDABLE_RECTANGLE_2": {
+  "puzzle": "5.2.7.1...7..4...6..3.6....7.16...3..29...4......8..2....41.......2...9.......87.",
+  "stepIndex": 43,
+  "values": "562879143078040056003060780781624030629700418005981627007418060816207094204096871",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   257,
+   0,
+   0,
+   5,
+   0,
+   6,
+   258,
+   0,
+   0,
+   265,
+   264,
+   0,
+   17,
+   0,
+   18,
+   0,
+   0,
+   258,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   272,
+   0,
+   272,
+   0,
+   0,
+   0,
+   0,
+   20,
+   20,
+   0,
+   0,
+   0,
+   12,
+   12,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   260,
+   276,
+   0,
+   0,
+   0,
+   0,
+   22,
+   0,
+   18,
+   0,
+   0,
+   0,
+   0,
+   20,
+   0,
+   20,
+   0,
+   0,
+   0,
+   20,
+   0,
+   20,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "AVOIDABLE_RECTANGLE_2",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 55,
+     "digit": 3
+    }
+   ],
+   "primary": [
+    {
+     "cell": 46,
+     "digit": 3
+    },
+    {
+     "cell": 73,
+     "digit": 3
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 47,
+     "digit": 5
+    },
+    {
+     "cell": 74,
+     "digit": 4
+    }
+   ],
+   "labels": {
+    "primary": "3 in the two unsolved corners: one of them must be it",
+    "secondary": "the two solved corners, neither of them a given"
+   },
+   "description": "Avoidable Rectangle Type 2: to avoid an interchangeable rectangle with the solved cells r6c3, r9c3, one of r6c2/r9c2 must be 3, so 3 is removed from cells seeing both."
+  }
+ },
+ "EXTENDED_RECTANGLE": {
+  "puzzle": "7.3.....669..3.............1.6..29.3...7.31....2....64..92..4...8.6...1........5.",
+  "stepIndex": 39,
+  "values": "753020896691030247824976531176002983948763125532000764369200478085607310017300650",
+  "cands": [
+   0,
+   0,
+   0,
+   9,
+   0,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   144,
+   0,
+   144,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   24,
+   24,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   129,
+   385,
+   385,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   17,
+   17,
+   0,
+   0,
+   0,
+   10,
+   0,
+   0,
+   0,
+   264,
+   0,
+   0,
+   0,
+   258,
+   10,
+   0,
+   0,
+   0,
+   392,
+   392,
+   0,
+   0,
+   258
+  ],
+  "step": {
+   "tech": "EXTENDED_RECTANGLE",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 76,
+     "digit": 4
+    },
+    {
+     "cell": 76,
+     "digit": 9
+    }
+   ],
+   "primary": [
+    {
+     "cell": 63,
+     "digit": 2
+    },
+    {
+     "cell": 63,
+     "digit": 4
+    },
+    {
+     "cell": 72,
+     "digit": 2
+    },
+    {
+     "cell": 72,
+     "digit": 4
+    },
+    {
+     "cell": 67,
+     "digit": 4
+    },
+    {
+     "cell": 67,
+     "digit": 9
+    },
+    {
+     "cell": 71,
+     "digit": 2
+    },
+    {
+     "cell": 71,
+     "digit": 9
+    },
+    {
+     "cell": 80,
+     "digit": 2
+    },
+    {
+     "cell": 80,
+     "digit": 9
+    }
+   ],
+   "labels": {
+    "primary": "the cells that would form a deadly 249 loop"
+   },
+   "description": "Extended Rectangle Type 1: r8c1, r9c1, r8c5, r9c5, r8c9, r9c9 would form a deadly 249 loop; r9c5 must take one of its extra candidates."
+  }
+ },
+ "FINNED_X_WING": {
+  "puzzle": "...186..5..73....619......4....5..69.6.7.1.2.92..6....2......476....75..7..918...",
+  "stepIndex": 34,
+  "values": "002186975007349216196572384070250069060791420920860750209635047600427590700918632",
+  "cands": [
+   12,
+   12,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   144,
+   144,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   140,
+   0,
+   137,
+   0,
+   0,
+   12,
+   129,
+   0,
+   0,
+   148,
+   0,
+   148,
+   0,
+   0,
+   0,
+   0,
+   0,
+   132,
+   0,
+   0,
+   9,
+   0,
+   0,
+   12,
+   0,
+   0,
+   5,
+   0,
+   129,
+   0,
+   0,
+   0,
+   0,
+   129,
+   0,
+   0,
+   0,
+   133,
+   132,
+   0,
+   0,
+   0,
+   0,
+   0,
+   129,
+   0,
+   24,
+   24,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "FINNED_X_WING",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 36,
+     "digit": 8
+    }
+   ],
+   "primary": [
+    {
+     "cell": 38,
+     "digit": 8
+    },
+    {
+     "cell": 65,
+     "digit": 8
+    },
+    {
+     "cell": 44,
+     "digit": 8
+    },
+    {
+     "cell": 71,
+     "digit": 8
+    }
+   ],
+   "fins": [
+    {
+     "cell": 29,
+     "digit": 8
+    }
+   ],
+   "units": [
+    {
+     "unit": 11,
+     "role": "primary"
+    },
+    {
+     "unit": 17,
+     "role": "primary"
+    },
+    {
+     "unit": 4,
+     "role": "secondary"
+    },
+    {
+     "unit": 7,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "base columns: the 8s of the fish",
+    "secondary": "cover rows: where the base's 8s must land",
+    "fins": "fin: 8s outside the fish, in one box; a removal must see every fin"
+   },
+   "description": "Finned X-Wing on 8: in columns 3, 9, 8 sits in rows 5, 8 (r5c3, r8c3, r5c9, r8c9) except for the fin r4c3. Either the fin is false and the fish holds, or the fin is true; an 8 that sees every fin and lies in the cover rows outside the base is false both ways."
+  }
+ },
+ "SASHIMI_X_WING": {
+  "puzzle": "..4.......9..6...121.8...9...2.3..87.7.2.6.4.34..7.9...3...4.299...2..6.......8..",
+  "stepIndex": 36,
+  "values": "064900208098062401213840096152439687879206040346078902630084029980020064420690800",
+  "cands": [
+   80,
+   0,
+   0,
+   0,
+   17,
+   85,
+   0,
+   68,
+   0,
+   80,
+   0,
+   0,
+   20,
+   0,
+   0,
+   0,
+   84,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   80,
+   80,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   17,
+   0,
+   5,
+   0,
+   20,
+   0,
+   0,
+   0,
+   17,
+   0,
+   0,
+   0,
+   17,
+   0,
+   0,
+   0,
+   81,
+   81,
+   0,
+   0,
+   81,
+   0,
+   0,
+   0,
+   0,
+   81,
+   85,
+   0,
+   17,
+   69,
+   0,
+   0,
+   0,
+   0,
+   81,
+   0,
+   0,
+   5,
+   0,
+   81,
+   20
+  ],
+  "step": {
+   "tech": "SASHIMI_X_WING",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 77,
+     "digit": 1
+    }
+   ],
+   "primary": [
+    {
+     "cell": 48,
+     "digit": 1
+    },
+    {
+     "cell": 52,
+     "digit": 1
+    },
+    {
+     "cell": 79,
+     "digit": 1
+    }
+   ],
+   "fins": [
+    {
+     "cell": 57,
+     "digit": 1
+    },
+    {
+     "cell": 66,
+     "digit": 1
+    }
+   ],
+   "units": [
+    {
+     "unit": 12,
+     "role": "primary"
+    },
+    {
+     "unit": 16,
+     "role": "primary"
+    },
+    {
+     "unit": 5,
+     "role": "secondary"
+    },
+    {
+     "unit": 8,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "base columns: the 1s of the fish",
+    "secondary": "cover rows: where the base's 1s must land",
+    "fins": "fin: 1s outside the fish, in one box; a removal must see every fin"
+   },
+   "description": "Sashimi X-Wing on 1: in columns 4, 8, 1 sits in rows 6, 9 (r6c4, r6c8, r9c8) except for the fins r7c4, r8c4. Either the fins are false and the fish holds, or a fin is true; a 1 that sees every fin and lies in the cover rows outside the base is false both ways."
+  }
+ },
+ "FINNED_SWORDFISH": {
+  "puzzle": "...5..86......6....6..4..591....3..435..6..984..8....168..7..4....9......14..5...",
+  "stepIndex": 34,
+  "values": "040507860805096417060048059198753624352461798476829531680072045500904006014605000",
+  "cands": [
+   258,
+   0,
+   261,
+   0,
+   5,
+   0,
+   0,
+   0,
+   6,
+   0,
+   6,
+   0,
+   6,
+   0,
+   0,
+   0,
+   0,
+   0,
+   66,
+   0,
+   65,
+   7,
+   0,
+   0,
+   6,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   260,
+   5,
+   0,
+   0,
+   261,
+   0,
+   0,
+   0,
+   6,
+   68,
+   0,
+   133,
+   0,
+   3,
+   192,
+   0,
+   322,
+   0,
+   0,
+   0,
+   132,
+   0,
+   262,
+   192,
+   6
+  ],
+  "step": {
+   "tech": "FINNED_SWORDFISH",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 64,
+     "digit": 3
+    }
+   ],
+   "primary": [
+    {
+     "cell": 10,
+     "digit": 3
+    },
+    {
+     "cell": 12,
+     "digit": 3
+    },
+    {
+     "cell": 21,
+     "digit": 3
+    },
+    {
+     "cell": 24,
+     "digit": 3
+    },
+    {
+     "cell": 57,
+     "digit": 3
+    },
+    {
+     "cell": 60,
+     "digit": 3
+    }
+   ],
+   "fins": [
+    {
+     "cell": 56,
+     "digit": 3
+    }
+   ],
+   "units": [
+    {
+     "unit": 1,
+     "role": "primary"
+    },
+    {
+     "unit": 2,
+     "role": "primary"
+    },
+    {
+     "unit": 6,
+     "role": "primary"
+    },
+    {
+     "unit": 10,
+     "role": "secondary"
+    },
+    {
+     "unit": 12,
+     "role": "secondary"
+    },
+    {
+     "unit": 15,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "base rows: the 3s of the fish",
+    "secondary": "cover columns: where the base's 3s must land",
+    "fins": "fin: 3s outside the fish, in one box; a removal must see every fin"
+   },
+   "description": "Finned Swordfish on 3: in rows 2, 3, 7, 3 sits in columns 2, 4, 7 (r2c2, r2c4, r3c4, r3c7, r7c4, r7c7) except for the fin r7c3. Either the fin is false and the fish holds, or the fin is true; a 3 that sees every fin and lies in the cover columns outside the base is false both ways."
+  }
+ },
+ "SASHIMI_SWORDFISH": {
+  "puzzle": "..8.......2...9.411...3...9.4...3..7.3.245.6.8..9...5.9...5...445.8...7.......5..",
+  "stepIndex": 38,
+  "values": "698421735325009841174538629540083207730245068802907453900052304453806072200304506",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   96,
+   96,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   289,
+   33,
+   0,
+   0,
+   0,
+   257,
+   0,
+   0,
+   0,
+   257,
+   0,
+   0,
+   0,
+   257,
+   0,
+   0,
+   0,
+   33,
+   0,
+   0,
+   33,
+   0,
+   0,
+   0,
+   0,
+   0,
+   160,
+   97,
+   65,
+   0,
+   0,
+   0,
+   129,
+   0,
+   0,
+   0,
+   0,
+   0,
+   257,
+   0,
+   257,
+   0,
+   0,
+   0,
+   129,
+   65,
+   0,
+   321,
+   0,
+   0,
+   385,
+   0
+  ],
+  "step": {
+   "tech": "SASHIMI_SWORDFISH",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 29,
+     "digit": 1
+    }
+   ],
+   "primary": [
+    {
+     "cell": 38,
+     "digit": 1
+    },
+    {
+     "cell": 42,
+     "digit": 1
+    },
+    {
+     "cell": 49,
+     "digit": 1
+    },
+    {
+     "cell": 67,
+     "digit": 1
+    },
+    {
+     "cell": 69,
+     "digit": 1
+    }
+   ],
+   "fins": [
+    {
+     "cell": 46,
+     "digit": 1
+    }
+   ],
+   "units": [
+    {
+     "unit": 4,
+     "role": "primary"
+    },
+    {
+     "unit": 5,
+     "role": "primary"
+    },
+    {
+     "unit": 7,
+     "role": "primary"
+    },
+    {
+     "unit": 11,
+     "role": "secondary"
+    },
+    {
+     "unit": 13,
+     "role": "secondary"
+    },
+    {
+     "unit": 15,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "base rows: the 1s of the fish",
+    "secondary": "cover columns: where the base's 1s must land",
+    "fins": "fin: 1s outside the fish, in one box; a removal must see every fin"
+   },
+   "description": "Sashimi Swordfish on 1: in rows 5, 6, 8, 1 sits in columns 3, 5, 7 (r5c3, r5c7, r6c5, r8c5, r8c7) except for the fin r6c2. Either the fin is false and the fish holds, or the fin is true; a 1 that sees every fin and lies in the cover columns outside the base is false both ways."
+  }
+ },
+ "FINNED_JELLYFISH": {
+  "puzzle": ".4...57....3.9..518..7...24.3......84.6...5.97......6.38...7..259..2.3....73...8.",
+  "stepIndex": 30,
+  "values": "040085736073090851805700924030500008406800509758900063380057692590628307007309085",
+  "cands": [
+   257,
+   0,
+   258,
+   3,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   0,
+   0,
+   10,
+   0,
+   40,
+   0,
+   0,
+   0,
+   0,
+   33,
+   0,
+   0,
+   36,
+   37,
+   0,
+   0,
+   0,
+   257,
+   0,
+   258,
+   0,
+   96,
+   42,
+   11,
+   73,
+   0,
+   0,
+   3,
+   0,
+   0,
+   68,
+   7,
+   0,
+   65,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   11,
+   11,
+   0,
+   0,
+   0,
+   0,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   0,
+   0,
+   0,
+   0,
+   9,
+   0,
+   34,
+   34,
+   0,
+   0,
+   9,
+   0,
+   9,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "FINNED_JELLYFISH",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 43,
+     "digit": 1
+    }
+   ],
+   "primary": [
+    {
+     "cell": 0,
+     "digit": 1
+    },
+    {
+     "cell": 3,
+     "digit": 1
+    },
+    {
+     "cell": 27,
+     "digit": 1
+    },
+    {
+     "cell": 34,
+     "digit": 1
+    },
+    {
+     "cell": 56,
+     "digit": 1
+    },
+    {
+     "cell": 57,
+     "digit": 1
+    },
+    {
+     "cell": 65,
+     "digit": 1
+    },
+    {
+     "cell": 70,
+     "digit": 1
+    }
+   ],
+   "fins": [
+    {
+     "cell": 33,
+     "digit": 1
+    }
+   ],
+   "units": [
+    {
+     "unit": 0,
+     "role": "primary"
+    },
+    {
+     "unit": 3,
+     "role": "primary"
+    },
+    {
+     "unit": 6,
+     "role": "primary"
+    },
+    {
+     "unit": 7,
+     "role": "primary"
+    },
+    {
+     "unit": 9,
+     "role": "secondary"
+    },
+    {
+     "unit": 11,
+     "role": "secondary"
+    },
+    {
+     "unit": 12,
+     "role": "secondary"
+    },
+    {
+     "unit": 16,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "base rows: the 1s of the fish",
+    "secondary": "cover columns: where the base's 1s must land",
+    "fins": "fin: 1s outside the fish, in one box; a removal must see every fin"
+   },
+   "description": "Finned Jellyfish on 1: in rows 1, 4, 7, 8, 1 sits in columns 1, 3, 4, 8 (r1c1, r1c4, r4c1, r4c8, r7c3, r7c4, r8c3, r8c8) except for the fin r4c7. Either the fin is false and the fish holds, or the fin is true; a 1 that sees every fin and lies in the cover columns outside the base is false both ways."
+  }
+ },
+ "SASHIMI_JELLYFISH": {
+  "puzzle": ".28.4.......28..9.......2.79....3842....7....3428....54.3.......7..35.......6.93.",
+  "stepIndex": 34,
+  "values": "728049003030287094094300287907003842000472309342890005403928000079135420200764930",
+  "cands": [
+   0,
+   0,
+   0,
+   48,
+   0,
+   0,
+   49,
+   49,
+   0,
+   49,
+   0,
+   49,
+   0,
+   0,
+   0,
+   48,
+   0,
+   0,
+   48,
+   0,
+   0,
+   0,
+   17,
+   33,
+   0,
+   0,
+   0,
+   0,
+   33,
+   0,
+   48,
+   17,
+   0,
+   0,
+   0,
+   0,
+   177,
+   144,
+   49,
+   0,
+   0,
+   0,
+   0,
+   33,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   33,
+   97,
+   97,
+   0,
+   0,
+   33,
+   0,
+   0,
+   0,
+   0,
+   80,
+   80,
+   33,
+   160,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   160,
+   0,
+   144,
+   17,
+   0,
+   0,
+   0,
+   0,
+   0,
+   129
+  ],
+  "step": {
+   "tech": "SASHIMI_JELLYFISH",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 3,
+     "digit": 6
+    }
+   ],
+   "primary": [
+    {
+     "cell": 18,
+     "digit": 6
+    },
+    {
+     "cell": 28,
+     "digit": 6
+    },
+    {
+     "cell": 30,
+     "digit": 6
+    },
+    {
+     "cell": 55,
+     "digit": 6
+    },
+    {
+     "cell": 62,
+     "digit": 6
+    },
+    {
+     "cell": 63,
+     "digit": 6
+    },
+    {
+     "cell": 71,
+     "digit": 6
+    }
+   ],
+   "fins": [
+    {
+     "cell": 23,
+     "digit": 6
+    }
+   ],
+   "units": [
+    {
+     "unit": 2,
+     "role": "primary"
+    },
+    {
+     "unit": 3,
+     "role": "primary"
+    },
+    {
+     "unit": 6,
+     "role": "primary"
+    },
+    {
+     "unit": 7,
+     "role": "primary"
+    },
+    {
+     "unit": 9,
+     "role": "secondary"
+    },
+    {
+     "unit": 10,
+     "role": "secondary"
+    },
+    {
+     "unit": 12,
+     "role": "secondary"
+    },
+    {
+     "unit": 17,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "base rows: the 6s of the fish",
+    "secondary": "cover columns: where the base's 6s must land",
+    "fins": "fin: 6s outside the fish, in one box; a removal must see every fin"
+   },
+   "description": "Sashimi Jellyfish on 6: in rows 3, 4, 7, 8, 6 sits in columns 1, 2, 4, 9 (r3c1, r4c2, r4c4, r7c2, r7c9, r8c1, r8c9) except for the fin r3c6. Either the fin is false and the fish holds, or the fin is true; a 6 that sees every fin and lies in the cover columns outside the base is false both ways."
+  }
+ },
+ "SUE_DE_COQ": {
+  "puzzle": ".5.9.........4.6..2....31...8..6..4.364...25.....2...1....5..93...47......5..1...",
+  "stepIndex": 35,
+  "values": "050916000000742605246583179182365947364197258500824361000058093000479510005031000",
+  "cands": [
+   192,
+   0,
+   196,
+   0,
+   0,
+   0,
+   136,
+   134,
+   10,
+   384,
+   261,
+   261,
+   0,
+   0,
+   0,
+   0,
+   132,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   320,
+   320,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   40,
+   67,
+   65,
+   34,
+   0,
+   0,
+   72,
+   0,
+   0,
+   160,
+   6,
+   132,
+   0,
+   0,
+   0,
+   0,
+   0,
+   34,
+   360,
+   322,
+   0,
+   34,
+   0,
+   0,
+   200,
+   130,
+   42
+  ],
+  "step": {
+   "tech": "SUE_DE_COQ",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 72,
+     "digit": 6
+    },
+    {
+     "cell": 73,
+     "digit": 2
+    }
+   ],
+   "primary": [
+    {
+     "cell": 78,
+     "digit": 4
+    },
+    {
+     "cell": 78,
+     "digit": 7
+    },
+    {
+     "cell": 78,
+     "digit": 8
+    },
+    {
+     "cell": 79,
+     "digit": 2
+    },
+    {
+     "cell": 79,
+     "digit": 8
+    },
+    {
+     "cell": 80,
+     "digit": 2
+    },
+    {
+     "cell": 80,
+     "digit": 4
+    },
+    {
+     "cell": 80,
+     "digit": 6
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 75,
+     "digit": 2
+    },
+    {
+     "cell": 75,
+     "digit": 6
+    },
+    {
+     "cell": 60,
+     "digit": 4
+    },
+    {
+     "cell": 60,
+     "digit": 7
+    }
+   ],
+   "labels": {
+    "primary": "the intersection cells, holding 24678",
+    "secondary": "the line cell and the box cell that complete the locked set"
+   },
+   "description": "Sue de Coq: r9c7, r9c8, r9c9 (24678) with r9c4 in the line and r7c7 in the box form a locked set; line digits are cleared from the rest of the line, box digits from the rest of the box."
+  }
+ },
+ "SIMPLE_COLORS": {
+  "puzzle": "15.6..3.94.....76.6...1......823.....6.8.9.2.....658......2...5.16.....88.5..6.32",
+  "stepIndex": 24,
+  "values": "150600389400580761680910254008231006060809020000065800000028605216350908805096032",
+  "cands": [
+   0,
+   0,
+   66,
+   0,
+   72,
+   74,
+   0,
+   0,
+   0,
+   0,
+   262,
+   262,
+   0,
+   0,
+   6,
+   0,
+   0,
+   0,
+   0,
+   0,
+   68,
+   0,
+   0,
+   68,
+   0,
+   0,
+   0,
+   336,
+   328,
+   0,
+   0,
+   0,
+   0,
+   24,
+   264,
+   0,
+   20,
+   0,
+   13,
+   0,
+   72,
+   0,
+   25,
+   0,
+   68,
+   260,
+   270,
+   271,
+   72,
+   0,
+   0,
+   0,
+   265,
+   68,
+   324,
+   332,
+   268,
+   73,
+   0,
+   0,
+   0,
+   73,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   72,
+   0,
+   72,
+   0,
+   0,
+   72,
+   0,
+   73,
+   0,
+   0,
+   9,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "SIMPLE_COLORS",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 52,
+     "digit": 4
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 4,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 5,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "undirected": true,
+     "text": "Each line joins the only two 4s of a house: exactly one of them is true, so they take opposite shades. Either every dark purple 4 is true, or every light purple one is."
+    },
+    {
+     "from": [
+      {
+       "cell": 4,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 40,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 5,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 68,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 40,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 48,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 68,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 70,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 48,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 52,
+       "digit": 4
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "text": "If dark purple is true, the 4 in r6c4 is true, and the 4 in r6c8 goes."
+    },
+    {
+     "from": [
+      {
+       "cell": 70,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 52,
+       "digit": 4
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "text": "If light purple is true, the 4 in r8c8 is true, and the 4 in r6c8 goes. Either way it is false."
+    }
+   ],
+   "truth": "parity",
+   "colouring": {
+    "rule": "trap",
+    "clusters": [
+     {
+      "dark": [
+       {
+        "cell": 4,
+        "digit": 4
+       },
+       {
+        "cell": 48,
+        "digit": 4
+       },
+       {
+        "cell": 68,
+        "digit": 4
+       }
+      ],
+      "light": [
+       {
+        "cell": 5,
+        "digit": 4
+       },
+       {
+        "cell": 40,
+        "digit": 4
+       },
+       {
+        "cell": 70,
+        "digit": 4
+       }
+      ]
+     }
+    ]
+   },
+   "description": "Simple Colors on 4: where a row, column or box has only two 4s, they take opposite shades of purple, so either every dark purple 4 is true or every light purple one is. The 4 in r6c8 sees a dark purple 4 in r6c4 and a light purple 4 in r8c8, so it is false either way."
+  }
+ },
+ "MULTI_COLORS": {
+  "puzzle": ".5.8.4.......73.1.......9.89.....4...7.9.2.35..1...27..........7...8...4.8..597..",
+  "stepIndex": 25,
+  "values": "150894307000073510007000948920000480070902035001008279010000800700080004080059700",
+  "cands": [
+   0,
+   0,
+   34,
+   0,
+   0,
+   0,
+   0,
+   34,
+   0,
+   136,
+   264,
+   392,
+   34,
+   0,
+   0,
+   0,
+   0,
+   34,
+   38,
+   36,
+   0,
+   49,
+   35,
+   49,
+   0,
+   0,
+   0,
+   0,
+   0,
+   52,
+   117,
+   37,
+   80,
+   0,
+   0,
+   33,
+   168,
+   0,
+   160,
+   0,
+   41,
+   0,
+   33,
+   0,
+   0,
+   60,
+   44,
+   0,
+   28,
+   44,
+   0,
+   0,
+   0,
+   0,
+   62,
+   0,
+   316,
+   108,
+   46,
+   96,
+   0,
+   272,
+   36,
+   0,
+   260,
+   278,
+   6,
+   0,
+   33,
+   33,
+   272,
+   0,
+   44,
+   0,
+   44,
+   13,
+   0,
+   0,
+   0,
+   34,
+   39
+  ],
+  "step": {
+   "tech": "MULTI_COLORS",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 23,
+     "digit": 6
+    },
+    {
+     "cell": 57,
+     "digit": 6
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 35,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 42,
+       "digit": 6
+      }
+     ],
+     "strong": true,
+     "undirected": true,
+     "text": "Each line joins the only two 6s of a house: exactly one of them is true, so they take opposite shades. Either every dark purple 6 is true, or every light purple one is."
+    },
+    {
+     "from": [
+      {
+       "cell": 42,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 69,
+       "digit": 6
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 69,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 68,
+       "digit": 6
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 2,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 7,
+       "digit": 6
+      }
+     ],
+     "strong": true,
+     "undirected": true,
+     "text": "Another cluster of 6s, shaded the same way in orange: either every dark orange 6 is true, or every light orange one is."
+    },
+    {
+     "from": [
+      {
+       "cell": 7,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 17,
+       "digit": 6
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 7,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 79,
+       "digit": 6
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 17,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 12,
+       "digit": 6
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 79,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 69,
+       "digit": 6
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "text": "The dark orange 6 in r9c8 and the dark purple 6 in r8c7 see each other (the dashed line), so they cannot both be true: light orange or light purple is true."
+    },
+    {
+     "from": [
+      {
+       "cell": 68,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 23,
+       "digit": 6
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "text": "If light purple is true, the 6 in r8c6 is true, and the 6 in r3c6 goes."
+    },
+    {
+     "from": [
+      {
+       "cell": 12,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 23,
+       "digit": 6
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "text": "If light orange is true, the 6 in r2c4 is true, and the 6 in r3c6 goes. Light orange or light purple is true, so it is false either way; one more 6 falls the same way."
+    }
+   ],
+   "truth": "parity",
+   "colouring": {
+    "rule": "bridge",
+    "clusters": [
+     {
+      "dark": [
+       {
+        "cell": 35,
+        "digit": 6
+       },
+       {
+        "cell": 69,
+        "digit": 6
+       }
+      ],
+      "light": [
+       {
+        "cell": 42,
+        "digit": 6
+       },
+       {
+        "cell": 68,
+        "digit": 6
+       }
+      ]
+     },
+     {
+      "dark": [
+       {
+        "cell": 2,
+        "digit": 6
+       },
+       {
+        "cell": 17,
+        "digit": 6
+       },
+       {
+        "cell": 79,
+        "digit": 6
+       }
+      ],
+      "light": [
+       {
+        "cell": 7,
+        "digit": 6
+       },
+       {
+        "cell": 12,
+        "digit": 6
+       }
+      ]
+     }
+    ]
+   },
+   "description": "Multi Colors on 6: two clusters of 6s are shaded, one purple and one orange; in each, where a row, column or box has only two 6s, they take opposite shades. The dark orange 6 in r9c8 and the dark purple 6 in r8c7 see each other, so they cannot both be true: light orange or light purple is true. The 6 in r3c6 sees a light purple 6 in r8c6 and a light orange 6 in r2c4, so it is false either way; one more 6 falls the same way."
+  }
+ },
+ "MEDUSA_3D": {
+  "puzzle": ".....5...9.3.7...8....3.2.95..32.4..4...5..8...2.1.........75...49..6.7.6........",
+  "stepIndex": 30,
+  "values": "020965000903472008700831209590328400400059082002014905000247596249586070600193824",
+  "cands": [
+   129,
+   0,
+   137,
+   0,
+   0,
+   0,
+   69,
+   13,
+   69,
+   0,
+   49,
+   0,
+   0,
+   0,
+   0,
+   33,
+   17,
+   0,
+   0,
+   48,
+   56,
+   0,
+   0,
+   0,
+   0,
+   56,
+   0,
+   0,
+   0,
+   97,
+   0,
+   0,
+   0,
+   0,
+   33,
+   65,
+   0,
+   101,
+   97,
+   96,
+   0,
+   0,
+   101,
+   0,
+   0,
+   132,
+   228,
+   0,
+   96,
+   0,
+   0,
+   0,
+   36,
+   0,
+   133,
+   133,
+   129,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   0,
+   5,
+   0,
+   80,
+   80,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "MEDUSA_3D",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 55,
+     "digit": 1
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 0,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 0,
+       "digit": 8
+      }
+     ],
+     "strong": true,
+     "undirected": true,
+     "text": "Each line joins the only two places for a digit in a row, column or box; a cell with only two candidates joins those two, side by side (no line inside a cell). Exactly one of two joined candidates is true, so they take opposite shades: either every dark purple candidate is true, or every light purple one is."
+    },
+    {
+     "from": [
+      {
+       "cell": 0,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 54,
+       "digit": 1
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 0,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 2,
+       "digit": 8
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 2,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 56,
+       "digit": 8
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 56,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 56,
+       "digit": 1
+      }
+     ],
+     "strong": true,
+     "undirected": true
+    },
+    {
+     "from": [
+      {
+       "cell": 56,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 55,
+       "digit": 1
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "text": "If dark purple is true, the 1 in r7c3 is true, and the 1 in r7c2 goes."
+    },
+    {
+     "from": [
+      {
+       "cell": 54,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 55,
+       "digit": 1
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "text": "If light purple is true, the 1 in r7c1 is true, and the 1 in r7c2 goes. Either way it is false."
+    }
+   ],
+   "truth": "parity",
+   "colouring": {
+    "rule": "medusa4",
+    "clusters": [
+     {
+      "dark": [
+       {
+        "cell": 0,
+        "digit": 1
+       },
+       {
+        "cell": 2,
+        "digit": 8
+       },
+       {
+        "cell": 56,
+        "digit": 1
+       }
+      ],
+      "light": [
+       {
+        "cell": 0,
+        "digit": 8
+       },
+       {
+        "cell": 54,
+        "digit": 1
+       },
+       {
+        "cell": 56,
+        "digit": 8
+       }
+      ]
+     }
+    ]
+   },
+   "description": "3D Medusa: where a row, column or box has only two places for a digit, or a cell has only two candidates, the two take opposite shades of purple, so either every dark purple candidate is true or every light purple one is. The 1 in r7c2 sees a dark purple 1 in r7c3 and a light purple 1 in r7c1, so it is false either way."
+  }
+ },
+ "X_CHAIN": {
+  "puzzle": "5.7...28..1....7..8..13...66.34.....1.4.53....2..........5....2....4...975....4..",
+  "stepIndex": 34,
+  "values": "537004281416005793892137546673400005184053007925070034340500072260740359750300408",
+  "cands": [
+   0,
+   0,
+   0,
+   288,
+   288,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   130,
+   130,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   387,
+   259,
+   385,
+   3,
+   0,
+   0,
+   0,
+   0,
+   290,
+   0,
+   0,
+   288,
+   34,
+   0,
+   0,
+   0,
+   0,
+   160,
+   0,
+   161,
+   161,
+   0,
+   0,
+   0,
+   0,
+   385,
+   0,
+   417,
+   417,
+   33,
+   0,
+   0,
+   0,
+   0,
+   129,
+   0,
+   0,
+   129,
+   0,
+   0,
+   0,
+   0,
+   0,
+   257,
+   0,
+   291,
+   290,
+   0,
+   33,
+   0
+  ],
+  "step": {
+   "tech": "X_CHAIN",
+   "truth": "derived",
+   "labels": {
+    "primary": "the chain on 1"
+   },
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 74,
+     "digit": 1
+    }
+   ],
+   "primary": [
+    {
+     "cell": 65,
+     "digit": 1
+    },
+    {
+     "cell": 68,
+     "digit": 1
+    },
+    {
+     "cell": 50,
+     "digit": 1
+    },
+    {
+     "cell": 51,
+     "digit": 1
+    },
+    {
+     "cell": 34,
+     "digit": 1
+    },
+    {
+     "cell": 79,
+     "digit": 1
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 65,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 68,
+       "digit": 1
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 68,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 50,
+       "digit": 1
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 50,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 51,
+       "digit": 1
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 51,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 34,
+       "digit": 1
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 34,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 79,
+       "digit": 1
+      }
+     ],
+     "strong": true
+    }
+   ],
+   "description": "X-Chain on 1: r8c3 → r8c6 → r6c6 → r6c7 → r4c8 → r9c8; one end must be 1, so 1 is removed from cells seeing both ends."
+  }
+ },
+ "GROUPED_X_CYCLES": {
+  "puzzle": ".1..9...4......7...48...9..........7..63..8...34.7.....29...........8..6.7.14.2.9",
+  "stepIndex": 32,
+  "values": "017690584960080700048000960080069037796300800034870690629000008451928376873146259",
+  "cands": [
+   6,
+   0,
+   0,
+   0,
+   0,
+   6,
+   0,
+   0,
+   0,
+   0,
+   0,
+   18,
+   26,
+   0,
+   29,
+   0,
+   3,
+   7,
+   22,
+   0,
+   0,
+   82,
+   21,
+   71,
+   0,
+   0,
+   7,
+   19,
+   0,
+   18,
+   26,
+   0,
+   0,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   17,
+   27,
+   0,
+   11,
+   19,
+   19,
+   0,
+   0,
+   0,
+   0,
+   19,
+   0,
+   0,
+   19,
+   0,
+   0,
+   0,
+   80,
+   20,
+   84,
+   9,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "GROUPED_X_CYCLES",
+   "truth": "derived",
+   "labels": {
+    "primary": "the loop on 2, with grouped nodes"
+   },
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 23,
+     "digit": 2
+    },
+    {
+     "cell": 27,
+     "digit": 2
+    },
+    {
+     "cell": 18,
+     "digit": 2
+    }
+   ],
+   "primary": [
+    {
+     "cell": 0,
+     "digit": 2
+    },
+    {
+     "cell": 5,
+     "digit": 2
+    },
+    {
+     "cell": 12,
+     "digit": 2
+    },
+    {
+     "cell": 21,
+     "digit": 2
+    },
+    {
+     "cell": 30,
+     "digit": 2
+    },
+    {
+     "cell": 29,
+     "digit": 2
+    },
+    {
+     "cell": 11,
+     "digit": 2
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 0,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 5,
+       "digit": 2
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 5,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 12,
+       "digit": 2
+      },
+      {
+       "cell": 21,
+       "digit": 2
+      }
+     ],
+     "strong": false,
+     "toSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 12,
+       "digit": 2
+      },
+      {
+       "cell": 21,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 30,
+       "digit": 2
+      }
+     ],
+     "strong": true,
+     "fromSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 30,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 29,
+       "digit": 2
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 29,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 11,
+       "digit": 2
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 11,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 0,
+       "digit": 2
+      }
+     ],
+     "strong": false
+    }
+   ],
+   "sets": [
+    {
+     "kind": "group",
+     "cells": [
+      12,
+      21
+     ],
+     "digits": [
+      2
+     ],
+     "members": [
+      {
+       "cell": 12,
+       "digit": 2
+      },
+      {
+       "cell": 21,
+       "digit": 2
+      }
+     ],
+     "unit": 12
+    }
+   ],
+   "description": "Grouped X-Cycle on 2: a continuous loop through 6 nodes (groups included); along each weak link one side is 2, so 2 falls from outside cells seeing both sides."
+  }
+ },
+ "XY_CHAIN": {
+  "puzzle": "...65..1..13..9...5.6.....9..85....2.7..4..9.1....85..9.....7.1...7..84..6..12...",
+  "stepIndex": 31,
+  "values": "089650010013829000506100089098500002075240098102908500954386721001795846867412900",
+  "cands": [
+   74,
+   0,
+   0,
+   0,
+   0,
+   12,
+   6,
+   0,
+   72,
+   72,
+   0,
+   0,
+   0,
+   0,
+   0,
+   40,
+   112,
+   88,
+   0,
+   10,
+   0,
+   0,
+   68,
+   76,
+   6,
+   0,
+   0,
+   44,
+   0,
+   0,
+   0,
+   100,
+   69,
+   41,
+   100,
+   0,
+   36,
+   0,
+   0,
+   0,
+   0,
+   5,
+   33,
+   0,
+   0,
+   0,
+   12,
+   0,
+   0,
+   100,
+   0,
+   0,
+   100,
+   76,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   6,
+   6,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   20,
+   20
+  ],
+  "step": {
+   "tech": "XY_CHAIN",
+   "truth": "derived",
+   "labels": {
+    "primary": "the chain of bivalue cells"
+   },
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 8,
+     "digit": 4
+    }
+   ],
+   "primary": [
+    {
+     "cell": 5,
+     "digit": 4
+    },
+    {
+     "cell": 15,
+     "digit": 4
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 5,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 5,
+       "digit": 3
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 5,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 41,
+       "digit": 3
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 41,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 41,
+       "digit": 1
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 41,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 42,
+       "digit": 1
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 42,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 42,
+       "digit": 6
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 42,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 15,
+       "digit": 6
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 15,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 15,
+       "digit": 4
+      }
+     ],
+     "strong": true
+    }
+   ],
+   "description": "XY-Chain: r1c6 → r5c6 → r5c7 → r2c7; whichever way the chain resolves, one end is 4, so 4 is removed from cells seeing both ends."
+  }
+ },
+ "NICE_LOOP": {
+  "puzzle": "18...9..5..4...1.........7...7.18.5.....5.4....6..7.9..2..8.7..9.......3.5.....8.",
+  "stepIndex": 29,
+  "values": "182079605794000100365000970247918356809050407506007890020080709978000503050790280",
+  "cands": [
+   0,
+   0,
+   0,
+   12,
+   0,
+   0,
+   0,
+   12,
+   0,
+   0,
+   0,
+   0,
+   182,
+   38,
+   54,
+   0,
+   6,
+   130,
+   0,
+   0,
+   0,
+   137,
+   10,
+   11,
+   0,
+   0,
+   138,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   0,
+   34,
+   0,
+   38,
+   0,
+   3,
+   0,
+   0,
+   5,
+   0,
+   14,
+   14,
+   0,
+   0,
+   0,
+   3,
+   40,
+   0,
+   5,
+   53,
+   0,
+   61,
+   0,
+   41,
+   0,
+   0,
+   0,
+   0,
+   43,
+   42,
+   43,
+   0,
+   41,
+   0,
+   40,
+   0,
+   5,
+   0,
+   0,
+   45,
+   0,
+   0,
+   9
+  ],
+  "step": {
+   "tech": "NICE_LOOP",
+   "truth": "derived",
+   "labels": {
+    "primary": "the loop"
+   },
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 21,
+     "digit": 4
+    },
+    {
+     "cell": 66,
+     "digit": 4
+    },
+    {
+     "cell": 49,
+     "digit": 2
+    },
+    {
+     "cell": 12,
+     "digit": 3
+    },
+    {
+     "cell": 14,
+     "digit": 3
+    }
+   ],
+   "primary": [
+    {
+     "cell": 3,
+     "digit": 3
+    },
+    {
+     "cell": 3,
+     "digit": 4
+    },
+    {
+     "cell": 48,
+     "digit": 4
+    },
+    {
+     "cell": 49,
+     "digit": 4
+    },
+    {
+     "cell": 49,
+     "digit": 3
+    },
+    {
+     "cell": 13,
+     "digit": 3
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 3,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 3,
+       "digit": 4
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 3,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 48,
+       "digit": 4
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 48,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 49,
+       "digit": 4
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 49,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 49,
+       "digit": 3
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 49,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 13,
+       "digit": 3
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 13,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 3,
+       "digit": 3
+      }
+     ],
+     "strong": false
+    }
+   ],
+   "description": "Nice Loop: the continuous loop 3@r1c4 → 4@r1c4 → 4@r6c4 → 4@r6c5 → 3@r6c5 → 3@r2c5 alternates perfectly; every weak link has exactly one true side, clearing other candidates along it."
+  }
+ },
+ "GROUPED_NICE_LOOP": {
+  "puzzle": ".13.5......6...8.......34...2..6...5...2.1....39....6.68..7..2.1..8....4......9..",
+  "stepIndex": 10,
+  "values": "013050000006000800000003400021060005060201000039000060680070020190800004300000900",
+  "cands": [
+   458,
+   0,
+   0,
+   360,
+   0,
+   490,
+   34,
+   320,
+   354,
+   346,
+   88,
+   0,
+   329,
+   267,
+   330,
+   0,
+   341,
+   327,
+   466,
+   80,
+   208,
+   353,
+   387,
+   0,
+   0,
+   337,
+   355,
+   200,
+   0,
+   0,
+   332,
+   0,
+   328,
+   68,
+   392,
+   0,
+   216,
+   0,
+   216,
+   0,
+   396,
+   0,
+   68,
+   392,
+   384,
+   200,
+   0,
+   0,
+   88,
+   136,
+   216,
+   3,
+   0,
+   3,
+   0,
+   0,
+   24,
+   285,
+   0,
+   280,
+   17,
+   0,
+   5,
+   0,
+   0,
+   82,
+   0,
+   6,
+   50,
+   48,
+   68,
+   0,
+   0,
+   88,
+   90,
+   57,
+   11,
+   58,
+   0,
+   193,
+   225
+  ],
+  "step": {
+   "tech": "GROUPED_NICE_LOOP",
+   "truth": "derived",
+   "labels": {
+    "primary": "the loop, with grouped nodes"
+   },
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 16,
+     "digit": 9
+    },
+    {
+     "cell": 25,
+     "digit": 9
+    },
+    {
+     "cell": 80,
+     "digit": 1
+    },
+    {
+     "cell": 80,
+     "digit": 6
+    },
+    {
+     "cell": 16,
+     "digit": 7
+    },
+    {
+     "cell": 25,
+     "digit": 7
+    }
+   ],
+   "primary": [
+    {
+     "cell": 7,
+     "digit": 7
+    },
+    {
+     "cell": 7,
+     "digit": 9
+    },
+    {
+     "cell": 8,
+     "digit": 9
+    },
+    {
+     "cell": 17,
+     "digit": 9
+    },
+    {
+     "cell": 26,
+     "digit": 9
+    },
+    {
+     "cell": 44,
+     "digit": 9
+    },
+    {
+     "cell": 44,
+     "digit": 8
+    },
+    {
+     "cell": 80,
+     "digit": 8
+    },
+    {
+     "cell": 80,
+     "digit": 7
+    },
+    {
+     "cell": 8,
+     "digit": 7
+    },
+    {
+     "cell": 17,
+     "digit": 7
+    },
+    {
+     "cell": 26,
+     "digit": 7
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 7,
+       "digit": 7
+      }
+     ],
+     "to": [
+      {
+       "cell": 7,
+       "digit": 9
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 7,
+       "digit": 9
+      }
+     ],
+     "to": [
+      {
+       "cell": 8,
+       "digit": 9
+      },
+      {
+       "cell": 17,
+       "digit": 9
+      },
+      {
+       "cell": 26,
+       "digit": 9
+      }
+     ],
+     "strong": false,
+     "toSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 8,
+       "digit": 9
+      },
+      {
+       "cell": 17,
+       "digit": 9
+      },
+      {
+       "cell": 26,
+       "digit": 9
+      }
+     ],
+     "to": [
+      {
+       "cell": 44,
+       "digit": 9
+      }
+     ],
+     "strong": true,
+     "fromSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 44,
+       "digit": 9
+      }
+     ],
+     "to": [
+      {
+       "cell": 44,
+       "digit": 8
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 44,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 80,
+       "digit": 8
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 80,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 80,
+       "digit": 7
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 80,
+       "digit": 7
+      }
+     ],
+     "to": [
+      {
+       "cell": 8,
+       "digit": 7
+      },
+      {
+       "cell": 17,
+       "digit": 7
+      },
+      {
+       "cell": 26,
+       "digit": 7
+      }
+     ],
+     "strong": true,
+     "toSet": 1
+    },
+    {
+     "from": [
+      {
+       "cell": 8,
+       "digit": 7
+      },
+      {
+       "cell": 17,
+       "digit": 7
+      },
+      {
+       "cell": 26,
+       "digit": 7
+      }
+     ],
+     "to": [
+      {
+       "cell": 7,
+       "digit": 7
+      }
+     ],
+     "strong": false,
+     "fromSet": 1
+    }
+   ],
+   "sets": [
+    {
+     "kind": "group",
+     "cells": [
+      8,
+      17,
+      26
+     ],
+     "digits": [
+      9
+     ],
+     "members": [
+      {
+       "cell": 8,
+       "digit": 9
+      },
+      {
+       "cell": 17,
+       "digit": 9
+      },
+      {
+       "cell": 26,
+       "digit": 9
+      }
+     ],
+     "unit": 17
+    },
+    {
+     "kind": "group",
+     "cells": [
+      8,
+      17,
+      26
+     ],
+     "digits": [
+      7
+     ],
+     "members": [
+      {
+       "cell": 8,
+       "digit": 7
+      },
+      {
+       "cell": 17,
+       "digit": 7
+      },
+      {
+       "cell": 26,
+       "digit": 7
+      }
+     ],
+     "unit": 17
+    }
+   ],
+   "description": "Grouped Nice Loop: the continuous loop 7@r1c8 → 9@r1c8 → 9@[r1c9, r2c9, r3c9] → 9@r5c9 → 8@r5c9 → 8@r9c9 → 7@r9c9 → 7@[r1c9, r2c9, r3c9] alternates perfectly; every weak link has exactly one true side, clearing candidates along it."
+  }
+ },
+ "ALS_XZ": {
+  "puzzle": "...3...2..81...7..7..8.15..2....6.3.8...4...5.4.7....2..26.8..4..6...87..3...4...",
+  "stepIndex": 30,
+  "values": "004307128081420700720801540200086437867243915040700682072608304406032870038074200",
+  "cands": [
+   304,
+   272,
+   0,
+   0,
+   304,
+   0,
+   0,
+   0,
+   0,
+   308,
+   0,
+   0,
+   0,
+   0,
+   272,
+   0,
+   288,
+   292,
+   0,
+   0,
+   260,
+   0,
+   288,
+   0,
+   0,
+   0,
+   292,
+   0,
+   257,
+   272,
+   273,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   0,
+   276,
+   0,
+   273,
+   272,
+   0,
+   0,
+   0,
+   273,
+   0,
+   0,
+   0,
+   273,
+   0,
+   0,
+   272,
+   0,
+   0,
+   273,
+   0,
+   273,
+   0,
+   0,
+   0,
+   0,
+   257,
+   272,
+   0,
+   0,
+   273,
+   0,
+   0,
+   0,
+   304,
+   289
+  ],
+  "step": {
+   "tech": "ALS_XZ",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 54,
+     "digit": 5
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 64,
+       "digit": 5
+      },
+      {
+       "cell": 72,
+       "digit": 5
+      }
+     ],
+     "to": [
+      {
+       "cell": 64,
+       "digit": 1
+      }
+     ],
+     "strong": true,
+     "fromSet": 0,
+     "toSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 64,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 71,
+       "digit": 1
+      }
+     ],
+     "strong": false,
+     "fromSet": 0,
+     "toSet": 1
+    },
+    {
+     "from": [
+      {
+       "cell": 71,
+       "digit": 1
+      }
+     ],
+     "to": [
+      {
+       "cell": 61,
+       "digit": 5
+      }
+     ],
+     "strong": true,
+     "fromSet": 1,
+     "toSet": 1
+    }
+   ],
+   "truth": "derived",
+   "sets": [
+    {
+     "kind": "als",
+     "cells": [
+      64,
+      72
+     ],
+     "digits": [
+      1,
+      5,
+      9
+     ],
+     "members": [
+      {
+       "cell": 64,
+       "digit": 1
+      },
+      {
+       "cell": 64,
+       "digit": 5
+      },
+      {
+       "cell": 64,
+       "digit": 9
+      },
+      {
+       "cell": 72,
+       "digit": 5
+      },
+      {
+       "cell": 72,
+       "digit": 9
+      }
+     ],
+     "unit": 24,
+     "letter": "A"
+    },
+    {
+     "kind": "als",
+     "cells": [
+      61,
+      71
+     ],
+     "digits": [
+      1,
+      5,
+      9
+     ],
+     "members": [
+      {
+       "cell": 61,
+       "digit": 5
+      },
+      {
+       "cell": 61,
+       "digit": 9
+      },
+      {
+       "cell": 71,
+       "digit": 1
+      },
+      {
+       "cell": 71,
+       "digit": 9
+      }
+     ],
+     "unit": 26,
+     "letter": "B"
+    }
+   ],
+   "description": "ALS-XZ: sets A (r8c2, r9c1) and B (r7c8, r8c9) each hold one digit more than they have cells, and every 1 of A sees every 1 of B, so at most one of them keeps a 1. The other loses its 1, its other digits fill its cells, and it holds a 5: A or B holds a 5, so 5 is removed from every cell that sees every 5 of both."
+  }
+ },
+ "ALS_XY_WING": {
+  "puzzle": "..3.5........76..52..4..8.6..8...2..9.5.2.13..2.1..5.9......4..5..8.9....8.34....",
+  "stepIndex": 28,
+  "values": "063958700800276305257431896008090200905620138020180509000060480500819600080340950",
+  "cands": [
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   11,
+   10,
+   0,
+   265,
+   265,
+   0,
+   0,
+   0,
+   0,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   109,
+   69,
+   0,
+   80,
+   0,
+   28,
+   0,
+   104,
+   72,
+   0,
+   72,
+   0,
+   0,
+   0,
+   72,
+   0,
+   0,
+   0,
+   108,
+   0,
+   40,
+   0,
+   0,
+   76,
+   0,
+   104,
+   0,
+   69,
+   261,
+   259,
+   80,
+   0,
+   82,
+   0,
+   0,
+   71,
+   0,
+   76,
+   10,
+   0,
+   0,
+   0,
+   0,
+   66,
+   70,
+   97,
+   0,
+   35,
+   0,
+   0,
+   66,
+   0,
+   0,
+   65
+  ],
+  "step": {
+   "tech": "ALS_XY_WING",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 34,
+     "digit": 7
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 70,
+       "digit": 7
+      }
+     ],
+     "to": [
+      {
+       "cell": 65,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "fromSet": 0,
+     "toSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 65,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 47,
+       "digit": 4
+      }
+     ],
+     "strong": false,
+     "fromSet": 0,
+     "toSet": 2
+    },
+    {
+     "from": [
+      {
+       "cell": 47,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 47,
+       "digit": 6
+      }
+     ],
+     "strong": true,
+     "fromSet": 2,
+     "toSet": 2
+    },
+    {
+     "from": [
+      {
+       "cell": 47,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 52,
+       "digit": 6
+      }
+     ],
+     "strong": false,
+     "fromSet": 2,
+     "toSet": 1
+    },
+    {
+     "from": [
+      {
+       "cell": 52,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 35,
+       "digit": 7
+      },
+      {
+       "cell": 52,
+       "digit": 7
+      }
+     ],
+     "strong": true,
+     "fromSet": 1,
+     "toSet": 1
+    }
+   ],
+   "truth": "derived",
+   "sets": [
+    {
+     "kind": "als",
+     "cells": [
+      65,
+      70
+     ],
+     "digits": [
+      2,
+      4,
+      7
+     ],
+     "members": [
+      {
+       "cell": 65,
+       "digit": 2
+      },
+      {
+       "cell": 65,
+       "digit": 4
+      },
+      {
+       "cell": 70,
+       "digit": 2
+      },
+      {
+       "cell": 70,
+       "digit": 7
+      }
+     ],
+     "unit": 7,
+     "letter": "A"
+    },
+    {
+     "kind": "als",
+     "cells": [
+      35,
+      52
+     ],
+     "digits": [
+      4,
+      6,
+      7
+     ],
+     "members": [
+      {
+       "cell": 35,
+       "digit": 4
+      },
+      {
+       "cell": 35,
+       "digit": 7
+      },
+      {
+       "cell": 52,
+       "digit": 4
+      },
+      {
+       "cell": 52,
+       "digit": 6
+      },
+      {
+       "cell": 52,
+       "digit": 7
+      }
+     ],
+     "unit": 23,
+     "letter": "B"
+    },
+    {
+     "kind": "als",
+     "cells": [
+      47
+     ],
+     "digits": [
+      4,
+      6
+     ],
+     "members": [
+      {
+       "cell": 47,
+       "digit": 4
+      },
+      {
+       "cell": 47,
+       "digit": 6
+      }
+     ],
+     "unit": 5,
+     "letter": "C"
+    }
+   ],
+   "description": "ALS-XY-Wing: the wings A (r8c3, r8c8) and B (r4c9, r6c8) and the hinge C (r6c3) each hold one digit more than they have cells; every 4 of C sees every 4 of A, and every 6 of C every 6 of B. C lacks at most one of its digits, so it holds a 4 (and A then holds no 4) or a 6 (and B then holds no 6). That wing's other digits fill its cells, and it holds a 7: A or B holds a 7, so 7 is removed from every cell that sees every 7 of both."
+  }
+ },
+ "ALS_XY_CHAIN": {
+  "puzzle": ".5.1....789......6......45...25....8.87.1.52.9....71...78......6......412....6.9.",
+  "stepIndex": 27,
+  "values": "456100087893000216721060450102500078387610520905007100578001002639000041214006095",
+  "cands": [
+   0,
+   0,
+   0,
+   0,
+   262,
+   6,
+   260,
+   0,
+   0,
+   0,
+   0,
+   0,
+   72,
+   88,
+   24,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   388,
+   0,
+   388,
+   0,
+   0,
+   260,
+   0,
+   40,
+   0,
+   0,
+   268,
+   268,
+   288,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   264,
+   0,
+   0,
+   264,
+   0,
+   40,
+   0,
+   130,
+   130,
+   0,
+   0,
+   36,
+   12,
+   0,
+   0,
+   0,
+   264,
+   264,
+   0,
+   36,
+   36,
+   0,
+   0,
+   0,
+   0,
+   194,
+   210,
+   146,
+   192,
+   0,
+   0,
+   0,
+   0,
+   0,
+   196,
+   196,
+   0,
+   192,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "ALS_XY_CHAIN",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 31,
+     "digit": 4
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 28,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 33,
+       "digit": 9
+      }
+     ],
+     "strong": true,
+     "fromSet": 0,
+     "toSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 33,
+       "digit": 9
+      }
+     ],
+     "to": [
+      {
+       "cell": 6,
+       "digit": 9
+      }
+     ],
+     "strong": false,
+     "fromSet": 0,
+     "toSet": 1
+    },
+    {
+     "from": [
+      {
+       "cell": 6,
+       "digit": 9
+      }
+     ],
+     "to": [
+      {
+       "cell": 6,
+       "digit": 3
+      }
+     ],
+     "strong": true,
+     "fromSet": 1,
+     "toSet": 1
+    },
+    {
+     "from": [
+      {
+       "cell": 6,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 4,
+       "digit": 3
+      },
+      {
+       "cell": 5,
+       "digit": 3
+      }
+     ],
+     "strong": false,
+     "fromSet": 1,
+     "toSet": 2
+    },
+    {
+     "from": [
+      {
+       "cell": 4,
+       "digit": 3
+      },
+      {
+       "cell": 5,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 4,
+       "digit": 9
+      }
+     ],
+     "strong": true,
+     "fromSet": 2,
+     "toSet": 2
+    },
+    {
+     "from": [
+      {
+       "cell": 4,
+       "digit": 9
+      }
+     ],
+     "to": [
+      {
+       "cell": 58,
+       "digit": 9
+      }
+     ],
+     "strong": false,
+     "fromSet": 2,
+     "toSet": 3
+    },
+    {
+     "from": [
+      {
+       "cell": 58,
+       "digit": 9
+      }
+     ],
+     "to": [
+      {
+       "cell": 58,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "fromSet": 3,
+     "toSet": 3
+    }
+   ],
+   "truth": "derived",
+   "sets": [
+    {
+     "kind": "als",
+     "cells": [
+      28,
+      33
+     ],
+     "digits": [
+      4,
+      6,
+      9
+     ],
+     "members": [
+      {
+       "cell": 28,
+       "digit": 4
+      },
+      {
+       "cell": 28,
+       "digit": 6
+      },
+      {
+       "cell": 33,
+       "digit": 6
+      },
+      {
+       "cell": 33,
+       "digit": 9
+      }
+     ],
+     "unit": 3,
+     "letter": "A"
+    },
+    {
+     "kind": "als",
+     "cells": [
+      6
+     ],
+     "digits": [
+      3,
+      9
+     ],
+     "members": [
+      {
+       "cell": 6,
+       "digit": 3
+      },
+      {
+       "cell": 6,
+       "digit": 9
+      }
+     ],
+     "unit": 0,
+     "letter": "B"
+    },
+    {
+     "kind": "als",
+     "cells": [
+      4,
+      5
+     ],
+     "digits": [
+      2,
+      3,
+      9
+     ],
+     "members": [
+      {
+       "cell": 4,
+       "digit": 2
+      },
+      {
+       "cell": 4,
+       "digit": 3
+      },
+      {
+       "cell": 4,
+       "digit": 9
+      },
+      {
+       "cell": 5,
+       "digit": 2
+      },
+      {
+       "cell": 5,
+       "digit": 3
+      }
+     ],
+     "unit": 0,
+     "letter": "C"
+    },
+    {
+     "kind": "als",
+     "cells": [
+      58
+     ],
+     "digits": [
+      4,
+      9
+     ],
+     "members": [
+      {
+       "cell": 58,
+       "digit": 4
+      },
+      {
+       "cell": 58,
+       "digit": 9
+      }
+     ],
+     "unit": 6,
+     "letter": "D"
+    }
+   ],
+   "description": "ALS-XY-Chain: sets A (r4c2, r4c7), B (r1c7), C (r1c5, r1c6) and D (r7c5) each hold one digit more than they have cells, linked by 9, 3 and 9: every 9 of A sees every 9 of B, every 3 of B every 3 of C, and every 9 of C every 9 of D. If A holds no 4, its other digits fill its cells, so it holds a 9; then B holds no 9 and holds a 3, C no 3 and a 9, and D no 9 and a 4: each set in turn loses its link digit and fills its cells. A or D holds a 4, so 4 is removed from every cell that sees every 4 of both."
+  }
+ },
+ "AIC": {
+  "puzzle": "....6.9....2....1....2.37..4.96....3.5..9..6.3....75.9..89.1....3....2....6.3....",
+  "stepIndex": 27,
+  "values": "003160900602009310000203706429615873857390060361007509008901630030006200006030000",
+  "cands": [
+   80,
+   200,
+   0,
+   0,
+   0,
+   136,
+   0,
+   154,
+   154,
+   0,
+   136,
+   0,
+   88,
+   88,
+   0,
+   0,
+   0,
+   152,
+   257,
+   257,
+   24,
+   0,
+   152,
+   0,
+   0,
+   152,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   10,
+   9,
+   0,
+   11,
+   0,
+   0,
+   0,
+   136,
+   138,
+   0,
+   0,
+   10,
+   0,
+   82,
+   72,
+   0,
+   0,
+   90,
+   0,
+   0,
+   0,
+   88,
+   257,
+   0,
+   24,
+   216,
+   216,
+   0,
+   0,
+   400,
+   217,
+   82,
+   257,
+   0,
+   216,
+   0,
+   138,
+   9,
+   280,
+   217
+  ],
+  "step": {
+   "tech": "AIC",
+   "truth": "derived",
+   "labels": {
+    "primary": "the chain"
+   },
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 8,
+     "digit": 8
+    }
+   ],
+   "primary": [
+    {
+     "cell": 5,
+     "digit": 8
+    },
+    {
+     "cell": 5,
+     "digit": 4
+    },
+    {
+     "cell": 41,
+     "digit": 4
+    },
+    {
+     "cell": 41,
+     "digit": 2
+    },
+    {
+     "cell": 44,
+     "digit": 2
+    },
+    {
+     "cell": 8,
+     "digit": 2
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 5,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 5,
+       "digit": 4
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 5,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 41,
+       "digit": 4
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 41,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 41,
+       "digit": 2
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 41,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 44,
+       "digit": 2
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 44,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 8,
+       "digit": 2
+      }
+     ],
+     "strong": true
+    }
+   ],
+   "description": "AIC: 8@r1c6 → 4@r1c6 → 4@r5c6 → 2@r5c6 → 2@r5c9 → 2@r1c9; at least one of 8@r1c6 and 2@r1c9 is true, so candidates conflicting with both are removed."
+  }
+ },
+ "AIC_GROUPED": {
+  "puzzle": "..5...2...7..14...6.........94..6..571.9.2.......3..8.......8..1..5...96.39.2..4.",
+  "stepIndex": 18,
+  "values": "005060200073014000601005000394006025718952000000430080000000802100500096039620040",
+  "cands": [
+   392,
+   136,
+   0,
+   196,
+   0,
+   452,
+   0,
+   69,
+   461,
+   386,
+   0,
+   0,
+   130,
+   0,
+   0,
+   48,
+   48,
+   384,
+   0,
+   138,
+   0,
+   198,
+   448,
+   0,
+   332,
+   68,
+   460,
+   0,
+   0,
+   0,
+   193,
+   192,
+   0,
+   65,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   44,
+   36,
+   12,
+   18,
+   48,
+   34,
+   0,
+   0,
+   65,
+   321,
+   0,
+   320,
+   24,
+   48,
+   96,
+   69,
+   328,
+   260,
+   0,
+   85,
+   0,
+   0,
+   138,
+   66,
+   0,
+   200,
+   196,
+   68,
+   0,
+   0,
+   144,
+   0,
+   0,
+   0,
+   0,
+   193,
+   80,
+   0,
+   65
+  ],
+  "step": {
+   "tech": "AIC_GROUPED",
+   "truth": "derived",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 5,
+     "digit": 8
+    }
+   ],
+   "primary": [
+    {
+     "cell": 1,
+     "digit": 8
+    },
+    {
+     "cell": 1,
+     "digit": 4
+    },
+    {
+     "cell": 0,
+     "digit": 4
+    },
+    {
+     "cell": 54,
+     "digit": 4
+    },
+    {
+     "cell": 58,
+     "digit": 4
+    },
+    {
+     "cell": 67,
+     "digit": 4
+    },
+    {
+     "cell": 67,
+     "digit": 8
+    },
+    {
+     "cell": 68,
+     "digit": 8
+    },
+    {
+     "cell": 77,
+     "digit": 8
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 1,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 1,
+       "digit": 4
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 1,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 0,
+       "digit": 4
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 0,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 54,
+       "digit": 4
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 54,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 58,
+       "digit": 4
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 58,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 67,
+       "digit": 4
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 67,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 67,
+       "digit": 8
+      }
+     ],
+     "strong": false
+    },
+    {
+     "from": [
+      {
+       "cell": 67,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 68,
+       "digit": 8
+      },
+      {
+       "cell": 77,
+       "digit": 8
+      }
+     ],
+     "strong": true,
+     "toSet": 0
+    }
+   ],
+   "sets": [
+    {
+     "kind": "group",
+     "cells": [
+      68,
+      77
+     ],
+     "digits": [
+      8
+     ],
+     "members": [
+      {
+       "cell": 68,
+       "digit": 8
+      },
+      {
+       "cell": 77,
+       "digit": 8
+      }
+     ],
+     "unit": 14
+    }
+   ],
+   "description": "Grouped AIC: 8@r1c2 → 4@r1c2 → 4@r1c1 → 4@r7c1 → 4@r7c5 → 4@r8c5 → 8@r8c5 → 8@[r8c6, r9c6]; at least one end is true, so candidates conflicting with both ends are removed."
+  }
+ },
+ "AIC_ALS": {
+  "puzzle": ".4..28.5.7.....1....6........9..5.1..681.347..1.6..5........2....3.....1.8.45..6.",
+  "stepIndex": 22,
+  "values": "041028050705000100806500000009005010568193472010600500000000205053000001080450060",
+  "cands": [
+   260,
+   0,
+   0,
+   324,
+   0,
+   0,
+   356,
+   0,
+   356,
+   0,
+   262,
+   0,
+   260,
+   40,
+   296,
+   0,
+   390,
+   140,
+   0,
+   262,
+   0,
+   0,
+   5,
+   329,
+   324,
+   262,
+   332,
+   14,
+   68,
+   0,
+   66,
+   200,
+   0,
+   164,
+   0,
+   164,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   14,
+   0,
+   74,
+   0,
+   200,
+   74,
+   0,
+   388,
+   388,
+   297,
+   320,
+   72,
+   452,
+   5,
+   353,
+   0,
+   392,
+   0,
+   298,
+   0,
+   0,
+   450,
+   96,
+   354,
+   448,
+   392,
+   0,
+   257,
+   0,
+   66,
+   0,
+   0,
+   323,
+   324,
+   0,
+   324
+  ],
+  "step": {
+   "tech": "AIC_ALS",
+   "truth": "derived",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 53,
+     "digit": 8
+    }
+   ],
+   "primary": [
+    {
+     "cell": 17,
+     "digit": 8
+    },
+    {
+     "cell": 16,
+     "digit": 8
+    },
+    {
+     "cell": 61,
+     "digit": 8
+    },
+    {
+     "cell": 70,
+     "digit": 8
+    },
+    {
+     "cell": 61,
+     "digit": 9
+    },
+    {
+     "cell": 70,
+     "digit": 9
+    },
+    {
+     "cell": 52,
+     "digit": 9
+    },
+    {
+     "cell": 53,
+     "digit": 9
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 17,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 16,
+       "digit": 8
+      }
+     ],
+     "strong": true
+    },
+    {
+     "from": [
+      {
+       "cell": 16,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 61,
+       "digit": 8
+      },
+      {
+       "cell": 70,
+       "digit": 8
+      }
+     ],
+     "strong": false,
+     "toSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 61,
+       "digit": 8
+      },
+      {
+       "cell": 70,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 61,
+       "digit": 9
+      },
+      {
+       "cell": 70,
+       "digit": 9
+      }
+     ],
+     "strong": true,
+     "fromSet": 0,
+     "toSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 61,
+       "digit": 9
+      },
+      {
+       "cell": 70,
+       "digit": 9
+      }
+     ],
+     "to": [
+      {
+       "cell": 52,
+       "digit": 9
+      }
+     ],
+     "strong": false,
+     "fromSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 52,
+       "digit": 9
+      }
+     ],
+     "to": [
+      {
+       "cell": 53,
+       "digit": 9
+      }
+     ],
+     "strong": true
+    }
+   ],
+   "sets": [
+    {
+     "kind": "als",
+     "cells": [
+      61,
+      70
+     ],
+     "digits": [
+      4,
+      8,
+      9
+     ],
+     "members": [
+      {
+       "cell": 61,
+       "digit": 4
+      },
+      {
+       "cell": 61,
+       "digit": 8
+      },
+      {
+       "cell": 61,
+       "digit": 9
+      },
+      {
+       "cell": 70,
+       "digit": 4
+      },
+      {
+       "cell": 70,
+       "digit": 8
+      },
+      {
+       "cell": 70,
+       "digit": 9
+      }
+     ],
+     "unit": 16,
+     "letter": "A"
+    }
+   ],
+   "description": "AIC with ALS: 8@r2c9 → 8@r2c8 → 8@[r7c8, r8c8] → 9@[r7c8, r8c8] → 9@r6c8 → 9@r6c9; at least one end is true, so candidates conflicting with both ends are removed."
+  }
+ },
+ "DEATH_BLOSSOM": {
+  "puzzle": "1.9..3.......9.5.....5.281.2..........18.....86.3...249.....1........63.5..76...8",
+  "stepIndex": 26,
+  "values": "159083000000190503600502819200000381301820000860300024906030100000000630500760098",
+  "cands": [
+   0,
+   0,
+   0,
+   40,
+   0,
+   0,
+   10,
+   104,
+   98,
+   72,
+   130,
+   130,
+   0,
+   0,
+   104,
+   0,
+   40,
+   0,
+   0,
+   68,
+   76,
+   0,
+   72,
+   0,
+   0,
+   0,
+   0,
+   0,
+   328,
+   88,
+   296,
+   88,
+   112,
+   0,
+   0,
+   0,
+   0,
+   328,
+   0,
+   0,
+   0,
+   328,
+   320,
+   48,
+   48,
+   0,
+   0,
+   80,
+   0,
+   81,
+   337,
+   320,
+   0,
+   0,
+   0,
+   200,
+   0,
+   10,
+   0,
+   152,
+   0,
+   88,
+   82,
+   72,
+   195,
+   138,
+   266,
+   17,
+   409,
+   0,
+   0,
+   82,
+   0,
+   15,
+   14,
+   0,
+   0,
+   9,
+   10,
+   0,
+   0
+  ],
+  "step": {
+   "tech": "DEATH_BLOSSOM",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 73,
+     "digit": 4
+    },
+    {
+     "cell": 74,
+     "digit": 4
+    }
+   ],
+   "primary": [
+    {
+     "cell": 78,
+     "digit": 4
+    },
+    {
+     "cell": 77,
+     "digit": 4
+    },
+    {
+     "cell": 63,
+     "digit": 4
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 71,
+     "digit": 2
+    },
+    {
+     "cell": 71,
+     "digit": 5
+    },
+    {
+     "cell": 71,
+     "digit": 7
+    },
+    {
+     "cell": 78,
+     "digit": 2
+    },
+    {
+     "cell": 67,
+     "digit": 5
+    },
+    {
+     "cell": 63,
+     "digit": 7
+    }
+   ],
+   "labels": {
+    "primary": "4 in every petal: whichever digit the stem takes, a petal holds a 4",
+    "secondary": "the stem's candidates, and each petal's digit the stem sees"
+   },
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 71,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 78,
+       "digit": 2
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "toSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 78,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 78,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "fromSet": 0,
+     "toSet": 0
+    },
+    {
+     "from": [
+      {
+       "cell": 71,
+       "digit": 5
+      }
+     ],
+     "to": [
+      {
+       "cell": 67,
+       "digit": 5
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "toSet": 1
+    },
+    {
+     "from": [
+      {
+       "cell": 67,
+       "digit": 5
+      }
+     ],
+     "to": [
+      {
+       "cell": 77,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "fromSet": 1,
+     "toSet": 1
+    },
+    {
+     "from": [
+      {
+       "cell": 71,
+       "digit": 7
+      }
+     ],
+     "to": [
+      {
+       "cell": 63,
+       "digit": 7
+      }
+     ],
+     "strong": false,
+     "undirected": true,
+     "toSet": 2
+    },
+    {
+     "from": [
+      {
+       "cell": 63,
+       "digit": 7
+      }
+     ],
+     "to": [
+      {
+       "cell": 63,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "fromSet": 2,
+     "toSet": 2
+    }
+   ],
+   "sets": [
+    {
+     "kind": "als",
+     "cells": [
+      78
+     ],
+     "digits": [
+      2,
+      4
+     ],
+     "members": [
+      {
+       "cell": 78,
+       "digit": 2
+      },
+      {
+       "cell": 78,
+       "digit": 4
+      }
+     ],
+     "unit": 8,
+     "letter": "A"
+    },
+    {
+     "kind": "als",
+     "cells": [
+      67,
+      77
+     ],
+     "digits": [
+      1,
+      4,
+      5
+     ],
+     "members": [
+      {
+       "cell": 67,
+       "digit": 1
+      },
+      {
+       "cell": 67,
+       "digit": 5
+      },
+      {
+       "cell": 77,
+       "digit": 1
+      },
+      {
+       "cell": 77,
+       "digit": 4
+      }
+     ],
+     "unit": 25,
+     "letter": "B"
+    },
+    {
+     "kind": "als",
+     "cells": [
+      63
+     ],
+     "digits": [
+      4,
+      7
+     ],
+     "members": [
+      {
+       "cell": 63,
+       "digit": 4
+      },
+      {
+       "cell": 63,
+       "digit": 7
+      }
+     ],
+     "unit": 7,
+     "letter": "C"
+    }
+   ],
+   "description": "Death Blossom: the stem r8c9 holds 2, 5 and 7, and each has a petal, an almost locked set whose copies of that digit all see the stem: A (r9c7) for 2, B (r8c5, r9c6) for 5 and C (r8c1) for 7. Whichever digit the stem takes, its petal loses that digit, fills its cells with its other digits and holds a 4, so 4 is removed from every cell that sees every 4 of every petal."
+  }
+ },
+ "FIREWORKS": {
+  "puzzle": "4.7..2.6........7.31.4.........1....24.8.....8...49..5.7.....56.9....32...27..41.",
+  "stepIndex": 26,
+  "values": "407002063920000074310400080709010040240800691861249735170020056090000327002700410",
+  "cands": [
+   0,
+   144,
+   0,
+   273,
+   400,
+   0,
+   273,
+   0,
+   0,
+   0,
+   0,
+   176,
+   53,
+   180,
+   177,
+   17,
+   0,
+   0,
+   0,
+   0,
+   48,
+   0,
+   368,
+   112,
+   274,
+   0,
+   258,
+   0,
+   20,
+   0,
+   52,
+   0,
+   52,
+   130,
+   0,
+   130,
+   0,
+   0,
+   20,
+   0,
+   84,
+   84,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   140,
+   260,
+   0,
+   12,
+   384,
+   0,
+   0,
+   48,
+   0,
+   136,
+   49,
+   176,
+   137,
+   0,
+   0,
+   0,
+   48,
+   132,
+   0,
+   0,
+   308,
+   180,
+   0,
+   0,
+   384
+  ],
+  "step": {
+   "tech": "FIREWORKS",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 14,
+     "digit": 5
+    },
+    {
+     "cell": 14,
+     "digit": 6
+    }
+   ],
+   "primary": [
+    {
+     "cell": 68,
+     "digit": 1
+    },
+    {
+     "cell": 68,
+     "digit": 4
+    },
+    {
+     "cell": 68,
+     "digit": 8
+    },
+    {
+     "cell": 65,
+     "digit": 4
+    },
+    {
+     "cell": 65,
+     "digit": 8
+    },
+    {
+     "cell": 14,
+     "digit": 1
+    },
+    {
+     "cell": 14,
+     "digit": 8
+    }
+   ],
+   "labels": {
+    "primary": "the cross and its two wings: the only cells 1/4/8 can land on"
+   },
+   "description": "Fireworks: digits 1/4/8 each must land on one of r8c6 (cross), r8c3 (row wing) or r2c6 (column wing), locking those three cells, so all other candidates there are removed."
+  }
+ },
+ "ALIGNED_PAIR_EXCLUSION": {
+  "puzzle": "..1589..2..2....6.....4...9..3.........7...16..5.6.4.75....4.7.........139..1.6..",
+  "stepIndex": 25,
+  "values": "001589702902100060000040109003401000009750316105060407510004073000000001390010600",
+  "cands": [
+   40,
+   44,
+   0,
+   0,
+   0,
+   0,
+   0,
+   12,
+   0,
+   0,
+   24,
+   0,
+   0,
+   68,
+   68,
+   144,
+   0,
+   152,
+   192,
+   20,
+   192,
+   34,
+   0,
+   34,
+   0,
+   20,
+   0,
+   96,
+   96,
+   0,
+   0,
+   258,
+   0,
+   402,
+   400,
+   144,
+   138,
+   138,
+   0,
+   0,
+   0,
+   130,
+   0,
+   0,
+   0,
+   0,
+   130,
+   0,
+   262,
+   0,
+   134,
+   0,
+   258,
+   0,
+   0,
+   0,
+   160,
+   416,
+   258,
+   0,
+   386,
+   0,
+   0,
+   194,
+   194,
+   232,
+   420,
+   68,
+   48,
+   400,
+   408,
+   0,
+   0,
+   0,
+   200,
+   130,
+   0,
+   82,
+   0,
+   154,
+   152
+  ],
+  "step": {
+   "tech": "ALIGNED_PAIR_EXCLUSION",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 66,
+     "digit": 8
+    }
+   ],
+   "primary": [
+    {
+     "cell": 57,
+     "digit": 6
+    },
+    {
+     "cell": 57,
+     "digit": 8
+    },
+    {
+     "cell": 57,
+     "digit": 9
+    },
+    {
+     "cell": 66,
+     "digit": 3
+    },
+    {
+     "cell": 66,
+     "digit": 6
+    },
+    {
+     "cell": 66,
+     "digit": 8
+    },
+    {
+     "cell": 66,
+     "digit": 9
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 21,
+     "digit": 2
+    },
+    {
+     "cell": 21,
+     "digit": 6
+    },
+    {
+     "cell": 75,
+     "digit": 2
+    },
+    {
+     "cell": 75,
+     "digit": 8
+    },
+    {
+     "cell": 58,
+     "digit": 2
+    },
+    {
+     "cell": 58,
+     "digit": 9
+    },
+    {
+     "cell": 75,
+     "digit": 2
+    },
+    {
+     "cell": 75,
+     "digit": 8
+    }
+   ],
+   "labels": {
+    "primary": "the aligned pair",
+    "secondary": "the almost locked sets both cells see, which rule out pairings"
+   },
+   "description": "Aligned Pair Exclusion: every candidate pairing of r7c4 and r8c4 that survives the sets they both see leaves no place for the removed candidate."
+  }
+ },
+ "EXOCET": {
+  "puzzle": "..3.1.47.8..9.7..1.7.........21..3.4.........3.4..27.........3.1..5.6..9.98.7.1..",
+  "stepIndex": 30,
+  "values": "903010470840937001071400903702109304009743010314002790400091037137506049098374100",
+  "cands": [
+   0,
+   50,
+   0,
+   34,
+   0,
+   144,
+   0,
+   0,
+   176,
+   0,
+   0,
+   48,
+   0,
+   0,
+   0,
+   50,
+   50,
+   0,
+   50,
+   0,
+   0,
+   0,
+   34,
+   144,
+   0,
+   176,
+   0,
+   0,
+   176,
+   0,
+   0,
+   176,
+   0,
+   0,
+   176,
+   0,
+   48,
+   176,
+   0,
+   0,
+   0,
+   0,
+   50,
+   0,
+   178,
+   0,
+   0,
+   0,
+   160,
+   176,
+   0,
+   0,
+   0,
+   176,
+   0,
+   50,
+   48,
+   130,
+   0,
+   0,
+   176,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   130,
+   0,
+   130,
+   0,
+   0,
+   50,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   50,
+   50
+  ],
+  "step": {
+   "tech": "EXOCET",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 67,
+     "digit": 8
+    }
+   ],
+   "primary": [
+    {
+     "cell": 79,
+     "digit": 2
+    },
+    {
+     "cell": 79,
+     "digit": 5
+    },
+    {
+     "cell": 79,
+     "digit": 6
+    },
+    {
+     "cell": 80,
+     "digit": 2
+    },
+    {
+     "cell": 80,
+     "digit": 5
+    },
+    {
+     "cell": 80,
+     "digit": 6
+    }
+   ],
+   "secondary": [
+    {
+     "cell": 56,
+     "digit": 5
+    },
+    {
+     "cell": 56,
+     "digit": 6
+    },
+    {
+     "cell": 67,
+     "digit": 2
+    }
+   ],
+   "labels": {
+    "primary": "the base cells, holding 256",
+    "secondary": "the target cells: the base digits must land here"
+   },
+   "description": "Exocet: base r9c8, r9c9 (256) with targets r7c3 and r8c5: a complete placement analysis proves the base digits must land in the targets, so the targets keep only base candidates."
+  },
+  "credit": "sudokuwiki.org"
+ },
+ "PATTERN_OVERLAY": {
+  "puzzle": "...3...2..81...7..7..8.15..2....6.3.8...4...5.4.7....2..26.8..4..6...87..3...4...",
+  "stepIndex": 33,
+  "values": "004307128081420700720801540200086437867243915040700682072608304406032870038074200",
+  "cands": [
+   304,
+   272,
+   0,
+   0,
+   304,
+   0,
+   0,
+   0,
+   0,
+   308,
+   0,
+   0,
+   0,
+   0,
+   272,
+   0,
+   288,
+   36,
+   0,
+   0,
+   260,
+   0,
+   288,
+   0,
+   0,
+   0,
+   292,
+   0,
+   257,
+   272,
+   273,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   5,
+   0,
+   276,
+   0,
+   17,
+   272,
+   0,
+   0,
+   0,
+   257,
+   0,
+   0,
+   0,
+   273,
+   0,
+   0,
+   272,
+   0,
+   0,
+   273,
+   0,
+   273,
+   0,
+   0,
+   0,
+   0,
+   257,
+   272,
+   0,
+   0,
+   273,
+   0,
+   0,
+   0,
+   304,
+   289
+  ],
+  "step": {
+   "tech": "PATTERN_OVERLAY",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 72,
+     "digit": 9
+    }
+   ],
+   "primary": [
+    {
+     "cell": 72,
+     "digit": 9
+    }
+   ],
+   "labels": {
+    "primary": "cells no complete placement of 9 uses"
+   },
+   "description": "Pattern Overlay: of the 6 complete placements possible for digit 9, none uses r9c1."
+  }
+ },
+ "DIGIT_FORCING_CHAIN": {
+  "puzzle": "....4...25.....84........7....27....4...5.9...8...941..49..1...72..3......5..7.8.",
+  "stepIndex": 28,
+  "values": "000040002502010840004082070951274008400158927287369415049021750720030000005097280",
+  "cands": [
+   165,
+   357,
+   164,
+   368,
+   0,
+   52,
+   53,
+   292,
+   0,
+   0,
+   356,
+   0,
+   352,
+   0,
+   36,
+   0,
+   0,
+   288,
+   37,
+   293,
+   0,
+   304,
+   0,
+   0,
+   53,
+   0,
+   289,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   36,
+   36,
+   0,
+   0,
+   36,
+   36,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   164,
+   0,
+   0,
+   160,
+   0,
+   0,
+   0,
+   0,
+   36,
+   0,
+   0,
+   160,
+   184,
+   0,
+   48,
+   33,
+   288,
+   265,
+   37,
+   37,
+   0,
+   40,
+   0,
+   0,
+   0,
+   0,
+   44
+  ],
+  "step": {
+   "tech": "DIGIT_FORCING_CHAIN",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 0,
+     "digit": 3
+    },
+    {
+     "cell": 0,
+     "digit": 6
+    }
+   ],
+   "primary": [
+    {
+     "cell": 0,
+     "digit": 8
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 0,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 0,
+       "digit": 3
+      }
+     ],
+     "strong": false,
+     "text": "r1c1 = 8, so 3 is removed from r1c1."
+    },
+    {
+     "from": [
+      {
+       "cell": 0,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 2,
+       "digit": 8
+      }
+     ],
+     "strong": true,
+     "text": "If r1c1 is not 8, then r1c3 must be 8: the only place left for 8 in row 1."
+    },
+    {
+     "from": [
+      {
+       "cell": 2,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 66,
+       "digit": 8
+      }
+     ],
+     "strong": true,
+     "text": "r1c3 = 8, then r8c4 must be 8: the only place left for 8 in row 8."
+    },
+    {
+     "from": [
+      {
+       "cell": 66,
+       "digit": 8
+      }
+     ],
+     "to": [
+      {
+       "cell": 75,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "text": "r8c4 = 8, then r9c4 must be 4: the only place left for 4 in column 4."
+    },
+    {
+     "from": [
+      {
+       "cell": 75,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 57,
+       "digit": 6
+      }
+     ],
+     "strong": true,
+     "text": "r9c4 = 4, then r7c4 must be 6: the only place left for 6 in box 8."
+    },
+    {
+     "from": [
+      {
+       "cell": 57,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 80,
+       "digit": 6
+      }
+     ],
+     "strong": true,
+     "text": "r7c4 = 6, then r9c9 must be 6: the only place left for 6 in box 9."
+    },
+    {
+     "from": [
+      {
+       "cell": 80,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 14,
+       "digit": 6
+      }
+     ],
+     "strong": true,
+     "text": "r9c9 = 6, then r2c6 must be 6: the only place left for 6 in row 2."
+    },
+    {
+     "from": [
+      {
+       "cell": 14,
+       "digit": 6
+      }
+     ],
+     "to": [
+      {
+       "cell": 5,
+       "digit": 3
+      }
+     ],
+     "strong": true,
+     "text": "r2c6 = 6, then r1c6 must be 3: the only place left for 3 in column 6."
+    },
+    {
+     "from": [
+      {
+       "cell": 5,
+       "digit": 3
+      }
+     ],
+     "to": [
+      {
+       "cell": 0,
+       "digit": 3
+      }
+     ],
+     "strong": false,
+     "text": "r1c6 = 3, so 3 is removed from r1c1."
+    }
+   ],
+   "labels": {
+    "primary": "r1c1 = 8 and its opposite, each followed along its own line to the same conclusion"
+   },
+   "description": "Digit forcing: whether r1c1 is 8 or not, the forced singles agree on the same conclusions."
+  }
+ },
+ "NISHIO_FORCING_CHAIN": {
+  "puzzle": "6.2.....8.872.....35...8.....6.8...14..7.3..65...1.3.....3...64.....621.2.....5.9",
+  "stepIndex": 33,
+  "values": "602000008187200605350068000036080001401703006508610300010300064000006213263000509",
+  "cands": [
+   0,
+   264,
+   0,
+   281,
+   348,
+   81,
+   265,
+   268,
+   0,
+   0,
+   0,
+   0,
+   0,
+   268,
+   264,
+   0,
+   268,
+   0,
+   0,
+   0,
+   264,
+   265,
+   0,
+   0,
+   329,
+   74,
+   66,
+   320,
+   0,
+   0,
+   280,
+   0,
+   26,
+   328,
+   82,
+   0,
+   0,
+   258,
+   0,
+   0,
+   274,
+   0,
+   384,
+   144,
+   0,
+   0,
+   322,
+   0,
+   0,
+   0,
+   266,
+   0,
+   266,
+   66,
+   448,
+   0,
+   272,
+   0,
+   258,
+   338,
+   192,
+   0,
+   0,
+   448,
+   328,
+   280,
+   400,
+   336,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   137,
+   72,
+   65,
+   0,
+   192,
+   0
+  ],
+  "step": {
+   "tech": "NISHIO_FORCING_CHAIN",
+   "placements": [],
+   "eliminations": [
+    {
+     "cell": 3,
+     "digit": 4
+    }
+   ],
+   "primary": [
+    {
+     "cell": 3,
+     "digit": 4
+    }
+   ],
+   "fins": [
+    {
+     "cell": 27,
+     "digit": 7
+    },
+    {
+     "cell": 33,
+     "digit": 7
+    },
+    {
+     "cell": 34,
+     "digit": 7
+    }
+   ],
+   "links": [
+    {
+     "from": [
+      {
+       "cell": 3,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 1,
+       "digit": 9
+      }
+     ],
+     "strong": true,
+     "text": "r1c4 = 4, then r1c2 must be 9: the only candidate left in r1c2."
+    },
+    {
+     "from": [
+      {
+       "cell": 1,
+       "digit": 9
+      }
+     ],
+     "to": [
+      {
+       "cell": 37,
+       "digit": 2
+      }
+     ],
+     "strong": true,
+     "text": "r1c2 = 9, then r5c2 must be 2: the only candidate left in r5c2."
+    },
+    {
+     "from": [
+      {
+       "cell": 37,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 46,
+       "digit": 7
+      }
+     ],
+     "strong": true,
+     "text": "r5c2 = 2, then r6c2 must be 7: the only candidate left in r6c2."
+    },
+    {
+     "from": [
+      {
+       "cell": 46,
+       "digit": 7
+      }
+     ],
+     "to": [
+      {
+       "cell": 53,
+       "digit": 2
+      }
+     ],
+     "strong": true,
+     "text": "r6c2 = 7, then r6c9 must be 2: the only candidate left in r6c9."
+    },
+    {
+     "from": [
+      {
+       "cell": 53,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 32,
+       "digit": 2
+      }
+     ],
+     "strong": true,
+     "text": "r6c9 = 2, then r4c6 must be 2: the only place left for 2 in row 4."
+    },
+    {
+     "from": [
+      {
+       "cell": 32,
+       "digit": 2
+      }
+     ],
+     "to": [
+      {
+       "cell": 33,
+       "digit": 4
+      }
+     ],
+     "strong": true,
+     "text": "r4c6 = 2, then r4c7 must be 4: the only place left for 4 in row 4."
+    },
+    {
+     "from": [
+      {
+       "cell": 33,
+       "digit": 4
+      }
+     ],
+     "to": [
+      {
+       "cell": 27,
+       "digit": 7
+      },
+      {
+       "cell": 33,
+       "digit": 7
+      },
+      {
+       "cell": 34,
+       "digit": 7
+      }
+     ],
+     "strong": false,
+     "text": "r4c7 = 4, then row 4 would have no place left for 7: a contradiction."
+    }
+   ],
+   "units": [
+    {
+     "unit": 3,
+     "role": "secondary"
+    }
+   ],
+   "labels": {
+    "primary": "the assumption and the singles it forces: one line of the reasoning, read along the arrows",
+    "secondary": "the house that would be left with no place for a digit",
+    "fins": "where the board would break"
+   },
+   "description": "Nishio: assuming r1c4 = 4 and following the forced singles leads to a contradiction, so 4 is impossible there."
+  }
+ }
+}

@@ -1,3 +1,5 @@
 node_modules/
 dist/
 *.local
+.upstream-sudokui/
+upstream-sudokui.tar

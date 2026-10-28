@@ -1,0 +1,67 @@
+// Cloudflare deployment config. sudokUI is a static PWA: `npx wrangler
+// deploy` uploads dist/ to Cloudflare's edge, and a request that matches a
+// file there is served without running any code. The Worker script
+// (worker/index.ts) runs only for the paths that are not files: the share
+// addresses, /p/<puzzle> and /daily/<date>, which it renders with a
+// preview for chat apps and crawlers, the daily's API under /api/daily/
+// over D1, the telemetry route /api/t over Workers Analytics Engine and
+// the private dashboard /admin (docs/online-goals.md, phases 1 to 3).
+// With this file present, wrangler skips its framework auto-detection
+// (which would demand Vite >= 6) and just ships.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sudokui",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-07-01",
+  // The Worker answers on its custom domain, sudokui.app, and nowhere else:
+  // no <name>.<subdomain>.workers.dev address (on by default when the file
+  // names no routes) and no preview URL per version. Those addresses have
+  // no Cloudflare Access in front of them; /admin checks the Access token
+  // itself (worker/access.ts), and these keep the rest of the Worker on
+  // the one address too.
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist",
+    // what the Worker reaches the files through (env.ASSETS)
+    "binding": "ASSETS",
+    // a path that is neither a file nor a share address is a real 404: the
+    // Worker hands it back here (answering it with the app shell would be
+    // a "soft 404" to crawlers)
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    // A browser's click is a navigation request (Sec-Fetch-Mode: navigate),
+    // and for those the asset hosting answers a path that is no file with
+    // the 404 page itself, before the Worker runs: a share link that
+    // unfurled perfectly in a chat app opened as "Page not found". These
+    // paths go to the Worker first; everything else stays a free file
+    "run_worker_first": ["/p/*", "/nb/p/*", "/es/p/*", "/daily/*", "/nb/daily/*", "/es/daily/*", "/api/*", "/admin"]
+  },
+  // The shared daily's results (docs/online-goals.md, phase 2): two small
+  // tables, created by `npx wrangler d1 migrations apply sudokui-db
+  // --remote` from migrations/. Until they exist the daily's API answers
+  // 503 and the app says the global times are unavailable; play goes on.
+  "d1_databases": [
+    { "binding": "DB", "database_name": "sudokui-db", "database_id": "1957ccc7-7b13-45e3-92d4-f193a51d5e9a", "migrations_dir": "migrations" }
+  ],
+  // The plays counted (docs/online-goals.md, phase 3): the app's events
+  // and the share pages' landings go to this Workers Analytics Engine
+  // dataset (worker/telemetry.ts), never to D1. The dataset needs no
+  // creating: it appears with the first point written. The dashboard,
+  // /admin (worker/admin.ts), reads it back through the SQL API with two
+  // secrets set by hand, ADMIN_ACCOUNT_ID and ADMIN_TOKEN, and sits behind
+  // Cloudflare Access, whose token it verifies against two more,
+  // ACCESS_TEAM_DOMAIN and ACCESS_AUD (docs/connect-the-analytics.md).
+  "analytics_engine_datasets": [
+    { "binding": "EVENTS", "dataset": "sudokui_events" }
+  ],
+  // Reports from players (worker/feedback.ts): e-mailed through Cloudflare
+  // Email Routing from feedback@sudokui.app to the address in the
+  // FEEDBACK_TO secret, a verified destination set by hand
+  // (docs/connect-the-feedback.md), so it never appears here. Until both
+  // exist the route answers 503 and the app offers the e-mail address and
+  // GitHub instead.
+  "send_email": [
+    { "name": "FEEDBACK" }
+  ]
+}

@@ -1,0 +1,196 @@
+// Where a solve time stands: "faster than 65% of solvers" and a word for
+// it, from Slow to World class, per difficulty band.
+//
+// The benchmarks are rough by nature. Published figures for online solvers
+// (sudoku.com, websudoku, the New York Times, the sites that report
+// averages) put an easy puzzle at 5 to 10 minutes for a typical player,
+// medium at 10 to 20, hard at 20 to 40 and expert at 40 upwards, with
+// championship solvers finishing an easy puzzle in about a minute and a
+// hard one in a few. Solve times are close to log-normal: most people
+// cluster near a median and a long tail takes much longer. So each band
+// gets a median for a typical online solver with automatic candidates,
+// and one spread for all bands, calibrated so that the top 0.1% matches
+// championship times. Solving with your own pencil marks, and on paper,
+// take longer: each is a multiple of the screen-with-candidates time.
+import { Level, LevelPick, PICKS, pickOf } from '../engine/ratings';
+import { translator, msg } from './i18n';
+import type { Lang } from '../state/settings';
+
+/**
+ * Median solve time of a typical online solver, in seconds, per time band:
+ * HoDoKu's five levels, with Beginner and Nightmare puzzles timed on their
+ * own (timeBand), so Easy and Extreme here are the rest of those levels.
+ * Hard took in two bands of its own, Tricky (18 minutes) and Hard (28):
+ * 23 minutes lies between them, weighted by how often each is generated.
+ */
+export const MEDIAN_SECONDS: Record<LevelPick, number> = {
+  Beginner: 240,
+  Easy: 420,
+  Medium: 720,
+  Hard: 1380,
+  Unfair: 2700,
+  Extreme: 5400,
+  Nightmare: 10800
+};
+
+/** the band a puzzle's time is compared in: Beginner or Nightmare when it is one, else its level */
+export const timeBand = (level: Level, score: number): LevelPick => pickOf(level, score);
+
+/**
+ * spread of the log-normal distribution of times (standard deviation of
+ * ln t): with this, one solver in a thousand finishes an Easy puzzle in a
+ * minute, which is where the championship times sit
+ */
+export const SIGMA = 0.62;
+
+/** how the puzzle was solved: what the clock is compared against */
+export type SolveMode = 'auto' | 'marks' | 'paper';
+
+export const SOLVE_MODES: SolveMode[] = ['auto', 'marks', 'paper'];
+
+/**
+ * typical time relative to a screen with automatic candidates. Writing
+ * your own marks costs the writing and the bookkeeping; paper adds the
+ * erasing, no undo and no highlighting on top. Judgement calls, like the
+ * medians themselves.
+ */
+export const MODE_FACTOR: Record<SolveMode, number> = { auto: 1, marks: 1.3, paper: 1.6 };
+
+export const MODE_LABEL: Record<SolveMode, string> = {
+  auto: 'with automatic candidates',
+  marks: 'with your own marks',
+  paper: 'on paper'
+};
+
+/** standard normal cumulative distribution */
+function phi(z: number): number {
+  // Phi(z) = (1 + erf(z / sqrt 2)) / 2, erf by Abramowitz and Stegun 7.1.26
+  const x = Math.abs(z) / Math.SQRT2;
+  const t = 1 / (1 + 0.3275911 * x);
+  const poly =
+    t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429))));
+  const erf = 1 - poly * Math.exp(-x * x);
+  return 0.5 * (1 + (z < 0 ? -erf : erf));
+}
+
+/** share of solvers of this band who take longer than `seconds`, 0 to 1 */
+export function timePercentile(level: LevelPick, seconds: number, mode: SolveMode = 'auto'): number {
+  if (seconds <= 0) return 1;
+  return phi((Math.log(MEDIAN_SECONDS[level] * MODE_FACTOR[mode]) - Math.log(seconds)) / SIGMA);
+}
+
+/** the time at which exactly `share` of solvers are slower, in seconds */
+export function timeAtPercentile(level: LevelPick, share: number, mode: SolveMode = 'auto'): number {
+  // inverse of timePercentile by bisection on ln t: plenty fast for a table
+  let lo = Math.log(1),
+    hi = Math.log(24 * 3600);
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    if (timePercentile(level, Math.exp(mid), mode) > share) lo = mid;
+    else hi = mid;
+  }
+  return Math.exp((lo + hi) / 2);
+}
+
+export interface TimeVerdict {
+  /** one word for it */
+  label: string;
+  /** share of solvers of the band who are slower, 0 to 1 */
+  percentile: number;
+}
+
+/** the words, from the top down, with the share of solvers each one beats
+ *  (English; timeVerdict gives them in the player's language) */
+export const VERDICTS: { label: string; key: string; atLeast: number }[] = [
+  { label: 'World class', key: msg('World class||a solve time'), atLeast: 0.999 },
+  { label: 'Expert', key: msg('Expert||a solve time'), atLeast: 0.99 },
+  { label: 'Excellent', key: msg('Excellent||a solve time'), atLeast: 0.95 },
+  { label: 'Fast', key: msg('Fast||a solve time'), atLeast: 0.8 },
+  { label: 'Good', key: msg('Good||a solve time'), atLeast: 0.5 },
+  { label: 'Steady', key: msg('Steady||a solve time'), atLeast: 0.2 },
+  { label: 'Slow', key: msg('Slow||a solve time'), atLeast: 0 }
+];
+
+/** the verdict on a time, its word in the player's language */
+export function timeVerdict(level: LevelPick, seconds: number, mode: SolveMode = 'auto'): TimeVerdict {
+  const percentile = timePercentile(level, seconds, mode);
+  const { key } = VERDICTS.find((v) => percentile >= v.atLeast)!;
+  const t = translator();
+  return { label: t(key), percentile };
+}
+
+/**
+ * The share of slower solvers as a percentage, written the language's way
+ * (99.5 in English, 99,5 in Norwegian and Spanish): one decimal near the
+ * top, where whole percents would all read 99, and 99.9 at most, since
+ * almost nobody is left beyond it.
+ */
+export function percentileShare(percentile: number): string {
+  const t = translator();
+  const oneDecimal = (s: string) => Number(s).toLocaleString(t.locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  if (percentile >= 0.999) return oneDecimal('99.9');
+  if (percentile >= 0.99) return oneDecimal((percentile * 100).toFixed(1));
+  return String(Math.round(percentile * 100));
+}
+
+/** "faster than 65% of solvers", or the top-end phrasing when there is almost nobody left */
+export function percentileText(percentile: number): string {
+  const t = translator();
+  return t('faster than {pct}% of solvers', { pct: percentileShare(percentile) });
+}
+
+/** the hour and minute abbreviations past the hour: 1h 12m, 1 t 12 min, 1 h 12 min */
+const HOURS: Record<Lang, (h: number, m: number) => string> = {
+  en: (h, m) => (m ? `${h}h ${m}m` : `${h}h`),
+  nb: (h, m) => (m ? `${h} t ${m} min` : `${h} t`),
+  es: (h, m) => (m ? `${h} h ${m} min` : `${h} h`)
+};
+
+/** 4:30 for 270 seconds; past the hour, hours and minutes the language's way */
+export function formatSeconds(seconds: number, lang: Lang = 'en'): string {
+  const s = Math.round(seconds);
+  if (s >= 3600) return HOURS[lang](Math.floor(s / 3600), Math.round((s % 3600) / 60));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}
+
+export interface SolveTimeRow {
+  level: LevelPick;
+  /** Slow: the slowest fifth take longer than this */
+  slow: string;
+  /** the median solver */
+  typical: string;
+  /** Fast: faster than 80% */
+  fast: string;
+  /** Expert: faster than 99% */
+  expert: string;
+  /** World class: faster than 99.9% */
+  worldClass: string;
+}
+
+/** the benchmark table for one way of solving, one row per band */
+export function solveTimeRows(mode: SolveMode, lang: Lang = 'en'): SolveTimeRow[] {
+  return PICKS.map((level) => ({
+    level,
+    slow: formatSeconds(timeAtPercentile(level, 0.2, mode), lang),
+    typical: formatSeconds(MEDIAN_SECONDS[level] * MODE_FACTOR[mode], lang),
+    fast: formatSeconds(timeAtPercentile(level, 0.8, mode), lang),
+    expert: formatSeconds(timeAtPercentile(level, 0.99, mode), lang),
+    worldClass: formatSeconds(timeAtPercentile(level, 0.999, mode), lang)
+  }));
+}
+
+/** the three tables: automatic candidates, your own marks, paper; times written the language's way */
+export const solveTimeTables = (lang: Lang = 'en') =>
+  SOLVE_MODES.map((mode) => ({
+    mode,
+    label: MODE_LABEL[mode],
+    rows: solveTimeRows(mode, lang)
+  }));
+
+export const SOLVE_TIME_TABLES = solveTimeTables('en');
+
+/** kept for the first table */
+export const SOLVE_TIME_ROWS: SolveTimeRow[] = solveTimeRows('auto');
+
+export const SOLVE_TIME_NOTE =
+  'Rough benchmarks from the typical times online solvers report, spread the way solve times spread: most near the middle, a long tail behind. The world class mark is set by championship solvers. Writing your own marks takes longer than automatic candidates, and paper longer still, so each way of solving has its own table. Beginner and Nightmare puzzles are timed on rows of their own, so the Easy and Extreme rows are for the rest of those levels. A puzzle at the top of its level takes longer than one at the bottom.';

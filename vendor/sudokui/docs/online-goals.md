@@ -1,0 +1,679 @@
+# Online goals: what a database opens, and what it must not change
+
+Companion to [goals.md](goals.md). That document is the mission; this one
+is what sudokUI may do once it has a server-side store (Cloudflare D1 next
+to the Worker that renders the share pages), in what order, and the lines
+it will not cross.
+It is written to be pasted into a prompt as context, so it states the
+current code, the decisions, the budgets and the open questions in one
+place. It is not translated.
+
+Status: phases 1, 2 and 3 are built, October 2026 (share links that
+preview; the shared daily with global times; the plays counted, with the
+opt-in and the private dashboard); phase 4 is decided and not built.
+Dates and limits were checked in October 2026 and must be re-checked
+before each phase ships.
+
+## The one-paragraph version
+
+Build three things, in this order: path-based share URLs that unfurl with a
+proper preview, a shared daily with anonymous global stats and a
+spoiler-free share line, and ID-less telemetry to Workers Analytics Engine
+so the first two can be measured. Most of the reach comes from the daily
+plus share loop and from fixing link previews, and very little of it needs
+the database. D1 holds product data only (daily results, one histogram).
+Telemetry never goes to D1. There are no accounts, no banner, no third-party
+script, and the board never waits for the network.
+
+## Principles that hold online as well
+
+The six principles in [goals.md](goals.md) stand. Principle 6, "offline,
+free, private", is the one every online feature is measured against, so it
+gets sharper here:
+
+1. **The core never awaits the network.** Generation, rating, play, hints,
+   practice and the local record work exactly as today. Every online
+   feature is an island that renders "unavailable offline" and never blocks
+   the board. If D1 is down or over its daily cap, play is unaffected.
+2. **No account, ever.** No sign-in, OAuth, email capture or password. The
+   roadmap line "optional accounts (Cloudflare D1) for sync across devices"
+   in README.md is withdrawn. If sync is ever wanted it is a user-initiated
+   encrypted blob under a random code with a TTL, not an identity.
+3. **No identifier by default.** The server never stores an IP, a cookie, a
+   fingerprint or an install ID. Anything that stores information on the
+   player's device for analytics, or links one session to another, sits
+   behind a single honest opt-in toggle. See "Norwegian law" below for why.
+4. **The player asks, the server answers.** The default online flows are
+   things the player explicitly requests: "submit my daily result and show
+   me how I compare", "give me a link that previews". That is the legal
+   footing as well as the product one.
+5. **Measured, not asserted, applies to the product too.** Ship the daily
+   and the share links together with the telemetry that can tell whether
+   they worked. Decide v2 from four to eight weeks of data, not from hope.
+6. **Stay on the free tier until the numbers force a decision.** Design so
+   the first wall is the Worker request cap at roughly twenty thousand
+   daily players, and the answer at that wall is the five-dollar plan, not
+   a redesign.
+
+## Where the code stands today
+
+Facts a prompt can rely on, with the files that hold them:
+
+- **Hosting is a Worker with code in front of static assets.**
+  `wrangler.jsonc` names the script (`main: worker/index.ts`) and binds
+  `dist/` as `ASSETS`; `npx wrangler deploy` ships both. A request that
+  matches a file never runs code and is not counted. The Worker runs only
+  for the paths that are no file: it renders the share addresses and hands
+  everything else back to the assets, so unknown paths are still real 404s
+  (`not_found_handling: "404-page"`). API routes go in the same script
+  ([deployment.md](deployment.md)).
+- **The daily is a published list.** `src/content/dailies.json` pins one
+  puzzle per local calendar day from 2026-10-07 (#1) to the end of 2027,
+  each with its band, score, the techniques worth naming and the SHA-256
+  of its solution; `scripts/build-dailies.ts` extends the list and never
+  changes a published day; `src/content/dailies.ts` keys the day (the
+  player's local date), the number and the address, `/daily/<date>`. The
+  app loads the list only when a daily starts; the Worker bundles it. For
+  a day the list does not cover, the app falls back to the puzzle derived
+  from the date (`src/engine/daily.ts`), which has no global statistics.
+- **The streak is local.** `src/state/stats.ts` keeps `dailyDays`, a list of
+  date keys, persisted with zustand `persist` in localStorage. The win
+  dialog in `src/ui/Dialogs.tsx` computes the streak from it.
+- **Share links are path URLs.** `/p/<81 chars>` under each language root
+  (`/nb/p/`, `/es/p/`), with query hints the client adds when it builds the
+  link: `b` the band, `s` the score, `t` up to three technique slugs (only
+  when the sender ticks "Say what it needs" in the share dialog), `vs`
+  a challenger's time in whole seconds (`src/content/share.ts`). The share
+  dialog and the win dialog build them with `shareUrl`, the app boots from
+  them and keeps the address bar on one (`src/ui/App.tsx`), and the Worker
+  renders a preview for them. `#p=` and `#s=` keep working, and a position
+  link is a share address with `#s=` on the end, so it previews too. The
+  learn pages still link to `#p=` for "play this puzzle from the start"
+  (`src/content/learnPages.ts`), on purpose: fragments are never fetched,
+  so a crawler following eighty pages of puzzle links costs no Worker
+  invocations.
+- **"Faster than N%" is modelled, not measured.** `src/content/solveTimes.ts`
+  holds a hand-set median per band and one log-normal spread, calibrated
+  to published online-solver figures and championship times. The share
+  text already carries this percentile. Crowd data can replace the model
+  band by band once there is enough of it.
+- **The service worker answers only the app's own addresses with the
+  shell.** `vite.config.ts` allows navigation fallback for `APP_NAVIGATION`
+  (`src/content/home.ts`: `/`, `/nb/`, `/es/` and the share addresses) and
+  denies `STATIC_ROUTES` (`src/content/staticRoutes.ts`), so the learn
+  pages, `/daily-sudoku/`, `/sudoku-solver/` and the rest are real
+  documents. A player with the app installed gets the shell for a share
+  address at once, offline too, and the app reads the puzzle from the path;
+  crawlers and chat apps have no service worker and get the Worker's page.
+  A new Worker-rendered route that is a document (`/daily/<date>`) must be
+  added to the deny list, or an installed app will answer it with the game.
+- **Static pages are built post-build.** `scripts/build-learn.ts` writes the
+  learn pages and `sitemap.xml` into `dist/`. The home page's social card
+  is `og-card.png` (and `.nb`, `.es`) made by `scripts/og-card.ts`; the
+  share pages' cards are twenty-four static PNGs in `public/og/`, one per
+  band and language, made by `scripts/og-share-cards.ts`.
+- **Languages.** The site is published in Norwegian (`/nb/`) and Spanish
+  (`/es/`) as well as English. Any new route or share text must go through
+  the same `t()` templates and language roots as the rest of the app, and
+  share pages carry the language of the sender.
+- **The plays are counted, ID-less.** `src/state/telemetry.ts` sends a
+  `started` and a `completed` line per game while online, by
+  `sendBeacon` with `fetch` keepalive behind it, to `POST /api/t`
+  (`worker/telemetry.ts`), which checks each line against a closed list
+  and writes it to the Workers Analytics Engine dataset `sudokui_events`
+  (`wrangler.jsonc`, binding `EVENTS`). The share route counts a
+  `landing` point for a person arriving from outside the site. The
+  Settings switch `countPlays` (`src/state/settings.ts`) is the one
+  opt-in: on, the app keeps offline lines and the day the switch went on
+  in `localStorage` (`sudokui-telemetry-v1`) and sends them later; off,
+  nothing is stored. `/privacy/` (`src/content/privacy.ts`, built like
+  the landing pages) says exactly what is sent, in three languages.
+  `/admin` (`worker/admin.ts`) renders the metrics from the SQL API with
+  two Worker secrets, behind Cloudflare Access, whose token the Worker
+  verifies with two more (`worker/access.ts`;
+  [connect-the-analytics.md](connect-the-analytics.md)).
+
+## Status against the research (8 October 2026)
+
+The research note this document distils ranked eight candidates and
+recommended a v1 of three. Where each one stands, in the research's order:
+
+| Rank | Candidate | Status | Where |
+|---|---|---|---|
+| 1 | Daily + global stats + share card | **Built** (phase 2). One published puzzle per local day, D1 histogram of unassisted solves, the win screen's panel, the text share line; the tables were created by hand in October 2026 | `src/content/dailies.ts`, `worker/daily.ts`, `src/state/dailyStats.ts`, `migrations/` |
+| 2 | Path-based share links with OG previews (`/p/…`, `/daily/…`) | **Built** (phase 1), with the "challenge a friend" time (`?vs=`) from the research's note h | `src/content/share.ts`, `worker/index.ts`, `public/og/` |
+| 3 | ID-less telemetry to WAE, opt-in offline counter, private `/admin` | **Built** (phase 3). Two lines per game while online, nothing stored by default; the opt-in keeps offline lines; landings counted from the share route; the dashboard reads WAE; the secrets and Access are hand steps | `src/state/telemetry.ts`, `worker/telemetry.ts`, `worker/admin.ts`, `src/content/privacy.ts` |
+| 4 | Daily archive pages | **Not built.** Phase 4, after data. `/daily/<date>` today is the app with a preview, `noindex`, not an indexable page | — |
+| 5 | Crowd-calibrated solve times per band | **Not built.** Phase 4. The daily results that would feed it are being collected from the first accepted result on | `src/content/solveTimes.ts` keeps the model |
+| 6 | Anonymous daily leaderboard | **Not built**, by decision: the percentile on the win screen and in the share line carries the competitive pull | — |
+| 7 | Sync code | **Not built**, not planned | — |
+| 8 | Indexable page per generated puzzle | **Will not be built** (scaled-content risk) | — |
+
+The research's other notes: the roadmap line about accounts is struck;
+the daily is pinned, never derived at run time (the derived puzzle
+remains only as a fallback for a day outside the published list); the
+share card is a text line, no emoji grid, and the optional technique
+emoji row is still open; the RSS feed and the "daily per band" pick are
+not built; no launch moment has been made yet, which the research tied
+to rank 3 being in place, and rank 3 now is. Two things differ from the
+research's sketch:
+the histogram's last bucket takes two hours and up, so a day is at most
+481 rows, and a result is accepted up to a week late so an offline retry
+on the next open counts. Everything under "Do not build" still holds.
+
+## The road, in order
+
+### Phase 1: share links that preview (no database)
+
+The smallest change with the largest reach effect. A Worker route
+`/p/<81 chars>` returns HTML with a puzzle-specific `<title>`, description,
+Open Graph and Twitter tags, `noindex`, and a static OG image chosen by
+band, then boots the same app bundle. Optional query hints such as
+`?b=tricky&s=1100&t=x-wing,skyscraper` come from the client and are
+spoofable, which is harmless because the page is not indexed. `#p=` keeps
+working.
+
+- Do not rate the puzzle server-side on the free plan. The hardest puzzles
+  take most of a second to rate, against a 10 ms CPU limit per invocation.
+  The client already knows band, score and techniques when it builds the
+  link, so it puts them in the query.
+- Eight static OG images per language, one per band (twenty-four in all),
+  not a rendered board per puzzle.
+- "Challenge a friend" costs nothing extra: `/p/…?vs=552` puts the
+  challenger's time in the URL, in whole seconds, and the win screen
+  compares against it to the second.
+- `/daily/<date>` gets the same treatment in phase 2.
+- Schema.org markup only on indexable pages (daily archive, learn pages),
+  never on `/p/`.
+
+Built, October 2026: `worker/index.ts` (the script), `src/content/share.ts`
+(the address, its hints and the page, in three languages), the share
+addresses in `APP_NAVIGATION`, the twenty-four band cards in `public/og/`,
+the share and win dialogs building the links, `tests/sharePage.test.ts`
+(the address, the copy, the page and the Worker) and a browser smoke test
+that lands on a share address. The cards show the band's name in the
+language and a real board of that band, never the shared puzzle: the
+image is fetched once per link and rendered once per band.
+
+October 14, 2026: the links the app builds are spoiler-free by default.
+The share dialog's links and the win screen's challenge link carry the
+band and the score and no `t=`; the techniques go in only when the sender
+ticks "Say what it needs" in the share dialog (off each time it opens,
+never remembered), and the challenge link never names them, since a
+challenge is about the time. Naming them tells the recipient what to look
+for, which the app otherwise never does unasked, and the daily's share
+line was made spoiler-free for the same reason. A link that carries `t=`
+previews with the names as before, so links already shared keep working.
+
+### Phase 2: the shared daily with global stats and a share line
+
+**The puzzle itself needs no server.** Replace runtime date seeding with a
+committed `daily/<year>.json` of puzzle strings with band, score and
+technique list, generated by the engine at build time and precached by the
+service worker so an installed app always holds thirty to sixty days
+ahead. Static assets are free and unlimited. Key the puzzle number by the
+player's local date, Wordle-style, so streaks feel fair. Publishing future
+dailies in cleartext lets a determined player peek; for a no-prize daily
+that is acceptable, and shipping only the next seven days is the fallback
+if it bothers us.
+
+**D1 holds results only.** Two tables, one upsert per solve, and the median
+and percentile come from a sixty-row read:
+
+```sql
+-- One row per submitted daily result. token is a random per-day value the
+-- client keeps next to its own local result, so a resubmit is a no-op.
+CREATE TABLE daily_result (
+  puzzle_no    INTEGER NOT NULL,
+  token        TEXT    NOT NULL,
+  seconds      INTEGER NOT NULL,
+  unassisted   INTEGER NOT NULL DEFAULT 0,
+  hints        INTEGER NOT NULL DEFAULT 0,
+  source       TEXT,              -- 'pwa' | 'tab'
+  created_at   INTEGER NOT NULL,
+  PRIMARY KEY (puzzle_no, token)
+) WITHOUT ROWID;
+
+-- Pre-aggregated histogram in 15-second buckets.
+CREATE TABLE daily_hist (
+  puzzle_no    INTEGER NOT NULL,
+  bucket       INTEGER NOT NULL,  -- floor(seconds / 15)
+  n            INTEGER NOT NULL,
+  n_unassisted INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (puzzle_no, bucket)
+) WITHOUT ROWID;
+```
+
+Write path per solve, as one batch: the histogram bucket, `INSERT INTO
+daily_hist … ON CONFLICT DO UPDATE SET n = n + 1`, guarded by `WHERE NOT
+EXISTS` on the token's result row, then `INSERT OR IGNORE INTO
+daily_result` (built that way round, so a repeat changes nothing). Never
+scan all results per request. A median computed over ten thousand rows on
+every page view would burn the whole daily read budget and, since
+1 September 2026, take the feature offline until midnight UTC.
+
+**Endpoints**, all JSON, all cacheable:
+
+- `GET /api/daily/:n/stats`: count, median, histogram. Edge-cached 60 s
+  through the Cache API.
+- `POST /api/daily/:n/result`: validated, two D1 writes.
+
+**Server checks**, all under a millisecond: the final grid equals the
+published solution, elapsed time is at least a floor (for example 0.4 s per
+empty cell), the hint count matches the unassisted flag, one submission
+per token, rate limit per IP in memory without storing the IP. Full
+logical replay is not worth it; a cheater can solve elsewhere and replay
+plausible timings, and no cheap scheme stops that. The headline is the
+median and the percentile, which a few cheats cannot move.
+
+**The win screen** gains an optional, lazy-loaded panel: "4,212 solved
+today, median 9:12, you were faster than 71%". Offline it says "available
+when online" and the submission is retried on the next open.
+
+**The share line** is text plus a path URL, never an emoji grid that leaks
+the solution:
+
+```
+sudokUI Daily #142 · Hard (1420) · 9:12 · unassisted · faster than 71% · sudokui.app/daily/2026-10-06
+```
+
+An optional emoji row may show the techniques used unaided (a fish glyph
+for X-Wing), which gives the expert audience something to brag about
+without spoiling the puzzle. `/daily/<date>` unfurls with a preview and
+lands the newcomer on the puzzle, not the homepage.
+
+Needs: the static daily file and its build step, the two tables and a
+migration, the two routes, the panel, the share line in every language,
+and a test that `meta.rows_read` of every query stays bounded.
+
+Built, October 2026, with these decisions:
+
+- **Local date.** The day is the player's local calendar date; the number
+  counts days from 2026-10-07 (#1). Players on either side of the date
+  line who both see "2026-10-08" share one puzzle and one set of
+  statistics. The server accepts a result for a day from a week back to a
+  day ahead of the UTC date, so an offline retry and a clock ahead of UTC
+  both get through. The streak counts local days too; the keys recorded
+  before this were UTC dates, so one seam of a day is possible.
+- **A long list, committed.** 451 days are published in
+  `src/content/dailies.json` (125 KB), a lazy chunk in the app that the
+  service worker precaches, and part of the Worker bundle (158 KB in
+  all). Spoilers are accepted, as decided; `tests/dailies.test.ts` fails
+  when fewer than thirty days are left and warns under sixty.
+- **The solution travels as its hash.** The file holds the SHA-256 of each
+  solution, never the solution; the Worker hashes a submitted grid.
+- **Bounded reads by construction.** Buckets are 15 seconds, and two hours
+  and up share the last one (480), so a day's histogram is at most 481
+  rows whatever anyone submits. Every statement is on a primary key
+  (`worker/daily.ts`, `d1Store`); `rows_read` on the real database is not
+  asserted by a test, the shape of the queries is.
+- **The player asks.** The win screen fetches the day's numbers on its own
+  (no player data in that request) and sends the player's time only when
+  the player taps "Send my time and compare". A game that began part-way
+  (a practice puzzle, a position link) sends nothing.
+- **Unassisted solves only.** A time counts only when nothing from the
+  Assist box was used (hint, Check, Steps, Scan, chain trainer, auto
+  candidates, Fill): an assisted time measures the help, not the player,
+  and a run through Steps would sit in the median like an honest solve.
+  After an assisted daily the win screen shows the day's numbers without
+  the send button, the server refuses `unassisted: false`, and the
+  statistics read `n_unassisted` only, so an assisted time sent before
+  the rule counts for nothing. The app drops the statistics it kept from
+  before (the store's version 1), since a kept count is never replaced
+  by a smaller one. The share line of an assisted solve carries no
+  percentile.
+- **The share line** is the one above, without the emoji row for now.
+- **The migration is a hand step.** The binding ships with the code
+  ([deployment.md](deployment.md)); until the tables exist the routes
+  answer 503 and the win screen says the global times are unavailable.
+  It was applied to the production database in October 2026.
+- Phase 3 (telemetry) did not ship with it, against this document's own
+  advice; it followed a week later.
+
+### Phase 3: counting plays, including offline ones
+
+Ships together with phase 2, because without it we cannot tell whether
+phases 1 and 2 worked.
+
+**Where it goes: Workers Analytics Engine, not D1.** WAE has its own
+allowance of 100,000 data points a day, is built for high write volume with
+SQL on top, keeps three months, and does not compete with the D1 write
+budget. One data point per event: index = event type, blobs = band,
+source, version, country from `request.cf`, doubles = seconds and count.
+Batched, up to 250 points per request, through `POST /api/t`. If permanent
+history is wanted, roll one aggregate row per day from WAE into D1.
+
+**What is sent by default** (live, ID-less, nothing stored on the device
+for it): game started or completed while online, with band, time bucket,
+whether `display-mode: standalone` matched, and app version. Never an IP.
+Disclosed plainly on a privacy page.
+
+**What needs opt-in**: a random install ID, an offline event queue flushed
+later, or any self-computed retention bucket sent without an ID. Each of
+these stores or reads information on the device for analytics.
+
+**The UX.** No banner. One line in the win dialog the first time, and a
+toggle in Settings: "Help count plays, including offline ones. Sends
+anonymous totals, no ID by default." Opt-in rates will be low, so the
+opted-in cohort is a sample: scale offline plays by the ratio of opted-in
+offline to online completions and label the result an estimate.
+
+**Transport.** `navigator.sendBeacon`, with `fetch` keepalive as the other
+path (Firefox has a long-standing keepalive gap). Background Sync is
+Chromium-only; the opted-in queue flushes on `visibilitychange` and app
+open everywhere and uses Background Sync only as an enhancement.
+
+**The dashboard** is a private `/admin` route in the same Worker behind
+Cloudflare Access, calling the WAE SQL API with a token held as a Worker
+secret, rendering a dozen numbers and a thirty-day sparkline.
+
+**Metrics, in order of importance:**
+
+1. Completed games per day, online plus estimated offline.
+2. Daily participants and completion rate, starts against completes.
+3. Installed-PWA share of completions.
+4. Share-link landings per day: Worker hits on `/p/` and `/daily/` with
+   no internal referrer.
+5. New against returning, from the opted-in cohort only.
+6. Search clicks from Search Console for archive and learn pages.
+
+Built, October 2026, with these decisions:
+
+- **Two lines per game, by default, while online.** `started` when a
+  game begins (not a practice puzzle, which starts part-way through, and
+  not a restart of the puzzle in play) and `completed` when it is solved,
+  each with the band, the time in the daily's 15-second buckets (0 for a
+  start), whether `display-mode: standalone` matched, the app's version
+  and `pwa` or `tab`. The Worker adds the country from `request.cf` and
+  nothing else: no address, no header, no token. Offline with the switch
+  off, a line is dropped and nothing is kept.
+- **The opt-in adds three flags and stores two things.** With "Help
+  count plays, including offline ones" on, a line carries `optin`, an
+  offline line is kept and sent later with `offline`, and `returning`
+  says whether the device had played on an earlier day than the day the
+  switch went on; the queue and that day are the whole of what is stored
+  (`localStorage`, `sudokui-telemetry-v1`), and both go the moment the
+  switch goes off. No install ID, as decided. The win dialog points at
+  the switch once, with a link to the privacy page; no banner.
+- **One point per distinct line, with a count.** WAE takes at most 25
+  `writeDataPoint` calls per invocation, so identical lines in a batch
+  fold into one point with a count (`double2`), the app sends at most 25
+  lines per request, and the route reads up to 250 and keeps a foreign
+  batch to its first 25 points. Index: the event; blobs: band, source,
+  version, country; doubles: bucket, count, standalone, offline, optin,
+  returning. Every query multiplies by `_sample_interval`.
+- **A landing is a person.** The share route writes a `landing` point
+  (band, `p` or `daily` in the source slot) when the request is a GET
+  navigation with no referrer from the site and a browser's user agent
+  that is not a known crawler or a chat app's preview fetcher. A HEAD,
+  an unfurl and a click from inside the app count nothing.
+- **The dashboard is the plan's list.** Twelve numbers for the last
+  seven full days (completed live, yesterday's, offline reported,
+  offline estimated, the total estimate, starts, completion rate,
+  installed share, landings yesterday and over the week, new and
+  returning among opted-in starts), a thirty-day sparkline of completed
+  games and a table of every day, in plain HTML without a script. The
+  offline estimate is everyone else's live solves times the opted-in
+  cohort's offline-to-online ratio, labelled an estimate and "—" until
+  the cohort exists. The sixth metric stays in Search Console.
+- **404 until it is yours.** `/admin` renders only with its four secrets
+  set and a valid `Cf-Access-Jwt-Assertion` token, the one Cloudflare
+  Access adds: the Worker checks its RS256 signature against the team's
+  published keys (fetched from the team domain, kept an hour), its
+  issuer, its audience (the application's AUD tag) and its expiry, with
+  WebCrypto and no library (`worker/access.ts`). Anything less is the
+  unknown path's 404, on any address; the Worker has no `workers.dev`
+  address or preview URLs besides. A failing API answers 502 with what
+  it said, never the secrets.
+- **The privacy page** is `/privacy/`, `/nb/privacy/`, `/es/privacy/`,
+  built with the landing pages, linked from the app's footer, from every
+  static page's footer and from the Settings switch. It names the two
+  lines, the bucket, the country, what the switch adds, the daily's
+  token, what a share link carries, and what is never collected.
+- **Hand steps**, in [connect-the-analytics.md](connect-the-analytics.md):
+  the WAE billing status, the four secrets, Access on `/admin`, and that
+  the `workers.dev` address is off.
+
+Cleaned up on 21 October 2026, before any promotion, so later numbers
+can be trusted:
+
+- **A start is a game begun.** `started` goes the first time a game's
+  board shows anything beyond its givens (a digit, a mark, a colour,
+  candidates switched on by Auto, Steps or the chain trainer, an applied
+  hint), not when the game opens: the app's own first game on a first
+  visit, and a share link opened and never played, count nothing. A
+  shared position (`#s=`) or a pasted grid that opens with any of these
+  on it counts when it opens.
+  Nothing is saved for it: the flag lives in memory, and a game resumed
+  from storage counts as begun when its board shows anything beyond the
+  givens, which is exactly when it was counted, so a reload does not
+  count it twice. Two gaps, since nothing about counting is saved: a
+  game whose moves were all undone or erased before a reload counts
+  again at its next move, and a game counted, then left out of the
+  counts across a reload, counts again when the switch goes off. Starting the
+  puzzle still on the board again (Restart, or choosing the same daily
+  anew) before it was ever solved is the same game; a puzzle played
+  again after a solve, even one undone, is a new one (`countFirstMove`
+  in `src/state/gameStore.ts`). A solve counts once per game, in the
+  counts and in the player's own record: one undone and solved again by
+  the same digit or by Redo is the same solve (`recordWin`). Whether a
+  game was solved is saved with it, like whether it is won, for the
+  player's own record, so this holds across a reload. The other gap: two
+  windows open on one game can each count its start. Starts before this
+  counted every game opened, and the change reaches each device as it
+  updates (the service worker asks first), so the series has a seam from
+  21 October spread over the following days: lines from the new builds
+  carry a version with `+`, the old ones a bare `1.0.0`. A game opened
+  but not yet played on an old build, and played after the update,
+  counts once in each series.
+- **"Leave this device out of the counts"** (Settings) sends no play
+  lines at all from a device and deletes what the opt-in had kept. The
+  owner's and testers' devices use it; anyone may. It holds in every
+  ordinary window of the browser it is turned on in (not a private one),
+  and an app added to a home screen may keep its own settings, so it is
+  turned on there too. A game played on while left out is counted the
+  moment the switch goes off, ahead of its solve. Two things it cannot
+  touch: a landing, which the server counts from the request for a share
+  page opened in a browser where the switch is not on (a browser that
+  holds the app answers the link itself, and counts nothing), and a
+  daily time, which goes only when its button is tapped.
+- **No lines from crawlers, headless browsers or audit tools.** `/api/t`
+  takes them and writes nothing (`isPersonAgent` in worker/telemetry.ts),
+  as the landing count already did. The browsers inside apps such as X,
+  LinkedIn, Pinterest and Telegram count as people; the apps' preview
+  fetchers still do not.
+- **The daily keeps no more than the privacy page says.** A sent time is
+  stored in its 15-second step with the day it arrived, not to the
+  second, and without where the app ran; the app no longer sends that.
+  `migrations/0002_daily_steps.sql` rounds the rows sent before, once
+  applied ([connect-the-database.md](connect-the-database.md)).
+- **Every build names its commit.** The app's version is `1.0.0+abc1234`
+  (vite.config.ts, from Workers Builds' `WORKERS_CI_COMMIT_SHA`), in the
+  Info dialog and on every line the app sends, so a change in the
+  numbers or a bug report can be tied to a deploy. (A landing is written
+  by the Worker and carries package.json's plain version.) The Info dialog's "what's new" links to
+  the commit history instead of a releases page that stopped at v1.0.0.
+- **The dashboard says what it counts.** "Installed" is "Solved in
+  installed app": games played from a home-screen or desktop icon added
+  through the browser, not a count of installs. Every percentage shows
+  the counts it comes from.
+
+Feedback, version 1 (October 2026), so players can be heard without a
+GitHub account:
+
+- **"Send feedback"** in the footer and in Info, and **"Looks wrong?"**
+  under a hint, open one dialog (src/ui/ReportDialog.tsx). It posts to
+  `/api/feedback` (worker/feedback.ts), which checks every field against a
+  closed format and e-mails the report through Cloudflare Email Routing
+  from feedback@sudokui.app to the owner's inbox (the `FEEDBACK_TO`
+  secret). Nothing is stored. A hint report carries the hint's line of
+  notation, the uniqueness and marks settings, whether the app found the
+  step agrees with the solution, and, with the player's tick, the board as
+  a position link: a wrong hint teaches something false, so these are the
+  reports worth most. Robots: a hidden field, a two-second floor, five per
+  address in ten minutes and thirty an hour per isolate; no third-party
+  script, no cookie.
+- **feedback@sudokui.app** forwards to the same inbox, and the crash
+  screen offers it as a letter with the error in it.
+- **GitHub issue forms** for a wrong hint, a bug, an idea and a
+  translation, for people who prefer public reports.
+- **The privacy page** names the controller (Anders Imenes, Norway), the
+  address, what a report carries, that it is kept until handled and at
+  most 12 months, and the right to complain to Datatilsynet.
+- **Hand steps**, in [connect-the-feedback.md](connect-the-feedback.md):
+  Email Routing on, the address verified, the secret.
+
+The share loop, counted (October 2026), so a launch's effect can be read
+before the launch:
+
+- **A share is a line.** When a link goes from the app to someone (the
+  Share dialog's puzzle or position link, the win screen's challenge or
+  daily line) and the share sheet took it or it was copied, the app sends
+  a `shared` line: what (`puzzle`, `position`, `challenge`, `daily`), the
+  way (`sheet`, `copy`), the band, where it ran and the version. Never
+  the link, the text or where it went; a closed sheet, a failed copy, and
+  copying the puzzle string or the pencil-mark grid count nothing. Live
+  only: never kept on the device, not even with the opt-in, so it
+  carries none of its flags, and none goes from a device left out
+  (`shared` in src/state/telemetry.ts, checked in worker/telemetry.ts).
+  The Worker writes it like the play lines, with the country.
+- **A landing says where it came from**, as one word of a closed list
+  (`landingFrom` in worker/telemetry.ts): none, search, ai, reddit,
+  enjoysudoku, hackernews, facebook, discord, social, chat, mail, github,
+  sudoku, other. The referrer is read for that word and never written.
+  Browsers usually send only another site's origin, though a site can
+  choose to send its full address, query and all; only the host (or an
+  Android app's package) is used, and nothing of it is written. Most apps
+  send nothing, so `none` is mostly them; on Android an app can name itself
+  (`android-app://<package>`), so `chat`, `mail` and `social` cover apps
+  as well as sites. A post in the Enjoy Sudoku forum shows as
+  `enjoysudoku`; the same link in a WhatsApp group as `none`, or as
+  `chat` where Android names the app. A search engine is matched on its
+  search host, not its whole domain, so Google Docs or Sites are `other`;
+  a link Gmail passes through Google's redirect still reads as `search`.
+- **A landing can no longer be posted.** `/api/t` takes `started`,
+  `completed` and `shared`; before, a forged `landing` line was written
+  like the share route's own.
+- **The dashboard** adds the week's shares (sheet and copy), landings per
+  share, what was shared, and where landings came from; landings counted
+  before the word was kept show as not recorded.
+- **The privacy page** says both, in three languages; the Settings switch
+  that leaves a device out names shares too.
+
+### Phase 4, after four to eight weeks of data
+
+- **Daily archive pages.** One page per day at `/daily/<date>` with the
+  puzzle, band, technique path folded behind a spoiler, solver count and
+  median, plus monthly indexes, interlinked with the `/learn/` technique
+  pages ("this week's daily needed a Skyscraper"). About 365 new pages a
+  year, each carrying data that exists nowhere else. Worker-rendered from
+  D1 or rebuilt nightly.
+- **Crowd-calibrated solve times.** Nobody publishes a real median human
+  time per HoDoKu score band. Start from daily submissions only, since they
+  are the cleanest sample (same puzzle, known band), roll them up weekly
+  into a `band_calibration (band, week, n, median_s)` table, and publish
+  "median human time per band, n = …" on `/sudoku-difficulty-rating/`.
+  Then let the measured median replace the hand-set one in
+  `src/content/solveTimes.ts` band by band, with the model kept as the
+  fallback where n is small. This is the most distinctive thing the data
+  can produce for the HoDoKu and enjoysudoku audience; its value is
+  credibility and forum discussion more than traffic.
+- **A launch moment.** A Show HN or enjoysudoku post built around that
+  data, once the daily and the previews are live.
+- **An RSS or Atom feed of dailies.** One static file; forum regulars use
+  feeds.
+- **Only then**, a lightweight daily leaderboard: median first, unassisted
+  filter, display names from an adjective-animal generator or an opt-in
+  free-text name we can delete. Leaderboards score low on reach and high on
+  cheating and moderation, and the percentile on the share line already
+  captures most of their pull.
+
+## Do not build
+
+- Accounts, OAuth, email capture or passwords of any kind.
+- An indexable page per generated puzzle, or storage of every generated
+  puzzle in D1. Google's scaled-content and doorway-page policies describe
+  exactly that, and a 500 MB database fills up with it.
+- An all-time global speed leaderboard.
+- Push-notification streak nags, streak freezes, or any loss-aversion
+  mechanic.
+- Real-time multiplayer on Durable Objects or WebSockets.
+- Any third-party analytics script with cookies or fingerprinting, and any
+  consent banner. The telemetry is designed so it does not need one.
+- Server-side generation of the daily from a date seed. Pin published
+  puzzle strings instead.
+- Server-side rating on the free plan.
+
+## Budgets (free tier, checked October 2026)
+
+| Service | Free allowance | What binds first |
+|---|---|---|
+| Workers requests | 100,000 a day, 10 ms CPU per invocation; static assets free and unlimited | This. About four Worker calls per daily player (stats, submit, telemetry, share render) means roughly 20,000 to 25,000 daily players |
+| D1 | 5M rows read a day, 100,000 rows written a day, 5 GB account, 500 MB per database, 50 queries per invocation | Hard failure past the cap since 1 September 2026. One unindexed query can take stats offline until midnight UTC |
+| Workers Analytics Engine | 100,000 data points written a day, 10,000 read queries a day, three months retention | About three events per player, so around 30,000 daily players |
+| Workers KV | 100,000 reads a day, 1,000 writes a day | Too few writes for counters. Not used in v1 |
+| Durable Objects | 100,000 requests a day, SQLite only, rows billed like D1 | Buys nothing on the free plan. Not used |
+| Workers Logs | 200,000 events a day, 3 days | Moves to Observability pricing on 1 December 2026 |
+
+Expected load at 10,000 daily players, v1 scope: 35,000 to 50,000 Worker
+requests, about 20,000 D1 writes, under 1M D1 rows read with caching, about
+30,000 WAE points. At the request wall the answer is the five-dollar Paid
+plan with 10M requests a month, not a redesign.
+
+Operational rules that follow:
+
+- Every D1 query is on a primary key or an index. Test `meta.rows_read`
+  for each query before shipping.
+- Alert on `rows_written` in the D1 metrics.
+- Stats return 503 past the cap; the UI shows "stats unavailable"; play is
+  unaffected.
+- Re-check the WAE billing status on the account before phase 3; one
+  preview copy of the pricing page said billing had not yet started. The
+  check is step 1 of [connect-the-analytics.md](connect-the-analytics.md).
+
+## Norwegian law, in brief (not legal advice)
+
+sudokUI is run from Norway, so Ekomloven § 3-15 (in force since 1 January
+2025) applies. It forbids storing or accessing information on the user's
+equipment without information and consent, is technology-neutral, and
+applies whether or not the data is personal. The two exemptions are
+transmission of communication and what is strictly necessary to provide a
+service the user explicitly asked for. Nkom calls the exemptions narrow
+and gives no analytics exemption, unlike France's CNIL. Nkom's own site
+uses a cookieless analytics tool that stores nothing on the device. EDPB
+Guidelines 2/2023 extend the rule to pixels, URLs, unique identifiers and
+locally processed information later read remotely, so "anonymous" is not
+an escape hatch.
+
+The reading this document builds on, with no Norwegian ruling on the exact
+pattern:
+
+| Data flow | Consent? | Decision |
+|---|---|---|
+| Live, ID-less beacon on game start or end while online | Gray, analogous to Nkom's own setup | Default. Store nothing for it. Disclose it |
+| Daily result the player taps to submit for global stats | No: explicitly requested service | Default daily flow. Also the best play-count proxy |
+| Random install ID for D1/D7 retention | Yes | Opt-in only |
+| Offline event queue flushed later | Yes | Opt-in only |
+| Self-computed retention bucket sent without an ID | Yes, it reads local history for analytics | Opt-in only |
+
+If certainty is wanted, two authorities share the rule: Nkom answers
+questions on its scope and its exemptions, and Datatilsynet on whether
+information and consent meet the GDPR. Both can be asked directly.
+
+## Open questions
+
+- Whether the share line carries the technique emoji row by default or
+  behind a setting.
+- How often to extend `dailies.json`, and whether to shorten the published
+  horizon if spoilers turn out to matter.
+
+## Evidence this rests on
+
+Daily mechanics driving return play is well supported; sharing driving
+acquisition rests mostly on Wordle, which grew from 90 players to over
+300,000 in two months after it added spoiler-free sharing, and is an
+outlier. LinkedIn reports 84 % next-day return for its games, self-reported
+and login-gated. Indie daily-puzzle numbers (Tiled Words, Termo) are
+anecdotal. Expect a modest lift for a niche expert audience, not virality.
+The full research note with sources lives outside the repository; this
+document is the distilled, decided version.
