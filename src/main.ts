@@ -63,7 +63,7 @@ function generate(): void {
   generation++;
   document.querySelectorAll<HTMLDivElement>('.cell').forEach((cell, i) => {
     cell.classList.toggle('slashed', slashes![i]);
-    cell.innerHTML = `<span class="region-label">${regions[Math.floor(i / 6)][i % 6]}</span>` + solution![i].map((digit, half) => `<b class="digit ${slashes![i] ? half === 0 ? 'upper' : 'lower' : 'single'}">${digit}</b>`).join('');
+    cell.innerHTML = (slashes![i] ? '<svg class="slash" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="100" x2="100" y2="0" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" /></svg>' : '') + `<span class="region-label">${regions[Math.floor(i / 6)][i % 6]}</span>` + solution![i].map((digit, half) => `<b class="digit ${slashes![i] ? half === 0 ? 'upper' : 'lower' : 'single'}">${digit}</b>`).join('');
   });
   const contents = solution.map((digits, i) => `row ${Math.floor(i / 6) + 1} column ${i % 6 + 1}: ${digits.length === 2 ? `${digits[0]} above slash, ${digits[1]} below` : digits[0]}`);
   document.querySelector('.board')!.setAttribute('aria-label', `Filled Tight Fit Sudoku. ${contents.join('; ')}.`);
