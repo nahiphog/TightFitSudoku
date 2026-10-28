@@ -4,3 +4,6 @@
 
 .cell{position:relative}.cell.slashed:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom right,transparent calc(50% - 1px),#344c43 calc(50% - 1px),#344c43 calc(50% + 1px),transparent calc(50% + 1px))}.cell span{position:relative;z-index:1;background:#fffefa;border-radius:50%;padding:2px 5px}.generate{margin-top:12px;width:100%;max-width:300px;background:#344c43;color:#fffefa;border:0;border-radius:4px;padding:13px 17px;font:600 13px inherit;cursor:pointer;display:flex;justify-content:space-between;align-items:center}.generate:hover{background:#466454}.generate:active{transform:translateY(1px)}.generate:focus-visible{outline:3px solid #9cae80;outline-offset:3px}.board-caption{font-size:9px}
 
+
+.cell .digit{position:absolute;color:#263e38;font-family:Manrope,sans-serif;font-weight:500;font-size:clamp(18px,2.7vw,29px);line-height:1;z-index:1}.digit.single{inset:0;display:grid;place-items:center}.digit.upper{top:12%;left:18%}.digit.lower{bottom:12%;right:18%}.cell .region-label{position:absolute;top:2px;right:2px;font-size:8px;padding:1px 3px;color:#71816b;z-index:2}.show-labels .region-label{opacity:1}@media(max-width:760px){.cell .digit{font-size:clamp(18px,5vw,29px)}}
+

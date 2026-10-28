@@ -1,5 +1,6 @@
 import './style.css';
 import { generateSlashes } from './slashes';
+import { solveGrid } from './solver';
 
 const regions = [
   [1, 1, 1, 2, 2, 2],
@@ -31,8 +32,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </div>
       <aside>
         <span class="step">01 / THE FOUNDATION</span>
-        <h2>Six regions.<br>Eighteen slashes.</h2>
-        <p class="description">Each row, column, and outlined 2 × 3 region contains exactly three slashes. Generate a fresh arrangement to explore a new starting point.</p>
+        <h2>A tight fit.<br>Every digit in place.</h2>
+        <p class="description">Every row, column, and outlined region contains 1–9 exactly once. Slashed cells hold two digits, with the smaller digit above the slash. Generate a fresh filled grid.</p>
         <button class="generate" id="generate" type="button">Generate <span aria-hidden="true">↗</span></button>
         <div class="stats"><div><strong>36</strong><span>CELLS</span></div><div><strong>6</strong><span>REGIONS</span></div><div><strong>2 × 3</strong><span>PER REGION</span></div></div>
         <div class="layout-label">REGION MAP</div>
@@ -52,14 +53,21 @@ document.querySelector<HTMLInputElement>('#labels')!.addEventListener('change', 
 let slashes: boolean[] | undefined;
 let generation = 0;
 function generate(): void {
-  slashes = generateSlashes(slashes);
+  let next: boolean[];
+  let solution: number[][] | null;
+  do {
+    next = generateSlashes(slashes);
+    solution = solveGrid(next);
+  } while (!solution);
+  slashes = next;
   generation++;
   document.querySelectorAll<HTMLDivElement>('.cell').forEach((cell, i) => {
     cell.classList.toggle('slashed', slashes![i]);
+    cell.innerHTML = `<span class="region-label">${regions[Math.floor(i / 6)][i % 6]}</span>` + solution![i].map((digit, half) => `<b class="digit ${slashes![i] ? half === 0 ? 'upper' : 'lower' : 'single'}">${digit}</b>`).join('');
   });
-  const locations = slashes.flatMap((value, i) => value ? [`row ${Math.floor(i / 6) + 1} column ${i % 6 + 1}`] : []);
-  document.querySelector('.board')!.setAttribute('aria-label', `6 by 6 Sudoku grid with 18 slashes, three in every row, column and region. Slashes at ${locations.join('; ')}.`);
-  document.querySelector('#generation-status')!.textContent = `Layout ${generation} · 18 slashes · 3 per row, column & region`;
+  const contents = solution.map((digits, i) => `row ${Math.floor(i / 6) + 1} column ${i % 6 + 1}: ${digits.length === 2 ? `${digits[0]} above slash, ${digits[1]} below` : digits[0]}`);
+  document.querySelector('.board')!.setAttribute('aria-label', `Filled Tight Fit Sudoku. ${contents.join('; ')}.`);
+  document.querySelector('#generation-status')!.textContent = `Grid ${generation} · 54 digits · 1–9 in every unit`;
 }
 document.querySelector('#generate')!.addEventListener('click', generate);
 generate();
