@@ -18,7 +18,7 @@ const regions = [
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <header class="header">
     <a class="brand" href="./" aria-label="Tight Fit Sudoku home"><span class="brand-icon" aria-hidden="true">▦</span> tight fit<span class="brand-secondary"> / sudoku</span></a>
-    <nav aria-label="Main navigation"><a href="/" aria-current="page">Generate</a><a href="/techniques/">Techniques</a></nav>
+    <nav aria-label="Main navigation"><a href="/" aria-current="page">Generate</a><a href="/custom-build/">Custom build</a><a href="/techniques/">Techniques</a></nav>
   </header>
   <main>
     <section class="intro" aria-labelledby="title">

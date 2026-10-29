@@ -21,3 +21,7 @@ This application includes GPL-3.0 adaptations of AImenes/sudokUI; see LICENSE an
 
 Each generation also records a solution replay from its original givens. Use <<, <, >, >>, the range slider, or the Technique/Step table to browse the immutable snapshots. Scores come from src/logic/catalog.ts; Brute Force is the final callable fallback and adds +10,000 per one-position placement. The /techniques/ page lists all 25 active callable techniques and their scores. Vite builds both pages through vite.config.mjs. Browsing the walkthrough never changes playable entries.
 
+## Custom build
+
+Open `/custom-build/`, select exact whole-cell clue positions, choose a difficulty range, and press Build now. The worker searches for a unique puzzle using the displayed fixed slash layout. Halt build stops the search. Results include ratings, the solution walkthrough, JSON clipboard export (with slash layout), and PNG export. See [custom builder behavior](docs/custom-build.md). Vite builds all three pages through vite.config.mjs.
+

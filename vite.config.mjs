@@ -1,2 +1,2 @@
 import { defineConfig } from 'vite';
-export default defineConfig({ build: { rollupOptions: { input: { main: 'index.html', techniques: 'techniques/index.html' } } } });
+export default defineConfig({ build: { rollupOptions: { input: { main: 'index.html', techniques: 'techniques/index.html', custom: 'custom-build/index.html' } } } });
