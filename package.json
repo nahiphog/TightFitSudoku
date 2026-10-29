@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --experimental-strip-types tests/digging.mjs",
+    "test": "node --experimental-strip-types tests/digging.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/hints.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/patterns.mjs",
+    "prebuild": "node scripts/package-source.mjs",
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1"

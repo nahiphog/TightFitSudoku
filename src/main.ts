@@ -1,5 +1,6 @@
 import './style.css';
 import { checkGrid } from './check';
+import type { HintResult } from './logic/hints';
 
 
 
@@ -31,7 +32,15 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         </div>
         <div class="board-caption" id="puzzle-status" aria-live="polite">Digging a unique puzzle…</div>
         <button id="check" class="check" type="button" disabled>Check</button>
+        <button id="hint" class="check hint-button" type="button" disabled>Hint</button>
         <p id="check-status" role="status" aria-live="polite">Enter 1–9 in each empty space, then check your solution.</p>
+        <section class="hint-panel" aria-label="Logical hint" hidden>
+          <div class="hint-heading"><strong id="hint-title">Next logical step</strong><button id="dismiss-hint" type="button" aria-label="Dismiss hint">×</button></div>
+          <p id="hint-message" role="status" aria-live="polite"></p>
+          <ul id="hint-actions"></ul>
+          <details id="hint-candidates"><summary>Candidate details before this step</summary><ul></ul></details>
+          <button id="apply-hint" class="check" type="button" hidden>Apply step</button>
+        </section>
       </div>
       <div class="board-area">
         <div class="board-heading"><span>COMPLETED GRID</span><span>6 × 6</span></div>
@@ -52,7 +61,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <p class="aside-note">The starting point for your maker & solver.</p>
       </aside>
     </section>
-    <footer><span>ROOM FOR A DIFFERENT KIND OF SUDOKU.</span><span>Made to fit.</span></footer>
+    <footer><span>ROOM FOR A DIFFERENT KIND OF SUDOKU.</span><span>Technique adaptations from <a href="https://github.com/AImenes/sudokUI" target="_blank" rel="noreferrer">sudokUI</a> · <a href="/LICENSE.txt">GPL-3.0</a> · <a href="/tight-fit-source.tar.gz" download>Source</a></span></footer>
   </main>
 `;
 
@@ -69,6 +78,32 @@ const status = document.querySelector('#generation-status')!;
 const puzzleStatus = document.querySelector('#puzzle-status')!;
 const checkButton = document.querySelector<HTMLButtonElement>('#check')!;
 const checkStatus = document.querySelector('#check-status')!;
+const hintButton = document.querySelector<HTMLButtonElement>('#hint')!;
+const applyHint = document.querySelector<HTMLButtonElement>('#apply-hint')!;
+const hintPanel = document.querySelector<HTMLElement>('.hint-panel')!;
+const hintMessage = document.querySelector('#hint-message')!;
+const hintWorker = new Worker(new URL('./hints.worker.ts', import.meta.url), { type: 'module' });
+let hintId = 0;
+let candidateMasks: number[] | undefined;
+let latestHint: HintResult | undefined;
+
+function readEntries(): number[][] {
+  const values = givens.map((digits, i) => digits.length ? [...digits] : Array<number>(slashes![i] ? 2 : 1).fill(0));
+  document.querySelectorAll<HTMLInputElement>('.entry').forEach(input => {
+    values[Number(input.dataset.cell)][Number(input.dataset.half)] = Number(input.value);
+  });
+  return values;
+}
+function clearHint(resetCandidates = true): void {
+  hintId++;
+  latestHint = undefined;
+  if (resetCandidates) candidateMasks = undefined;
+  hintPanel.hidden = true;
+  applyHint.hidden = true;
+  hintButton.disabled = button.disabled || !givens.length;
+  hintButton.textContent = 'Hint';
+  document.querySelectorAll('.hint-focus,.hint-target').forEach(cell => cell.classList.remove('hint-focus', 'hint-target'));
+}
 
 function render(board: Element, values: number[][], layout: boolean[], title: string): void {
   board.querySelectorAll<HTMLDivElement>('.cell').forEach((cell, i) => {
@@ -106,6 +141,7 @@ function render(board: Element, values: number[][], layout: boolean[], title: st
 
 function generate(): void {
   button.disabled = true;
+  clearHint();
   checkButton.disabled = true;
   document.querySelectorAll<HTMLInputElement>('.entry').forEach(input => { input.disabled = true; });
   checkStatus.textContent = 'Preparing a new puzzle…';
@@ -122,6 +158,7 @@ function failed(): void {
   status.textContent = 'Generation failed. Please try again.';
   puzzleStatus.textContent = 'No new puzzle generated.';
   checkButton.disabled = !givens.length;
+  hintButton.disabled = !givens.length;
   document.querySelectorAll<HTMLInputElement>('.entry').forEach(input => { input.disabled = false; });
   checkStatus.textContent = 'Generation failed. You can continue the previous puzzle or try Generate again.';
   document.querySelector('.workspace')!.setAttribute('aria-busy', 'false');
@@ -140,6 +177,7 @@ worker.onmessage = (event: MessageEvent<{ slashes: boolean[]; completed: number[
   puzzleStatus.textContent = `${givenCount} given cells · ${36 - givenCount} removed · unique solution`;
   button.disabled = false;
   checkButton.disabled = false;
+  clearHint();
   checkStatus.textContent = 'Enter 1–9 in each empty space, then check your solution.';
   button.innerHTML = 'Generate <span aria-hidden="true">↗</span>';
   document.querySelector('.workspace')!.setAttribute('aria-busy', 'false');
@@ -150,13 +188,14 @@ document.querySelector('.puzzle-board')!.addEventListener('input', (event) => {
   const input = event.target as HTMLInputElement;
   if (!input.classList.contains('entry')) return;
   input.value = input.value.replace(/[^1-9]/g, '').slice(-1);
+  clearHint();
   document.querySelectorAll('.puzzle-board .error').forEach(cell => cell.classList.remove('error'));
   document.querySelectorAll('.entry[aria-invalid]').forEach(entry => entry.removeAttribute('aria-invalid'));
   checkStatus.textContent = 'Your entries have changed. Press Check to verify them.';
 });
 checkButton.addEventListener('click', () => {
   if (!slashes || !givens.length) return;
-  const values = givens.map((digits, i) => digits.length ? [...digits] : Array<number>(slashes![i] ? 2 : 1).fill(0));
+  const values = readEntries();
   document.querySelectorAll<HTMLInputElement>('.entry').forEach(input => {
     values[Number(input.dataset.cell)][Number(input.dataset.half)] = Number(input.value);
     input.removeAttribute('aria-invalid');
@@ -168,6 +207,78 @@ checkButton.addEventListener('click', () => {
     if (invalid) cell.querySelectorAll('.entry').forEach(input => input.setAttribute('aria-invalid', 'true'));
   });
   checkStatus.textContent = result.solved ? 'Solved! Every row, column, and region contains 1–9 exactly once, and all slash pairs are in order.' : result.errors.length ? `There are conflicts in ${result.errors.length} highlighted cells. Check repeated digits and make sure the smaller digit is above each slash.${result.empty ? ` ${result.empty} spaces are still empty.` : ''}` : `Not finished yet: ${result.empty} spaces are still empty. No rule conflicts so far.`;
+});
+
+function requestHint(): void {
+  if (!slashes || !givens.length || button.disabled) return;
+  clearHint(false);
+  hintPanel.hidden = false;
+  document.querySelector('#hint-title')!.textContent = 'Finding a logical step…';
+  hintMessage.textContent = 'Checking your entries and the remaining candidates.';
+  document.querySelector('#hint-actions')!.replaceChildren();
+  document.querySelector('#hint-candidates')!.setAttribute('hidden', '');
+  hintButton.disabled = true;
+  hintButton.textContent = 'Thinking…';
+  hintWorker.postMessage({ id: hintId, layout: slashes, values: readEntries(), masks: candidateMasks });
+}
+hintWorker.onmessage = (event: MessageEvent<{ id: number; result?: HintResult; error?: string }>) => {
+  if (event.data.id !== hintId) return;
+  hintButton.disabled = false;
+  hintButton.textContent = 'Hint';
+  const result = event.data.result;
+  if (!result) {
+    document.querySelector('#hint-title')!.textContent = 'Hint unavailable';
+    hintMessage.textContent = event.data.error ?? 'Please try again.';
+    return;
+  }
+  latestHint = result;
+  document.querySelector('#hint-title')!.textContent = result.step?.technique ?? (result.status === 'solved' ? 'Puzzle solved' : result.status === 'conflict' ? 'Check your entries' : 'No logical step found');
+  hintMessage.textContent = result.message;
+  const actions = document.querySelector('#hint-actions')!;
+  const cells = document.querySelectorAll('.puzzle-board .cell');
+  const step = result.step;
+  for (const target of result.targets) if (step?.focus.includes(target.slot)) cells[target.cell].classList.add('hint-focus');
+  for (const action of [...(step?.placements ?? []).map(p => ({ ...p, verb: 'Place' })), ...(step?.removals ?? []).map(p => ({ ...p, verb: 'Remove' }))]) {
+    const target = result.targets.find(t => t.slot === action.slot)!;
+    const li = document.createElement('li');
+    li.textContent = `${action.verb} ${action.digit} ${action.verb === 'Place' ? 'in' : 'from the candidates of'} ${target.name}.`;
+    actions.append(li);
+    cells[target.cell].classList.add('hint-target');
+  }
+  const details = document.querySelector('#hint-candidates')!;
+  const list = details.querySelector('ul')!;
+  list.replaceChildren();
+  for (const target of result.targets) {
+    const li = document.createElement('li'); li.textContent = `${target.name}: {${target.candidates.join(', ')}}`; list.append(li);
+  }
+  details.toggleAttribute('hidden', !step);
+  applyHint.hidden = !step;
+  applyHint.textContent = step?.placements.length ? 'Apply placement' : 'Apply candidate elimination';
+};
+hintWorker.onerror = () => {
+  hintButton.disabled = button.disabled || !givens.length;
+  hintButton.textContent = 'Hint';
+  hintMessage.textContent = 'The hint could not be computed. Please try again.';
+};
+hintButton.addEventListener('click', requestHint);
+document.querySelector('#dismiss-hint')!.addEventListener('click', () => clearHint(false));
+applyHint.addEventListener('click', () => {
+  if (!latestHint?.step) return;
+  const { step, targets, masks } = latestHint;
+  candidateMasks = [...masks];
+  for (const p of step.removals) candidateMasks[p.slot] &= ~(1 << (p.digit - 1));
+  for (const p of step.placements) {
+    const target = targets.find(t => t.slot === p.slot)!;
+    const input = document.querySelector<HTMLInputElement>(`.entry[data-cell="${target.cell}"][data-half="${target.half}"]`);
+    if (input) input.value = String(p.digit);
+    candidateMasks[p.slot] = 1 << (p.digit - 1);
+  }
+  document.querySelectorAll('.puzzle-board .error').forEach(cell => cell.classList.remove('error'));
+  document.querySelectorAll('.entry[aria-invalid]').forEach(input => input.removeAttribute('aria-invalid'));
+  latestHint = undefined;
+  applyHint.hidden = true;
+  hintMessage.textContent += step.placements.length ? ' Placement applied. Press Hint for the next step.' : ' Candidate elimination saved. Press Hint for the next step; editing an entry recalculates candidates.';
+  checkStatus.textContent = 'A logical step was applied. Press Check to verify your progress.';
 });
 generate();
 

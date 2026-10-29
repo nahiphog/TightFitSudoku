@@ -3,3 +3,4 @@ dist/
 *.local
 .upstream-sudokui/
 upstream-sudokui.tar
+public/tight-fit-source.tar.gz

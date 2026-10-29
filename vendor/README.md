@@ -8,6 +8,6 @@ The `sudokui/` directory is an unmodified snapshot of all tracked upstream files
 
 The upstream GPL-3.0 license is preserved in `sudokui/LICENSE`. Original attribution and source notices are retained.
 
-Import status: source staged for the user's next instructions. These techniques are not wired into the live Tight Fit solver. Upstream assumes 81 single-digit cells, 27 units, and 3×3 boxes; Tight Fit has 36 cells, 54 digit positions, 18 units, 2×3 regions, and ordered slash pairs. Adapting and validating each applicable technique is required before enabling it. Geometry-specific techniques may need separate treatment.
+Import status: the unmodified upstream snapshot is retained. Adapted, verified technique families now power the live Hint feature via `src/logic/`. See `docs/techniques.md` for exact coverage and limits. Upstream assumes 81 single-digit cells, 27 units, and 3×3 boxes; Tight Fit has 36 cells, 54 digit positions, 18 units, 2×3 regions, and ordered slash pairs. Geometry-specific techniques without a valid Tight Fit proof remain disabled.
 
 The existing Tight Fit generation, digging, and Check behavior continues to use its own variant-aware code. The app TypeScript build excludes this standalone vendor snapshot, which retains its own upstream package configuration and test suite.
