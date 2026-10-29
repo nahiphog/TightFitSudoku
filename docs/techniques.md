@@ -23,7 +23,7 @@ Each of the 36 cells contributes one variable or two ordered variables. All 54 v
 
 This is a sound adaptation of applicable technique families, not a claim that every upstream named technique has been ported. Standard 9×9-specific Unique/Extended/Avoidable Rectangles, BUG+1, Exocet/Double Exocet, chute-specific patterns, Tridagon, complex/grouped fish, grouped loops, larger ALS chains, Death Blossom, Sue de Coq and forcing nets are not directly enabled. Their structural/uniqueness assumptions need separate Tight Fit proofs. Squirmbag, Whale and Leviathan are not enabled on the six-row layout. The generic chains may find some equivalent deductions, without pretending to implement these named techniques.
 
-If no enabled technique yields a step, Hint explicitly reports that it is stuck. It does not reveal an answer or label a guess as logic.
+If no enabled technique yields a step, Hint explicitly reports that it is stuck. It does not reveal an answer or label a guess as logic. The solution walkthrough is allowed to continue with an explicitly labeled Brute Force placement only after this logical stall. It searches the current constraints, places one digit position, charges exactly +10,000, then tries the logical registry again.
 
 ## Hint contract
 
@@ -33,7 +33,15 @@ Asking for a hint does not change entries. Apply placement writes only the hinte
 
 ## Verification
 
-`npm test` checks generation/digging, repeated logical solve paths, wrong entries, partially filled slash pairs, solved states, and pattern-finder deductions against an independent completion search. It also verifies that no hint request edits the supplied entries.
+`npm test` checks generation/digging, repeated logical solve paths, wrong entries, partially filled slash pairs, solved states, and pattern-finder deductions against an independent completion search. It also verifies that no hint request edits the supplied entries. Walkthrough tests replay immutable snapshots, verify per-step and cumulative ratings, ensure registry callability, validate the final grid, and force a two-use fallback path to verify the +20,000 total.
+
+## Walkthrough and ratings
+
+`src/logic/catalog.ts` is the single source of active technique names, search order, callable finders, costs and levels. `/techniques/` renders this registry; no disabled upstream pattern is represented as active. Scores follow adapted sudokUI defaults with a Tight Fit slash-order cost of 10.
+
+Every generation builds a walkthrough from its original givens in a background worker. Each frame records post-step values, post-step candidates, the deduction, its cost and the cumulative cost. The viewer can navigate first/previous/next/last, scrub a slider or select a step in the two-column Technique/Step table. Candidates removed by the current step are also drawn with a red strike. This replay does not modify the playable grid or its hint state.
+
+Total score is the sum of recorded steps. The level starts with the hardest technique used and rises at score ceilings of 800 (Easy), 1,000 (Medium), 1,600 (Hard), and 1,800 (Unfair); Extreme has no ceiling. Any actual Brute Force use sets the label to Brute Force. Independent consistency/soundness verification by backtracking does not count as a solving step or add a fallback penalty.
 
 ## Licensing
 

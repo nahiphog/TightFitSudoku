@@ -15,3 +15,9 @@ Hint uses your current entries to explain the next deduction, including separate
 
 This application includes GPL-3.0 adaptations of AImenes/sudokUI; see LICENSE and vendor/README.md. Build generates a matching source download in public/. Node 24+ and tar are needed for the full build and test workflow.
 
+
+
+## Solution walkthrough
+
+Each generation also records a solution replay from its original givens. Use <<, <, >, >>, the range slider, or the Technique/Step table to browse the immutable snapshots. Scores come from src/logic/catalog.ts; Brute Force is the final callable fallback and adds +10,000 per one-position placement. The /techniques/ page lists all 25 active callable techniques and their scores. Vite builds both pages through vite.config.mjs. Browsing the walkthrough never changes playable entries.
+

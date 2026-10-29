@@ -16,27 +16,28 @@ const union = (a: number[]): number => a.reduce((x, y) => x | y, 0);
 function elimination(technique: string, explanation: string, removals: Removal[], focus: number[]): Step | null {
   return removals.length ? { technique, explanation, placements: [], removals, focus } : null;
 }
-export function slashOrder(model: Model, masks: number[]): Step | null {
+export function slashOrder(model: Model, masks: number[], wanted?: string): Step | null {
   for (const [a, b] of model.pairs) {
     const removals = [a, b].flatMap(s => digits(masks[s]).filter(d => !digits(masks[s === a ? b : a]).some(other => s === a ? d < other : other < d)).map(digit => ({ slot: s, digit })));
     const step = elimination('Slash order', `In ${model.slots[a].name.replace(' above the slash', '')}, the upper digit must be smaller than the lower digit. The upper possibilities are {${digits(masks[a])}} and the lower possibilities are {${digits(masks[b])}}. Remove values that have no compatible partner.`, removals, [a, b]);
-    if (step) return step;
+    if (step && (typeof wanted === 'undefined' || step.technique === wanted)) return step;
   }
   return null;
 }
-export function singles(model: Model, masks: number[], entered: number[]): Step | null {
+export function singles(model: Model, masks: number[], entered: number[], wanted?: string): Step | null {
   for (let s = 0; s < masks.length; s++) if (!entered[s] && size(masks[s]) === 1) {
     const digit = digits(masks[s])[0];
     const full = model.slots[s].units.find(u => model.units[u].filter(p => !entered[p]).length === 1);
+    if (wanted && wanted !== (full === undefined ? 'Naked Single' : 'Full House')) continue;
     return { technique: full === undefined ? 'Naked Single' : 'Full House', explanation: full === undefined ? `${model.slots[s].name} has only one remaining candidate: ${digit}. Other digits are excluded by its row, column, region, or slash partner.` : `${unitName(full)} has just one empty digit position. Its missing digit is ${digit}, so place it in ${model.slots[s].name}.`, placements: [{ slot: s, digit }], removals: [], focus: [s] };
   }
   for (let u = 0; u < 18; u++) for (let d = 1; d <= 9; d++) {
     const cells = model.units[u].filter(s => masks[s] & bit(d));
-    if (cells.length === 1 && !entered[cells[0]]) return { technique: 'Hidden Single', explanation: `In ${unitName(u)}, ${d} can go only in ${model.slots[cells[0]].name}. Both halves of a slashed cell count as separate digit positions.`, placements: [{ slot: cells[0], digit: d }], removals: [], focus: cells };
+    if (cells.length === 1 && !entered[cells[0]] && (!wanted || wanted === 'Hidden Single')) return { technique: 'Hidden Single', explanation: `In ${unitName(u)}, ${d} can go only in ${model.slots[cells[0]].name}. Both halves of a slashed cell count as separate digit positions.`, placements: [{ slot: cells[0], digit: d }], removals: [], focus: cells };
   }
   return null;
 }
-export function intersections(model: Model, masks: number[]): Step | null {
+export function intersections(model: Model, masks: number[], wanted?: string): Step | null {
   for (let a = 0; a < 18; a++) for (let b = 0; b < 18; b++) {
     if (a === b || !model.units[a].some(s => model.units[b].includes(s))) continue;
     for (let d = 1; d <= 9; d++) {
@@ -44,12 +45,12 @@ export function intersections(model: Model, masks: number[]): Step | null {
       if (sources.length < 2 || !sources.every(s => model.units[b].includes(s))) continue;
       const removals = model.units[b].filter(s => !model.units[a].includes(s) && masks[s] & bit(d)).map(slot => ({ slot, digit: d }));
       const step = elimination('Locked Candidates', `${d} in ${unitName(a)} is confined to its intersection with ${unitName(b)} (${sources.map(s => model.slots[s].name).join(', ')}). Therefore ${d} cannot appear elsewhere in ${unitName(b)}.`, removals, sources);
-      if (step) return step;
+      if (step && (typeof wanted === 'undefined' || step.technique === wanted)) return step;
     }
   }
   return null;
 }
-export function subsets(model: Model, masks: number[]): Step | null {
+export function subsets(model: Model, masks: number[], wanted?: string): Step | null {
   const names = ['', '', 'Pair', 'Triple', 'Quadruple'];
   for (let n = 2; n <= 4; n++) for (let u = 0; u < 18; u++) {
     const cells = model.units[u].filter(s => size(masks[s]) > 1);
@@ -60,7 +61,7 @@ export function subsets(model: Model, masks: number[]): Step | null {
       const targets = [...new Set(shared.flatMap(unit => model.units[unit]))];
       const removals = targets.filter(s => !group.includes(s)).flatMap(slot => digits(masks[slot] & mask).map(digit => ({ slot, digit })));
       const step = elimination(`${shared.length > 1 ? 'Locked' : 'Naked'} ${names[n]}`, `${group.map(s => model.slots[s].name).join(', ')} contain exactly the ${n} candidates {${digits(mask)}} in ${unitName(u)}. Those digits occupy these ${n} positions, so remove them from other positions in their shared units.`, removals, group);
-      if (step) return step;
+      if (step && (typeof wanted === 'undefined' || step.technique === wanted)) return step;
     }
     const candidates = digits(union(cells.map(s => masks[s])));
     for (const group of combinations(candidates, n)) {
@@ -69,13 +70,13 @@ export function subsets(model: Model, masks: number[]): Step | null {
       if (positions.length !== n) continue;
       const removals = positions.flatMap(slot => digits(masks[slot] & ~mask).map(digit => ({ slot, digit })));
       const step = elimination(`Hidden ${names[n]}`, `In ${unitName(u)}, digits {${group}} occur only in ${positions.map(s => model.slots[s].name).join(', ')}. These ${n} positions must hold those ${n} digits, so remove their other candidates.`, removals, positions);
-      if (step) return step;
+      if (step && (typeof wanted === 'undefined' || step.technique === wanted)) return step;
     }
   }
   return null;
 }
 /** Fish use sets of slots at intersections, never a fictitious 9×9 cell index. */
-export function fish(model: Model, masks: number[]): Step | null {
+export function fish(model: Model, masks: number[], wanted?: string): Step | null {
   for (let n = 2; n <= 4; n++) for (const offset of [0, 6]) for (let d = 1; d <= 9; d++) {
     const bases = Array.from({ length: 6 }, (_, i) => i + offset).filter(u => {
       const slots = model.units[u].filter(s => masks[s] & bit(d));
@@ -88,14 +89,14 @@ export function fish(model: Model, masks: number[]): Step | null {
       const removals = covers.flatMap(u => model.units[u]).filter(s => !selected.includes(model.slots[s].units[offset === 0 ? 0 : 1]) && masks[s] & bit(d)).map(slot => ({ slot, digit: d }));
       const name = ['', '', 'X-Wing', 'Swordfish', 'Jellyfish'][n];
       const step = elimination(name, `For digit ${d}, ${selected.map(unitName).join(', ')} are confined to ${covers.map(unitName).join(', ')}. Each base unit needs one ${d}, filling the ${n} cover units, so eliminate ${d} from the other positions in those covers. A slash intersection may contain either half.`, removals, positions);
-      if (step) return step;
+      if (step && (typeof wanted === 'undefined' || step.technique === wanted)) return step;
     }
   }
   return null;
 }
 
 /** Fins need not lie in a standard 3×3 box: each target must see every fin. */
-export function finnedFish(model: Model, masks: number[]): Step | null {
+export function finnedFish(model: Model, masks: number[], wanted?: string): Step | null {
   for (let n = 2; n <= 4; n++) for (const offset of [0, 6]) for (let d = 1; d <= 9; d++) {
     const baseUnits = Array.from({ length: 6 }, (_, i) => i + offset).filter(u => model.units[u].filter(s => masks[s] & bit(d)).length > 1);
     for (const bases of combinations(baseUnits, n)) {
@@ -108,7 +109,7 @@ export function finnedFish(model: Model, masks: number[]): Step | null {
         const targets = chosen.flatMap(u => model.units[u]).filter(s => masks[s] & bit(d) && !bases.includes(model.slots[s].units[offset === 0 ? 0 : 1]) && fins.every(fin => model.peers[s].includes(fin)));
         const name = ['', '', 'X-Wing', 'Swordfish', 'Jellyfish'][n];
         const step = elimination(`Finned ${name}`, `For ${d}, ${bases.map(unitName).join(', ')} form a fish in ${chosen.map(unitName).join(', ')} except for fins at ${fins.map(s => model.slots[s].name).join(', ')}. Each target sees every fin. If a target were ${d}, it would remove all fins and force the fish, which would also exclude that target. Therefore remove ${d} there.`, targets.map(slot => ({ slot, digit: d })), positions);
-        if (step) return step;
+        if (step && (typeof wanted === 'undefined' || step.technique === wanted)) return step;
       }
     }
   }
@@ -116,7 +117,7 @@ export function finnedFish(model: Model, masks: number[]): Step | null {
 }
 
 /** ALS-XZ only uses all-different sets and visibility, so it generalizes to halves. */
-export function alsXZ(model: Model, masks: number[]): Step | null {
+export function alsXZ(model: Model, masks: number[], wanted?: string): Step | null {
   const sets: { cells: number[]; mask: number }[] = [];
   const known = new Set<string>();
   for (const unit of model.units) for (let n = 1; n <= 3; n++) {
@@ -136,13 +137,13 @@ export function alsXZ(model: Model, masks: number[]): Step | null {
         const sources = [...a.cells, ...b.cells].filter(s => masks[s] & bit(z));
         const removals = masks.flatMap((mask, slot) => mask & bit(z) && !a.cells.includes(slot) && !b.cells.includes(slot) && sources.every(s => model.peers[slot].includes(s)) ? [{ slot, digit: z }] : []);
         const step = elimination('ALS-XZ', `Set A (${a.cells.map(s => model.slots[s].name).join(', ')}) has candidates {${digits(a.mask)}}; set B (${b.cells.map(s => model.slots[s].name).join(', ')}) has {${digits(b.mask)}}. Each set has one more candidate than positions. Their ${x} positions all see each other, so the two sets cannot both require ${x}. Consequently ${z} must occur in at least one set. Remove ${z} from positions seeing all its occurrences in both sets.`, removals, [...a.cells, ...b.cells]);
-        if (step) return step;
+        if (step && (typeof wanted === 'undefined' || step.technique === wanted)) return step;
       }
     }
   }
   return null;
 }
-export function wings(model: Model, masks: number[]): Step | null {
+export function wings(model: Model, masks: number[], wanted?: string): Step | null {
   const bivalue = masks.flatMap((m, s) => size(m) === 2 ? [s] : []);
   for (let pivot = 0; pivot < masks.length; pivot++) {
     if (![2, 3].includes(size(masks[pivot]))) continue;
@@ -155,8 +156,9 @@ export function wings(model: Model, masks: number[]): Step | null {
       const sources = xyz ? [pivot, a, b] : [a, b];
       const removals = masks.flatMap((mask, slot) => ![pivot, a, b].includes(slot) && mask & common && sources.every(s => model.peers[s].includes(slot)) ? [{ slot, digit: digits(common)[0] }] : []);
       const step = elimination(xyz ? 'XYZ-Wing' : 'XY-Wing', `Pivot ${model.slots[pivot].name} {${digits(masks[pivot])}} sees wings ${model.slots[a].name} {${digits(masks[a])}} and ${model.slots[b].name} {${digits(masks[b])}}. Whichever pivot value is used, ${xyz ? 'the pivot or one wing' : 'one wing'} must be ${digits(common)[0]}. Remove it from positions seeing ${xyz ? 'all three' : 'both wings'}.`, removals, [pivot, a, b]);
-      if (step) return step;
+      if (step && (typeof wanted === 'undefined' || step.technique === wanted)) return step;
     }
   }
   return null;
 }
+

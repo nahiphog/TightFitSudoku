@@ -1,6 +1,8 @@
 import './style.css';
 import { checkGrid } from './check';
 import type { HintResult } from './logic/hints';
+import { mountWalkthrough } from './walkthrough-view';
+import type { Walkthrough } from './logic/walkthrough';
 
 
 
@@ -16,7 +18,7 @@ const regions = [
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <header class="header">
     <a class="brand" href="./" aria-label="Tight Fit Sudoku home"><span class="brand-icon" aria-hidden="true">▦</span> tight fit<span class="brand-secondary"> / sudoku</span></a>
-    <span class="header-note">A little structure. A lot of possibility.</span>
+    <nav aria-label="Main navigation"><a href="/" aria-current="page">Generate</a><a href="/techniques/">Techniques</a></nav>
   </header>
   <main>
     <section class="intro" aria-labelledby="title">
@@ -54,6 +56,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <h2>From a full grid.<br>To a unique puzzle.</h2>
         <p class="description">Generate a completed grid and a puzzle with exactly one solution. Digging removes a whole cell at a time, keeping its slash, until no remaining given cell can be removed without losing uniqueness.</p>
         <button class="generate" id="generate" type="button">Generate <span aria-hidden="true">↗</span></button>
+        <p id="generated-rating" class="generated-rating" role="status">Difficulty rating will appear after generation.</p>
         <div class="stats"><div><strong>36</strong><span>CELLS</span></div><div><strong>6</strong><span>REGIONS</span></div><div><strong>2 × 3</strong><span>PER REGION</span></div></div>
         <div class="layout-label">REGION MAP</div>
         <div class="mini-map" aria-label="Region map: 111222, 111222, 333444, 333444, 555666, 555666">${regions.map(row => `<div>${row.map(n => `<span class="map-${n}">${n}</span>`).join('')}</div>`).join('')}</div>
@@ -61,6 +64,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <p class="aside-note">The starting point for your maker & solver.</p>
       </aside>
     </section>
+    <section id="walkthrough" class="walkthrough" aria-label="Solution walkthrough" aria-busy="true"><p role="status">Generate a puzzle to see its solution walkthrough.</p></section>
     <footer><span>ROOM FOR A DIFFERENT KIND OF SUDOKU.</span><span>Technique adaptations from <a href="https://github.com/AImenes/sudokUI" target="_blank" rel="noreferrer">sudokUI</a> · <a href="/LICENSE.txt">GPL-3.0</a> · <a href="/tight-fit-source.tar.gz" download>Source</a></span></footer>
   </main>
 `;
@@ -86,6 +90,26 @@ const hintWorker = new Worker(new URL('./hints.worker.ts', import.meta.url), { t
 let hintId = 0;
 let candidateMasks: number[] | undefined;
 let latestHint: HintResult | undefined;
+const walkthroughWorker = new Worker(new URL('./walkthrough.worker.ts', import.meta.url), { type: 'module' });
+const walkthroughHost = document.querySelector<HTMLElement>('#walkthrough')!;
+let walkthroughId = 0;
+walkthroughWorker.onmessage = (event: MessageEvent<{ id: number; walkthrough?: Walkthrough; error?: string }>) => {
+  if (event.data.id !== walkthroughId) return;
+  walkthroughHost.setAttribute('aria-busy', 'false');
+  if (event.data.walkthrough && slashes) {
+    const walk = event.data.walkthrough;
+    mountWalkthrough(walkthroughHost, slashes, givens, walk);
+    document.querySelector('#generated-rating')!.textContent = `Difficulty rating: ${walk.rating.toLocaleString()} · ${walk.level} · ${walk.frames.length - 1} steps · Hardest: ${walk.hardest}`;
+  } else {
+    walkthroughHost.textContent = `Walkthrough unavailable: ${event.data.error ?? 'Please generate another puzzle.'}`;
+    document.querySelector('#generated-rating')!.textContent = 'Difficulty rating unavailable for this generation.';
+  }
+};
+walkthroughWorker.onerror = () => {
+  walkthroughHost.setAttribute('aria-busy', 'false');
+  walkthroughHost.textContent = 'The walkthrough could not be prepared. Generate another puzzle to retry.';
+  document.querySelector('#generated-rating')!.textContent = 'Difficulty rating unavailable for this generation.';
+};
 
 function readEntries(): number[][] {
   const values = givens.map((digits, i) => digits.length ? [...digits] : Array<number>(slashes![i] ? 2 : 1).fill(0));
@@ -141,6 +165,10 @@ function render(board: Element, values: number[][], layout: boolean[], title: st
 
 function generate(): void {
   button.disabled = true;
+  walkthroughId++;
+  walkthroughHost.setAttribute('aria-busy', 'true');
+  walkthroughHost.innerHTML = '<p role="status">Preparing the solution walkthrough…</p>';
+  document.querySelector('#generated-rating')!.textContent = 'Calculating the solve path and difficulty rating…';
   clearHint();
   checkButton.disabled = true;
   document.querySelectorAll<HTMLInputElement>('.entry').forEach(input => { input.disabled = true; });
@@ -162,6 +190,8 @@ function failed(): void {
   document.querySelectorAll<HTMLInputElement>('.entry').forEach(input => { input.disabled = false; });
   checkStatus.textContent = 'Generation failed. You can continue the previous puzzle or try Generate again.';
   document.querySelector('.workspace')!.setAttribute('aria-busy', 'false');
+  walkthroughHost.setAttribute('aria-busy', 'false');
+  walkthroughHost.textContent = 'No new walkthrough was generated. Press Generate to try again.';
 }
 
 worker.onmessage = (event: MessageEvent<{ slashes: boolean[]; completed: number[][]; puzzle: number[][]; error?: string }>) => {
@@ -181,6 +211,7 @@ worker.onmessage = (event: MessageEvent<{ slashes: boolean[]; completed: number[
   checkStatus.textContent = 'Enter 1–9 in each empty space, then check your solution.';
   button.innerHTML = 'Generate <span aria-hidden="true">↗</span>';
   document.querySelector('.workspace')!.setAttribute('aria-busy', 'false');
+  walkthroughWorker.postMessage({ id: walkthroughId, layout: slashes, puzzle });
 };
 worker.onerror = failed;
 button.addEventListener('click', generate);

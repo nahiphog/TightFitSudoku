@@ -59,10 +59,19 @@ export function propagate(model: Model, masks: number[]): string | null {
   return masks.some(m => !m) ? 'a digit position has no candidates' : null;
 }
 export function hasCompletion(model: Model, input: readonly number[]): boolean {
+  return findCompletion(model, input) !== null;
+}
+/** Backtracking fallback returns its own completion, never the displayed answer. */
+export function findCompletion(model: Model, input: readonly number[]): number[] | null {
   const masks = [...input];
-  if (propagate(model, masks)) return false;
+  if (propagate(model, masks)) return null;
   let next = -1;
   for (let i = 0; i < masks.length; i++) if (size(masks[i]) > 1 && (next < 0 || size(masks[i]) < size(masks[next]))) next = i;
-  if (next < 0) return true;
-  return digits(masks[next]).some(d => { const trial = [...masks]; trial[next] = bit(d); return hasCompletion(model, trial); });
+  if (next < 0) return masks.map(m => digits(m)[0]);
+  for (const d of digits(masks[next])) {
+    const trial = [...masks]; trial[next] = bit(d);
+    const completion = findCompletion(model, trial);
+    if (completion) return completion;
+  }
+  return null;
 }
