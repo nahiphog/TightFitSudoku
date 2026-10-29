@@ -75,3 +75,19 @@ export function findCompletion(model: Model, input: readonly number[]): number[]
   }
   return null;
 }
+
+/** Count actual digit-position assignments, including partially given slash pairs. */
+export function countCompletions(model: Model, input: readonly number[], limit = 2): number {
+  const masks = [...input];
+  if (propagate(model, masks)) return 0;
+  let next = -1;
+  for (let i = 0; i < masks.length; i++) if (size(masks[i]) > 1 && (next < 0 || size(masks[i]) < size(masks[next]))) next = i;
+  if (next < 0) return 1;
+  let count = 0;
+  for (const d of digits(masks[next])) {
+    const trial = [...masks]; trial[next] = bit(d);
+    count += countCompletions(model, trial, limit - count);
+    if (count >= limit) return limit;
+  }
+  return count;
+}

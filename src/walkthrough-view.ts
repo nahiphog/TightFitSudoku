@@ -47,7 +47,7 @@ export function mountWalkthrough(host: HTMLElement, layout: boolean[], original:
         if (step?.focus.includes(slot)) cell.classList.add('walk-focus');
         const value = frame.values[cellIndex][target.half];
         const part = document.createElement('div');
-        part.className = `walk-slot ${layout[cellIndex] ? target.half === 0 ? 'upper' : 'lower' : 'single'}${targets.has(slot) ? ' walk-target' : ''}${original[cellIndex]?.length ? ' walk-given' : ''}`;
+        part.className = `walk-slot ${layout[cellIndex] ? target.half === 0 ? 'upper' : 'lower' : 'single'}${targets.has(slot) ? ' walk-target' : ''}${original[cellIndex]?.[target.half] ? ' walk-given' : ''}`;
         part.setAttribute('aria-label', `${target.name}: ${value || `candidates ${digits(frame.masks[slot]).join(', ')}`}`);
         if (value) { part.classList.add('walk-value'); part.textContent = String(value); }
         else {

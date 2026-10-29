@@ -1,3 +1,4 @@
+import { createModel, initialMasks, countCompletions } from './logic/board';
 /** Fill a fixed slash layout; both halves share their cell's three units. */
 function searchGrid(slashes: readonly boolean[], givens: readonly (readonly number[])[], limit: number): { count: number; solution: number[][] | null } {
   if (slashes.length !== 36) throw new Error('Expected 36 cells.');
@@ -64,6 +65,11 @@ export function solveGrid(slashes: readonly boolean[]): number[][] | null {
 
 /** Counts at most two solutions: zero, unique, or multiple. */
 export function countSolutions(slashes: readonly boolean[], givens: readonly (readonly number[])[]): number {
+  if (givens.some(ds => ds.includes(0))) {
+    if (givens.some((ds, i) => ds.length && (ds.length !== (slashes[i] ? 2 : 1) || ds.some(d => !Number.isInteger(d) || d < 0 || d > 9) || (!slashes[i] && ds[0] === 0)))) return 0;
+    try { const model = createModel(slashes); return countCompletions(model, initialMasks(model, givens)); }
+    catch { return 0; }
+  }
   return searchGrid(slashes, givens, 2).count;
 }
 
