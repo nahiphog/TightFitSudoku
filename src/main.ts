@@ -17,8 +17,8 @@ const regions = [
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <header class="header">
-    <a class="brand" href="./" aria-label="Tight Fit Sudoku home"><span class="brand-icon" aria-hidden="true">▦</span> tight fit<span class="brand-secondary"> / sudoku</span></a>
-    <nav aria-label="Main navigation"><a href="/" aria-current="page">Generate</a><a href="/custom-build/">Custom build</a><a href="/techniques/">Techniques</a></nav>
+    <a class="brand" href="./" aria-label="Tight Fit Sudoku home"><img class="brand-icon" src="/logo.svg" alt="" width="33" height="33" /> tight fit<span class="brand-secondary"> / sudoku</span></a>
+    <nav aria-label="Main navigation"><a href="/" aria-current="page">6×6</a><a href="/nine/">9×9</a><a href="/custom-build/">Custom build</a><a href="/techniques/">Techniques</a></nav>
   </header>
   <main>
     <section class="intro" aria-labelledby="title">
@@ -54,7 +54,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <aside>
         <span class="step">01 / THE FOUNDATION</span>
         <h2>From a full grid.<br>To a unique puzzle.</h2>
-        <p class="description">Generate a completed grid and a puzzle with exactly one solution. Digging removes a whole cell at a time, keeping its slash, until no remaining given cell can be removed without losing uniqueness.</p>
+        <p class="description">Generate a completed grid and a puzzle with exactly one solution. Both digits in every slashed cell are fixed clues. Digging removes only unslashed cells, until removing any remaining unslashed clue would break uniqueness.</p>
         <button class="generate" id="generate" type="button">Generate <span aria-hidden="true">↗</span></button>
         <p id="generated-rating" class="generated-rating" role="status">Difficulty rating will appear after generation.</p>
         <div class="stats"><div><strong>36</strong><span>CELLS</span></div><div><strong>6</strong><span>REGIONS</span></div><div><strong>2 × 3</strong><span>PER REGION</span></div></div>

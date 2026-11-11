@@ -21,7 +21,11 @@ for (let run = 0; run < 30; run++) {
   }
   for (let i = 0; i < 36; i++) {
     assert.equal(completed[i].length, slashes[i] ? 2 : 1);
-    if (slashes[i]) assert.ok(completed[i][0] < completed[i][1]);
+    if (slashes[i]) {
+      assert.ok(completed[i][0] < completed[i][1]);
+      assert.deepEqual(puzzle[i], completed[i], 'both halves of every slash must remain');
+      continue;
+    }
     if (!puzzle[i].length) continue;
     assert.deepEqual(puzzle[i], completed[i], 'whole cell clues must be preserved');
     const without = puzzle.map(digits => [...digits]);
@@ -32,4 +36,4 @@ for (let run = 0; run < 30; run++) {
   invalid[0] = [0];
   assert.equal(countSolutions(slashes, invalid), 0);
 }
-console.log('30 puzzles passed: valid completed grids, unique solutions, whole-cell digging, and every remaining given necessary.');
+console.log('30 puzzles passed: valid grids, unique solutions, locked slash clues, and minimal unslashed clues.');

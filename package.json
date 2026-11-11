@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --experimental-strip-types --import ./tests/ts-loader.mjs tests/digging.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/hints.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/patterns.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/walkthrough.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/custom-build.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/slash-layout.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/half-clues.mjs",
+    "test": "node --experimental-strip-types --import ./tests/ts-loader.mjs tests/digging.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/hints.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/patterns.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/walkthrough.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/custom-build.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/slash-layout.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/half-clues.mjs && node --experimental-strip-types --import ./tests/ts-loader.mjs tests/nine-grid.mjs",
     "prebuild": "node scripts/package-source.mjs",
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",

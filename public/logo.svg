@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <title>Tight Fit Sudoku</title>
+  <path fill="#f6f5f0" d="M3 3h42v42H3z"/>
+  <path stroke="#547361" stroke-width="3" stroke-linejoin="round" d="M3 3h42v42H3zM17 3v42M31 3v42M3 17h42M3 31h42M17 31l14-14"/>
+</svg>

@@ -1,22 +1,29 @@
 import { createModel, initialMasks, countCompletions } from './logic/board';
 /** Fill a fixed slash layout; both halves share their cell's three units. */
 function searchGrid(slashes: readonly boolean[], givens: readonly (readonly number[])[], limit: number): { count: number; solution: number[][] | null } {
-  if (slashes.length !== 36) throw new Error('Expected 36 cells.');
-  const units = Array.from({ length: 36 }, (_, i) => [Math.floor(i / 6), 6 + i % 6, 12 + Math.floor(i / 12) * 2 + Math.floor((i % 6) / 3)]);
-  const used = Array<number>(18).fill(0);
-  const values: number[][] = Array.from({ length: 36 }, () => []);
-  const order = Array.from({ length: 9 }, (_, i) => i + 1);
-  for (let i = 8; i > 0; i--) {
+  const size = slashes.length === 81 ? 9 : 6;
+  const length = size * size;
+  const symbols = size === 9 ? 10 : 9;
+  const boxHeight = size === 9 ? 3 : 2;
+  if (slashes.length !== length) throw new Error('Expected 36 or 81 cells.');
+  const units = Array.from({ length }, (_, i) => {
+    const row = Math.floor(i / size), col = i % size;
+    return [row, size + col, 2 * size + Math.floor(row / boxHeight) * (size / 3) + Math.floor(col / 3)];
+  });
+  const used = Array<number>(3 * size).fill(0);
+  const values: number[][] = Array.from({ length }, () => []);
+  const order = Array.from({ length: symbols }, (_, i) => i + 1);
+  for (let i = order.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [order[i], order[j]] = [order[j], order[i]];
   }
   let count = 0;
   let solution: number[][] | null = null;
-  let empty = 36;
-  for (let i = 0; i < 36; i++) {
+  let empty = length;
+  for (let i = 0; i < length; i++) {
     const digits = givens[i] ?? [];
     if (!digits.length) continue;
-    if (digits.length !== (slashes[i] ? 2 : 1) || digits.some(d => !Number.isInteger(d) || d < 1 || d > 9) || (slashes[i] && digits[0] >= digits[1])) return { count: 0, solution: null };
+    if (digits.length !== (slashes[i] ? 2 : 1) || digits.some(d => !Number.isInteger(d) || d < 1 || d > symbols) || (slashes[i] && digits[0] >= digits[1])) return { count: 0, solution: null };
     const mask = digits.reduce((m, d) => m | (1 << d), 0);
     if (units[i].some(unit => used[unit] & mask)) return { count: 0, solution: null };
     values[i] = [...digits];
@@ -31,7 +38,7 @@ function searchGrid(slashes: readonly boolean[], givens: readonly (readonly numb
     }
     let best = -1;
     let choices: number[][] = [];
-    for (let i = 0; i < 36; i++) {
+    for (let i = 0; i < length; i++) {
       if (values[i].length) continue;
       const occupied = units[i].reduce((mask, unit) => mask | used[unit], 0);
       const available = order.filter(d => !(occupied & (1 << d)));
@@ -76,8 +83,8 @@ export function countSolutions(slashes: readonly boolean[], givens: readonly (re
 /** A rejected removal stays rejected as more clues are removed, so one pass suffices. */
 export function digGrid(slashes: readonly boolean[], completed: readonly (readonly number[])[]): number[][] {
   const puzzle = completed.map(digits => [...digits]);
-  const cells = Array.from({length: 36}, (_, i) => i);
-  for (let i = 35; i > 0; i--) {
+  const cells = slashes.flatMap((slash, i) => slash ? [] : [i]);
+  for (let i = cells.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [cells[i], cells[j]] = [cells[j], cells[i]];
   }
