@@ -2,7 +2,7 @@ import './style.css';
 import type { generateNineGrid } from './nine-grid';
 
 document.querySelector('#app')!.innerHTML = `
-<header class="header"><a class="brand" href="${import.meta.env.BASE_URL}"><span class="brand-icon" aria-hidden="true">▦</span> tight fit<span class="brand-secondary"> / sudoku</span></a>
+<header class="header"><a class="brand" href="${import.meta.env.BASE_URL}"><img class="brand-icon" src="${import.meta.env.BASE_URL}logo.svg" alt="" width="33" height="33" /> tight fit<span class="brand-secondary"> / sudoku</span></a>
 <nav aria-label="Main navigation"><a href="${import.meta.env.BASE_URL}">6×6</a><a href="${import.meta.env.BASE_URL}nine/" aria-current="page">9×9</a><a href="${import.meta.env.BASE_URL}custom-build/">Custom build</a><a href="${import.meta.env.BASE_URL}techniques/">Techniques</a></nav></header>
 <main><div class="intro"><div class="eyebrow">THE NINE BY NINE VARIANT</div><h1>Tight Fit Sudoku 9×9<span class="period">.</span></h1>
 <p>Use 1–10 once in each row, column, and 3×3 region. Each has one slashed cell, with the smaller number above the slash.</p></div>
