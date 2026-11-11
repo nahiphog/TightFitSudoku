@@ -15,7 +15,7 @@ export function mountWalkthrough(host: HTMLElement, layout: boolean[], original:
       <input id="walk-slider" type="range" min="0" max="${last}" value="0" aria-label="Walkthrough step" />
       <div class="walk-explanation" aria-live="polite"><h3 id="walk-technique"></h3><p id="walk-description"></p><ul id="walk-actions"></ul><p id="walk-total"></p></div>
       <p class="walk-key">Gold: changed position · Pale gold: supporting cells · Red strike: removed candidate. Small digits are candidates.</p>
-    </section><section class="walk-table-wrap" aria-label="All solution steps"><h3>Technique table</h3><p>Select a step number to jump to its slide.</p><table class="technique-table"><thead><tr><th scope="col">Technique</th><th scope="col">Step</th></tr></thead><tbody></tbody></table><p class="rating-note">Rating = sum of recorded step costs. Each Brute Force placement adds +10,000. <a href="/techniques/">View all active techniques and scores →</a></p></section></div>`;
+    </section><section class="walk-table-wrap" aria-label="All solution steps"><h3>Technique table</h3><p>Select a step number to jump to its slide.</p><table class="technique-table"><thead><tr><th scope="col">Technique</th><th scope="col">Step</th></tr></thead><tbody></tbody></table><p class="rating-note">Rating = sum of recorded step costs. Each Brute Force placement adds +10,000. <a href="${import.meta.env.BASE_URL}techniques/">View all active techniques and scores →</a></p></section></div>`;
   host.querySelector('.hardest')!.textContent = walk.hardest;
   const body = host.querySelector('tbody')!;
   const groups = new Map<string, number[]>();

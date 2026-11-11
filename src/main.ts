@@ -17,8 +17,8 @@ const regions = [
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <header class="header">
-    <a class="brand" href="./" aria-label="Tight Fit Sudoku home"><img class="brand-icon" src="/logo.svg" alt="" width="33" height="33" /> tight fit<span class="brand-secondary"> / sudoku</span></a>
-    <nav aria-label="Main navigation"><a href="/" aria-current="page">6×6</a><a href="/nine/">9×9</a><a href="/custom-build/">Custom build</a><a href="/techniques/">Techniques</a></nav>
+    <a class="brand" href="./" aria-label="Tight Fit Sudoku home"><img class="brand-icon" src="${import.meta.env.BASE_URL}logo.svg" alt="" width="33" height="33" /> tight fit<span class="brand-secondary"> / sudoku</span></a>
+    <nav aria-label="Main navigation"><a href="${import.meta.env.BASE_URL}" aria-current="page">6×6</a><a href="${import.meta.env.BASE_URL}nine/">9×9</a><a href="${import.meta.env.BASE_URL}custom-build/">Custom build</a><a href="${import.meta.env.BASE_URL}techniques/">Techniques</a></nav>
   </header>
   <main>
     <section class="intro" aria-labelledby="title">
@@ -65,7 +65,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </aside>
     </section>
     <section id="walkthrough" class="walkthrough" aria-label="Solution walkthrough" aria-busy="true"><p role="status">Generate a puzzle to see its solution walkthrough.</p></section>
-    <footer><span>ROOM FOR A DIFFERENT KIND OF SUDOKU.</span><span>Technique adaptations from <a href="https://github.com/AImenes/sudokUI" target="_blank" rel="noreferrer">sudokUI</a> · <a href="/LICENSE.txt">GPL-3.0</a> · <a href="/tight-fit-source.tar.gz" download>Source</a></span></footer>
+    <footer><span>ROOM FOR A DIFFERENT KIND OF SUDOKU.</span><span>Technique adaptations from <a href="https://github.com/AImenes/sudokUI" target="_blank" rel="noreferrer">sudokUI</a> · <a href="${import.meta.env.BASE_URL}LICENSE.txt">GPL-3.0</a> · <a href="${import.meta.env.BASE_URL}tight-fit-source.tar.gz" download>Source</a></span></footer>
   </main>
 `;
 
