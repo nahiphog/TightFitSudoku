@@ -11,7 +11,7 @@ function shuffle<T>(values: T[]): T[] {
 export function generateNineGrid() {
   const axis = () => shuffle([0, 1, 2]).flatMap(group => shuffle([0, 1, 2]).map(offset => group * 3 + offset));
   const rows = axis(), cols = axis();
-  const labels = shuffle(Array.from({ length: 10 }, (_, i) => i + 1));
+  const labels = shuffle(Array.from({ length: 10 }, (_, i) => i));
   const transpose = Math.random() < 0.5;
   const slashes: boolean[] = [], completed: number[][] = [];
   for (let i = 0; i < 81; i++) {

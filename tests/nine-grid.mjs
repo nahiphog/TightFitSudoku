@@ -10,7 +10,7 @@ for (let run = 0; run < 16; run++) {
   assert.ok(puzzle.some(cell => cell.length === 0));
   const check = indices => {
     assert.equal(indices.filter(i => slashes[i]).length, 1);
-    assert.deepEqual(indices.flatMap(i => completed[i]).sort((a, b) => a - b), [1,2,3,4,5,6,7,8,9,10]);
+    assert.deepEqual(indices.flatMap(i => completed[i]).sort((a, b) => a - b), [0,1,2,3,4,5,6,7,8,9]);
   };
   for (let unit = 0; unit < 9; unit++) {
     check(Array.from({ length: 9 }, (_, i) => 9 * unit + i));
@@ -19,6 +19,9 @@ for (let run = 0; run < 16; run++) {
     check(Array.from({ length: 9 }, (_, i) => start + 9 * Math.floor(i / 3) + i % 3));
   }
   assert.equal(countSolutions(slashes, puzzle), 1);
+  assert.equal(countSolutions(slashes, completed), 1, 'Zero is a valid digit, not an empty cell');
+  const invalid = completed.map(cell => cell.map(digit => digit === 9 ? 10 : digit));
+  assert.equal(countSolutions(slashes, invalid), 0, 'Ten is outside the digit range');
   for (let i = 0; i < 81; i++) {
     if (slashes[i]) {
       assert.equal(puzzle[i].length, 2);

@@ -4,7 +4,7 @@ A TypeScript maker for 6×6 Tight Fit Sudoku. Each layout has three slashes per 
 
 Generate displays a completed grid and a dug puzzle. Digging locks both clues in every slashed cell and tests unslashed cells in random order, removing a clue only when exactly one solution remains. The result is minimal among individual unslashed clues. Generation runs in a Web Worker.
 
-The 9×9 generator uses 3×3 regions and exactly one slashed cell per row, column, and region. Each unit contains 1–10, and the same locked-clue digging rule applies. Custom Build remains a manual clue editor for the 6×6 version.
+The 9×9 generator uses 3×3 regions and exactly one slashed cell per row, column, and region. Each unit contains 0–9, and the same locked-clue digging rule applies. Custom Build remains a manual clue editor for the 6×6 version.
 
 Run `npm install` then `npm run dev`. Build with `npm run build`.
 

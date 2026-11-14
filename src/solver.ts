@@ -4,6 +4,7 @@ function searchGrid(slashes: readonly boolean[], givens: readonly (readonly numb
   const size = slashes.length === 81 ? 9 : 6;
   const length = size * size;
   const symbols = size === 9 ? 10 : 9;
+  const firstSymbol = size === 9 ? 0 : 1;
   const boxHeight = size === 9 ? 3 : 2;
   if (slashes.length !== length) throw new Error('Expected 36 or 81 cells.');
   const units = Array.from({ length }, (_, i) => {
@@ -12,7 +13,7 @@ function searchGrid(slashes: readonly boolean[], givens: readonly (readonly numb
   });
   const used = Array<number>(3 * size).fill(0);
   const values: number[][] = Array.from({ length }, () => []);
-  const order = Array.from({ length: symbols }, (_, i) => i + 1);
+  const order = Array.from({ length: symbols }, (_, i) => i + firstSymbol);
   for (let i = order.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [order[i], order[j]] = [order[j], order[i]];
@@ -23,7 +24,7 @@ function searchGrid(slashes: readonly boolean[], givens: readonly (readonly numb
   for (let i = 0; i < length; i++) {
     const digits = givens[i] ?? [];
     if (!digits.length) continue;
-    if (digits.length !== (slashes[i] ? 2 : 1) || digits.some(d => !Number.isInteger(d) || d < 1 || d > symbols) || (slashes[i] && digits[0] >= digits[1])) return { count: 0, solution: null };
+    if (digits.length !== (slashes[i] ? 2 : 1) || digits.some(d => !Number.isInteger(d) || d < firstSymbol || d >= firstSymbol + symbols) || (slashes[i] && digits[0] >= digits[1])) return { count: 0, solution: null };
     const mask = digits.reduce((m, d) => m | (1 << d), 0);
     if (units[i].some(unit => used[unit] & mask)) return { count: 0, solution: null };
     values[i] = [...digits];
@@ -72,7 +73,7 @@ export function solveGrid(slashes: readonly boolean[]): number[][] | null {
 
 /** Counts at most two solutions: zero, unique, or multiple. */
 export function countSolutions(slashes: readonly boolean[], givens: readonly (readonly number[])[]): number {
-  if (givens.some(ds => ds.includes(0))) {
+  if (slashes.length !== 81 && givens.some(ds => ds.includes(0))) {
     if (givens.some((ds, i) => ds.length && (ds.length !== (slashes[i] ? 2 : 1) || ds.some(d => !Number.isInteger(d) || d < 0 || d > 9) || (!slashes[i] && ds[0] === 0)))) return 0;
     try { const model = createModel(slashes); return countCompletions(model, initialMasks(model, givens)); }
     catch { return 0; }

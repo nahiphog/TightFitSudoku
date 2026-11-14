@@ -5,7 +5,7 @@ document.querySelector('#app')!.innerHTML = `
 <header class="header"><a class="brand" href="${import.meta.env.BASE_URL}"><img class="brand-icon" src="${import.meta.env.BASE_URL}logo.svg" alt="" width="33" height="33" /> tight fit<span class="brand-secondary"> / sudoku</span></a>
 <nav aria-label="Main navigation"><a href="${import.meta.env.BASE_URL}">6×6</a><a href="${import.meta.env.BASE_URL}nine/" aria-current="page">9×9</a><a href="${import.meta.env.BASE_URL}custom-build/">Custom build</a><a href="${import.meta.env.BASE_URL}techniques/">Techniques</a></nav></header>
 <main><div class="intro"><div class="eyebrow">THE NINE BY NINE VARIANT</div><h1>Tight Fit Sudoku 9×9<span class="period">.</span></h1>
-<p>Use 1–10 once in each row, column, and 3×3 region. Each has one slashed cell, with the smaller number above the slash.</p></div>
+<p>Use 0–9 once in each row, column, and 3×3 region. Each has one slashed cell, with the smaller number above the slash.</p></div>
 <button class="generate" id="nine-generate">Generate <span aria-hidden="true">↗</span></button>
 <p id="nine-status" role="status"></p>
 <div class="workspace" id="nine-workspace" hidden>
@@ -43,11 +43,11 @@ function render(board: HTMLElement, cells: number[][], slashes: boolean[]) {
       const input = document.createElement('input');
       input.className = 'entry digit single';
       input.inputMode = 'numeric';
-      input.maxLength = 2;
+      input.maxLength = 1;
       input.autocomplete = 'off';
       input.setAttribute('aria-label', `Row ${row + 1}, column ${col + 1}`);
       input.addEventListener('input', () => {
-        input.value = input.value.replace(/[^0-9]/g, '');
+        input.value = input.value.replace(/[^0-9]/g, '').slice(0, 1);
         input.removeAttribute('aria-invalid');
         cell.classList.remove('error');
         checkStatus.textContent = '';
@@ -93,6 +93,6 @@ document.querySelector('#nine-check')!.addEventListener('click', () => {
     if (wrong) input.setAttribute('aria-invalid', 'true');
     else input.removeAttribute('aria-invalid');
   });
-  checkStatus.textContent = incorrect ? `${incorrect} incorrect entries highlighted.` : empty ? `All entries are correct so far. ${empty} cells remain.` : 'Solved! Every unit contains 1–10 exactly once.';
+  checkStatus.textContent = incorrect ? `${incorrect} incorrect entries highlighted.` : empty ? `All entries are correct so far. ${empty} cells remain.` : 'Solved! Every unit contains 0–9 exactly once.';
 });
 start();
